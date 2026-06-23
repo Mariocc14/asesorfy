@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesorfy — Generador de documentos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1a2b;--ink-soft:#1d2a3d;--muted:#5b6776;--line:#e6eaf0;
+    --bg:#ffffff;--bg-soft:#f6f8fb;--bg-tint:#eef3fb;
+    --accent:#1f5fa6;--accent-dark:#163f6e;--accent-soft:#dbe7f6;--ok:#1d7a52;
+    --radius:12px;--shadow:0 1px 2px rgba(14,26,43,.05),0 12px 30px -12px rgba(14,26,43,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg-soft);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em}
+
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .bar{max-width:1280px;margin:0 auto;padding:0 22px;height:62px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:600;font-size:20px}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .back{font-size:14px;color:var(--muted)}
+  .back:hover{color:var(--ink)}
+
+  .tabs{max-width:1280px;margin:0 auto;padding:18px 22px 0;display:flex;gap:8px;flex-wrap:wrap}
+  .tab{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 16px;font-size:13.5px;font-weight:600;color:var(--ink-soft);transition:.16s}
+  .tab:hover{border-color:var(--accent-soft)}
+  .tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+  .layout{max-width:1280px;margin:0 auto;padding:18px 22px 60px;display:grid;grid-template-columns:1fr 1.05fr;gap:26px;align-items:start}
+
+  .panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .panel .ph{padding:18px 20px;border-bottom:1px solid var(--line)}
+  .panel .ph h3{font-size:16px}
+  .panel .ph p{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .panel .bd{padding:18px 20px}
+
+  .grp-title{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:16px 0 10px;display:flex;align-items:center}
+  .grp-title:first-child{margin-top:0}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .f{display:flex;flex-direction:column;gap:5px}
+  .f.full{grid-column:1 / -1}
+  .f label{font-size:12px;font-weight:500;color:var(--ink-soft)}
+  .f input,.f textarea{width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:13.5px;color:var(--ink);background:#fff;transition:.15s}
+  .f input:focus,.f textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+
+  /* TOOLTIP DE AYUDA */
+  .help{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:11px;font-weight:700;margin-left:8px;cursor:help;flex:none}
+  .help .tip{visibility:hidden;opacity:0;position:absolute;left:24px;top:50%;transform:translateY(-50%);width:250px;background:var(--ink);color:#eef3fb;font-family:'Inter',sans-serif;font-weight:400;font-size:11.5px;line-height:1.45;text-transform:none;letter-spacing:0;padding:10px 12px;border-radius:9px;box-shadow:0 12px 30px -8px rgba(14,26,43,.45);z-index:30;transition:opacity .15s}
+  .help .tip:before{content:"";position:absolute;left:-5px;top:50%;transform:translateY(-50%);border:5px solid transparent;border-right-color:var(--ink)}
+  .help:hover .tip,.help:focus .tip{visibility:visible;opacity:1}
+  @media(max-width:520px){.help .tip{left:auto;right:24px}.help .tip:before{left:auto;right:-5px;border-right-color:transparent;border-left-color:var(--ink)}}
+
+  /* CLÁUSULAS */
+  .clause{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px;transition:.15s}
+  .clause.off{opacity:.55;background:var(--bg-soft)}
+  .clause.ess{background:#f3f8f4;border-color:#cfe6d6}
+  .clause .head{display:flex;align-items:flex-start;gap:10px}
+  .clause .head input[type=checkbox]{margin-top:3px;width:17px;height:17px;accent-color:var(--accent);cursor:pointer;flex:none}
+  .clause .head input[type=checkbox]:disabled{cursor:not-allowed;accent-color:var(--ok)}
+  .clause .head .ttl{font-size:13.5px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .clause .head .txt{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.45}
+  .obtag{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:#dcefe2;color:var(--ok);padding:2px 7px;border-radius:999px}
+  .clause .mid{flex:1;min-width:0}
+  .clause .acts{display:flex;gap:8px;align-items:center;flex:none}
+  .clause .editbtn{background:none;border:none;color:var(--accent);font-size:12px;cursor:pointer;font-weight:600}
+  .clause .del{background:none;border:none;color:#b3261e;font-size:12px;cursor:pointer;font-weight:600}
+  .clause .editor{display:none;margin-top:11px;border-top:1px dashed var(--line);padding-top:11px}
+  .clause.editing .editor{display:block}
+  .clause .editor label{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);display:block;margin:8px 0 4px}
+  .clause .editor label:first-child{margin-top:0}
+  .clause .editor input,.clause .editor textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:12.5px;color:var(--ink);background:#fff}
+  .clause .editor input:focus,.clause .editor textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .clause .editor textarea{min-height:96px;resize:vertical;line-height:1.5}
+  .clause .editor .hint{font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.4}
+  .addbtn{width:100%;border:1px dashed var(--accent-soft);background:var(--bg-tint);color:var(--accent);border-radius:10px;padding:12px;font-family:inherit;font-weight:600;font-size:13.5px;cursor:pointer;transition:.15s}
+  .addbtn:hover{background:var(--accent-soft)}
+
+  /* PREVIEW */
+  .previewwrap{position:sticky;top:80px}
+  .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 16px;margin-bottom:14px;flex-wrap:wrap}
+  .toolbar .price{font-family:'Fraunces',serif;font-size:22px}
+  .toolbar .price small{font-family:'Inter';font-size:11px;color:var(--muted);font-weight:500;display:block;margin-top:-2px}
+  .btn{display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:13.5px;padding:10px 16px;border-radius:9px;transition:.16s;background:var(--accent);color:#fff}
+  .btn:hover{background:var(--accent-dark)}
+  .btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--line)}
+  .btn.ghost:hover{background:var(--bg-soft)}
+
+  .paper{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .paper.unlocked{max-height:78vh;overflow:auto}
+  .paper.locked{overflow:hidden}
+  .paper.locked #doc{max-height:540px;overflow:hidden}
+  .lockfade{display:none}
+  .paper.locked .lockfade{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:10px;position:absolute;left:0;right:0;bottom:0;height:300px;padding:0 22px 28px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.6) 35%,rgba(255,255,255,.95) 65%,#fff 88%)}
+  .lockfade .lk{font-size:14px;color:var(--ink);font-weight:700;display:flex;align-items:center;gap:7px}
+  .lockfade .sub2{font-size:12.5px;color:var(--muted);margin-top:-4px}
+  #doc{font-family:'Times New Roman',Georgia,serif;color:#15212f;padding:46px 50px;font-size:13px;line-height:1.6}
+  #doc h1{font-family:'Times New Roman',Georgia,serif;font-size:18px;text-align:center;font-weight:bold;margin-bottom:4px}
+  #doc .sub{text-align:center;font-style:italic;font-size:11.5px;color:#5b6776;margin-bottom:12px}
+  #doc hr{border:none;border-top:1px solid #b9c4d2;margin:12px 0}
+  #doc h4{font-family:'Times New Roman',Georgia,serif;color:var(--accent);font-size:13px;margin:14px 0 5px}
+  #doc p{margin-bottom:8px;text-align:justify}
+  #doc .aviso{border:1px solid #cfd9e6;background:#f4f7fb;padding:9px 11px;font-size:10.5px;color:#33415a;margin-bottom:12px}
+  #doc .val{font-weight:bold}
+  #doc .blank{background:#fff2c8;border-bottom:1px solid #e3b94a;padding:0 3px;color:#7a5a12;font-style:italic;font-size:11.5px}
+  #doc .sign{display:flex;gap:30px;margin-top:30px}
+  #doc .sign div{flex:1}
+  #doc .legal{font-size:10px;color:#666;margin-top:14px}
+
+  .demo-note{font-size:11.5px;color:var(--muted);margin-top:10px;text-align:center}
+
+  /* MODALES */
+  .modalbg{position:fixed;inset:0;background:rgba(14,26,43,.55);backdrop-filter:blur(3px);display:none;place-items:center;z-index:100;padding:22px}
+  .modalbg.open{display:grid}
+  .modal{background:#fff;border-radius:16px;max-width:430px;width:100%;padding:28px;box-shadow:0 30px 80px -20px rgba(0,0,0,.5)}
+  .modal.wide{max-width:660px;max-height:86vh;display:flex;flex-direction:column}
+  .modal h3{font-size:21px;margin-bottom:6px}
+  .modal p.lead{font-size:13.5px;color:var(--muted);margin-bottom:16px}
+  .modal .fld{margin-bottom:12px}
+  .modal label{font-size:12px;font-weight:500;display:block;margin-bottom:5px}
+  .modal input,.modal textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:9px;font-family:inherit;font-size:14px}
+  .modal textarea{min-height:80px;resize:vertical}
+  .modal .rowx{display:flex;gap:10px}
+  .modal .x{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted)}
+  .badge{display:inline-block;background:var(--bg-tint);color:var(--accent);font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;margin-bottom:14px}
+
+  .libscroll{overflow:auto;margin:0 -6px;padding:0 6px;flex:1}
+  .libitem{border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px;display:flex;gap:12px;align-items:flex-start}
+  .libitem .info{flex:1}
+  .libitem .lt{font-size:13.5px;font-weight:600;margin-bottom:3px}
+  .libitem .lx{font-size:12px;color:var(--muted);line-height:1.45}
+  .libitem .add{flex:none;border:1px solid var(--accent);color:var(--accent);background:#fff;border-radius:8px;padding:7px 12px;font-family:inherit;font-weight:600;font-size:12.5px;cursor:pointer;transition:.14s}
+  .libitem .add:hover{background:var(--accent);color:#fff}
+  .libitem .add.done{background:var(--ok);border-color:var(--ok);color:#fff}
+  .seghead{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:6px 0 12px}
+  .manualbox{border-top:1px solid var(--line);margin-top:8px;padding-top:16px}
+  .fillprev{background:var(--bg-soft);border:1px solid var(--line);border-radius:9px;padding:11px 13px;font-size:12.5px;line-height:1.55;color:var(--ink-soft);margin:8px 0 4px}
+  .phmark{background:#fff2c8;border-bottom:1px solid #e3b94a;color:#7a5a12;padding:0 3px;font-style:italic}
+  .back2{background:none;border:none;color:var(--accent);font-weight:600;font-size:12.5px;cursor:pointer;margin-bottom:12px;padding:0}
+
+  @media(max-width:980px){.layout{grid-template-columns:1fr}.previewwrap{position:static}.fields{grid-template-columns:1fr}}
+
+  @media print{
+    body *{visibility:hidden}
+    #doc,#doc *{visibility:visible}
+    #doc{position:absolute;left:0;top:0;width:100%;max-height:none!important;overflow:visible!important;padding:0;font-size:12pt}
+    .lockfade{display:none!important}
+    #doc .blank{background:none;border:none;color:#000;font-style:normal}
+    @page{margin:2cm}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="bar">
+    <a class="brand" href="index.html"><span class="dot"></span>Asesorfy</a>
+    <a class="back" href="index.html">← Volver a la web</a>
+  </div>
+</header>
+
+<div class="tabs" id="tabs"></div>
+
+<div class="layout">
+  <div>
+    <div class="panel" style="margin-bottom:18px">
+      <div class="ph"><h3>1. Tus datos</h3><p>Rellena los campos. El documento se actualiza en tiempo real. Pasa el ratón por los <b>?</b> para saber por qué se pide cada dato.</p></div>
+      <div class="bd" id="formFields"></div>
+    </div>
+    <div class="panel">
+      <div class="ph"><h3>2. Cláusulas</h3><p>Las <b>obligatorias</b> no se pueden quitar. El resto, actívalas o desactívalas. Y añade las tuyas.</p></div>
+      <div class="bd">
+        <div id="clauseList"></div>
+        <button class="addbtn" id="addClause">+ Añadir cláusula</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="previewwrap">
+    <div class="toolbar">
+      <div class="price" id="price">39€<small>pago único</small></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn ghost" id="demoBtn">Ver completo (demo)</button>
+        <button class="btn" id="payBtn">Pagar y descargar</button>
+      </div>
+    </div>
+    <div class="paper locked" id="paper">
+      <div id="doc"></div>
+      <div class="lockfade">
+        <div class="lk">🔒 Vista previa</div>
+        <div class="sub2" id="lockSub">Desbloquea el documento completo y editable</div>
+        <button class="btn" id="unlockBtn">Pagar y descargar</button>
+      </div>
+    </div>
+    <p class="demo-note">Versión de muestra. La pasarela de pago (Stripe) es un placeholder: al integrarla, el documento se desbloquea tras el cobro.</p>
+  </div>
+</div>
+
+<!-- MODAL AÑADIR CLÁUSULA -->
+<div class="modalbg" id="clauseModal">
+  <div class="modal wide">
+    <button class="x" onclick="closeClause()">×</button>
+    <span class="badge">Biblioteca de cláusulas</span>
+    <h3>Añadir una cláusula</h3>
+    <p class="lead">Elige una de las cláusulas frecuentes o redacta la tuya. Podrás editarla y quitarla después.</p>
+    <div class="libscroll" id="libView">
+      <div class="seghead">Cláusulas frecuentes</div>
+      <div id="libList"></div>
+      <div class="manualbox">
+        <div class="seghead">Redactar la mía</div>
+        <div class="fld"><label>Título</label><input id="mTtl" placeholder="Ej. Mascotas, Depósito de llaves..."></div>
+        <div class="fld"><label>Texto de la cláusula</label><textarea id="mTxt" placeholder="Escribe aquí el contenido de tu cláusula..."></textarea></div>
+        <button class="btn" id="mAdd" style="width:100%;justify-content:center">Añadir mi cláusula</button>
+      </div>
+    </div>
+    <div class="libscroll" id="fillStep" style="display:none"></div>
+  </div>
+</div>
+
+<!-- MODAL PAGO -->
+<div class="modalbg" id="payModal">
+  <div class="modal">
+    <button class="x" onclick="closePay()">×</button>
+    <span class="badge">Pago seguro · Stripe</span>
+    <h3>Comprar documento</h3>
+    <p class="lead" id="payDesc">Te llevaremos a la pasarela segura de Stripe para completar el pago. Al volver, tu documento quedará desbloqueado para descargar.</p>
+    <button class="btn" style="width:100%;justify-content:center" id="confirmPay">Pagar <span id="payAmount">39€</span> con tarjeta</button>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center">Pago procesado por Stripe. No almacenamos los datos de tu tarjeta.</p>
+  </div>
+</div>
+
+<script>
+/* ====================== CONFIGURACIÓN ======================
+   Fuentes: Código Civil (1255, 1542 ss.), LAU 29/1994 (art. 3 y 36),
+   LO 1/2025 (art. 17, MASC), RD 1312/2024 (NRUA). Normativa española. */
+
+var COMMON_PARTES = [
+  {grp:"Lugar y fecha", help:"El lugar y la fecha determinan dónde y cuándo se perfecciona el contrato. Son relevantes para el cómputo de plazos y para fijar la competencia territorial de los juzgados."},
+  {id:"localidad",label:"Localidad",ph:"Córdoba"},
+  {id:"fecha",label:"Fecha",ph:"22 de junio de 2026"},
+  {grp:"Arrendador / acreedor", help:"Identifica a quien cede el inmueble (o reclama la deuda). Debe ser el titular o tener facultad para arrendar; sus datos permiten dirigir notificaciones y reclamaciones de forma válida."},
+  {id:"arr_nombre",label:"Nombre y apellidos",ph:"Marcos ..."},
+  {id:"arr_dni",label:"DNI / NIE",ph:"00000000X"},
+  {id:"arr_dom",label:"Domicilio",ph:"Calle ..., Córdoba",full:true},
+  {grp:"Arrendatario / deudor", help:"Identifica a quien usará el inmueble y responde del pago. Sus datos son imprescindibles para las notificaciones y, llegado el caso, para poder dirigir la demanda contra la persona correcta."},
+  {id:"inq_nombre",label:"Nombre y apellidos",ph:"..."},
+  {id:"inq_dni",label:"DNI / NIE",ph:"00000000X"},
+  {id:"inq_dom",label:"Domicilio",ph:"Calle ...",full:true}
+];
+
+var CONFIG = {
+  "contrato-habitacion":{
+    tab:"Contrato de habitación", price:"9,99€",
+    title:"CONTRATO DE ARRENDAMIENTO DE HABITACIÓN", sub:"",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. El arrendamiento de habitación NO se rige por la LAU, sino por la libertad de pactos (art. 1255 CC) y, supletoriamente, por los arts. 1542 y ss. del Código Civil.",
+    fields: COMMON_PARTES.concat([
+      {grp:"Inmueble y condiciones", help:"Describe el objeto del arrendamiento y las condiciones económicas (renta, fianza, duración). Cuanto más concreto sea, menos margen de conflicto y mejor prueba ante un juzgado."},
+      {id:"direccion",label:"Dirección del inmueble",ph:"Calle ..., Córdoba",full:true},
+      {id:"catastral",label:"Referencia catastral",ph:"0000..."},
+      {id:"habitacion",label:"Habitación (nº o descripción)",ph:"Habitación 2, exterior"},
+      {id:"zonas",label:"Zonas comunes compartidas",ph:"cocina, baño y salón",full:true},
+      {id:"meses",label:"Duración (meses)",ph:"12"},
+      {id:"f_ini",label:"Fecha de inicio",ph:"01/07/2026"},
+      {id:"f_fin",label:"Fecha de fin",ph:"30/06/2027"},
+      {id:"renta",label:"Renta mensual (€)",ph:"350"},
+      {id:"diapago",label:"Día de pago (primeros del mes)",ph:"5"},
+      {id:"iban",label:"IBAN para el cobro",ph:"ES00 ...",full:true},
+      {id:"fianza",label:"Fianza (€)",ph:"350"}
+    ]),
+    intro: [
+      "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>.",
+      "__H4__REUNIDOS",
+      "<b>EL ARRENDADOR:</b> D./D.ª <b>{{arr_nombre}}</b>, DNI/NIE <b>{{arr_dni}}</b>, domicilio en <b>{{arr_dom}}</b>, titular/poseedor legítimo de la vivienda.",
+      "<b>EL ARRENDATARIO:</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, domicilio en <b>{{inq_dom}}</b>.",
+      "__H4__EXPONEN",
+      "<b>I.</b> Que el arrendador es titular de la vivienda sita en <b>{{direccion}}</b>, referencia catastral <b>{{catastral}}</b>.",
+      "<b>II.</b> Que el objeto es el arrendamiento de una <b>habitación</b> con uso compartido de zonas comunes, NO de la vivienda completa, sujeto a lo pactado y, en su defecto, a los arts. 1542 y ss. del Código Civil, no siendo aplicable la LAU.",
+      "__H4__CLÁUSULAS"
+    ],
+    clauses: [
+      {id:"c_obj",ttl:"Objeto",ess:true,text:"Se arrienda la habitación <b>{{habitacion}}</b> con uso compartido de <b>{{zonas}}</b>. El mobiliario se detalla en el Anexo I."},
+      {id:"c_dur",ttl:"Duración",ess:true,text:"El contrato se pacta por <b>{{meses}}</b> meses, desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>. Cualquier prórroga requerirá acuerdo escrito de ambas partes."},
+      {id:"c_renta",ttl:"Renta",ess:true,text:"La renta mensual es de <b>{{renta}}</b> €, pagadera dentro de los <b>{{diapago}}</b> primeros días de cada mes mediante transferencia a la cuenta <b>{{iban}}</b>."},
+      {id:"c_fianza",ttl:"Fianza",ess:true,text:"El arrendatario entrega en este acto <b>{{fianza}}</b> € en concepto de fianza, que será devuelta al término del contrato previa verificación del estado de la habitación y zonas comunes."},
+      {id:"c_act",ttl:"Actualización de la renta",text:"La renta se actualizará conforme a lo libremente pactado por las partes. (El índice IRAV y los topes de la Ley de Vivienda aplican al alquiler de vivienda habitual bajo la LAU; en el arrendamiento de habitación rige la libertad de pactos.)"},
+      {id:"c_sum",ttl:"Suministros",text:"Los gastos de suministros (agua, luz, gas, internet) se repartirán de forma proporcional entre los ocupantes de la vivienda."},
+      {id:"c_uso",ttl:"Uso y convivencia",text:"El arrendatario destinará la habitación a su uso propio, respetará las normas de convivencia del Anexo II y no perturbará al resto de ocupantes."},
+      {id:"c_proh",ttl:"Prohibición de subarriendo",text:"Queda prohibido el subarriendo, la cesión a terceros y el cambio de uso de la habitación sin consentimiento escrito del arrendador."},
+      {id:"c_masc",ttl:"Resolución y MASC",text:"El impago de la renta facultará para resolver el contrato. Con carácter previo a la vía judicial, las partes intentarán un Medio Adecuado de Solución de Controversias (MASC) conforme a la Ley Orgánica 1/2025."},
+      {id:"c_rgpd",ttl:"Protección de datos",text:"Los datos personales se tratarán conforme al RGPD y la LOPDGDD, con la única finalidad de gestionar la relación arrendaticia."},
+      {id:"c_jur",ttl:"Jurisdicción",text:"Las partes se someten a los Juzgados y Tribunales del lugar donde radica el inmueble."}
+    ],
+    legal:"Base legal: Código Civil, arts. 1255 y 1542 y ss.; jurisprudencia consolidada. © Asesorfy · Normativa española.",
+    signatures:true
+  },
+
+  "contrato-temporada":{
+    tab:"Contrato de temporada", price:"9,99€",
+    title:"CONTRATO DE ARRENDAMIENTO DE TEMPORADA", sub:"Uso distinto del de vivienda — Art. 3 de la Ley 29/1994 (LAU)",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. El arrendamiento de temporada es de uso distinto del de vivienda (art. 3 LAU): se rige por la voluntad de las partes, en su defecto por el Título III de la LAU y supletoriamente por el Código Civil. Si el destino es turístico y la CCAA tiene normativa de vivienda vacacional, esta puede aplicarse con preferencia.",
+    fields: COMMON_PARTES.concat([
+      {grp:"Inmueble y condiciones", help:"Define el inmueble, la causa temporal y las condiciones económicas. La causa de temporalidad es clave: es lo que justifica que NO sea vivienda habitual y, por tanto, que se aplique el art. 3 LAU."},
+      {id:"direccion",label:"Dirección del inmueble",ph:"Calle ...",full:true},
+      {id:"catastral",label:"Referencia catastral",ph:"0000..."},
+      {id:"motivo",label:"Causa de la temporalidad",ph:"trabajo temporal / estudios / obras"},
+      {id:"f_ini",label:"Fecha de inicio",ph:"01/07/2026"},
+      {id:"f_fin",label:"Fecha de fin",ph:"30/09/2026"},
+      {id:"renta",label:"Renta",ph:"600"},
+      {id:"periodo",label:"Periodo de la renta",ph:"mes / quincena / estancia"},
+      {id:"iban",label:"IBAN para el cobro",ph:"ES00 ...",full:true},
+      {id:"fianza",label:"Fianza (2 mensualidades, €)",ph:"1200"}
+    ]),
+    intro: [
+      "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>.",
+      "__H4__REUNIDOS",
+      "<b>EL ARRENDADOR:</b> D./D.ª <b>{{arr_nombre}}</b>, DNI/NIE <b>{{arr_dni}}</b>, domicilio en <b>{{arr_dom}}</b>.",
+      "<b>EL ARRENDATARIO:</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, domicilio habitual y permanente en <b>{{inq_dom}}</b>.",
+      "__H4__EXPONEN",
+      "<b>I.</b> Que el arrendador es titular del inmueble sito en <b>{{direccion}}</b>, referencia catastral <b>{{catastral}}</b>.",
+      "<b>II.</b> Que la necesidad del arrendatario es <b>temporal</b> y no permanente, siendo su causa: <b>{{motivo}}</b>, manteniendo su residencia habitual en el domicilio indicado.",
+      "<b>III.</b> Que el contrato se considera de uso distinto del de vivienda (art. 3 LAU).",
+      "__H4__CLÁUSULAS"
+    ],
+    clauses: [
+      {id:"t_obj",ttl:"Objeto y destino",ess:true,text:"Se arrienda el inmueble para uso de temporada, quedando expresamente excluido su uso como vivienda habitual o permanente del arrendatario."},
+      {id:"t_dur",ttl:"Duración",ess:true,text:"El plazo se fija de forma determinada desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>, sin prórroga tácita dada la naturaleza temporal. La permanencia posterior exigirá nuevo acuerdo escrito."},
+      {id:"t_renta",ttl:"Renta",ess:true,text:"La renta es de <b>{{renta}}</b> € por <b>{{periodo}}</b>, pagadera mediante transferencia a la cuenta <b>{{iban}}</b>."},
+      {id:"t_fianza",ttl:"Fianza",ess:true,text:"Conforme al art. 36 de la LAU, el arrendatario entrega <b>DOS (2) mensualidades</b> en concepto de fianza, esto es, <b>{{fianza}}</b> €, sin perjuicio de garantías adicionales que se pacten."},
+      {id:"t_sum",ttl:"Suministros e inventario",text:"Los suministros corren a cargo de la parte que se indique; el mobiliario y enseres se relacionan en el inventario del Anexo I, recibidos en correcto estado."},
+      {id:"t_obl",ttl:"Obligaciones del arrendatario",text:"Conservar el inmueble, destinarlo exclusivamente al uso pactado, no realizar obras, no subarrendar ni ceder, y devolverlo en el mismo estado a la finalización."},
+      {id:"t_nrua",ttl:"Registro (NRUA)",text:"Cuando el inmueble se comercialice por temporada o corta duración a través de plataformas en línea, el arrendador declara disponer (o se obliga a obtener) el Número de Registro Único de Arrendamiento conforme al RD 1312/2024 y la Ventanilla Única Digital."},
+      {id:"t_masc",ttl:"Resolución y MASC",text:"El incumplimiento facultará para resolver el contrato. Con carácter previo a la vía judicial civil, las partes intentarán un MASC conforme a la Ley Orgánica 1/2025 (requisito de procedibilidad)."},
+      {id:"t_rgpd",ttl:"Protección de datos",text:"Tratamiento conforme al RGPD y la LOPDGDD para la gestión del arrendamiento."},
+      {id:"t_jur",ttl:"Jurisdicción",text:"Juzgados y Tribunales del lugar donde radica el inmueble."}
+    ],
+    legal:"Base legal: Ley 29/1994 LAU (arts. 3 y 36); Código Civil (supletorio); RD 1312/2024 (NRUA). © Asesorfy · Normativa española.",
+    signatures:true
+  },
+
+  "ovc-impago":{
+    tab:"Kit Impago + MASC", price:"29€",
+    title:"OFERTA VINCULANTE CONFIDENCIAL", sub:"MASC — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.",
+    fields: COMMON_PARTES.concat([
+      {grp:"Datos del impago", help:"Detallan la deuda que se reclama: el contrato de origen, los periodos impagados y el importe total. Son la base de la oferta y, si no hay acuerdo, lo que sostendrá la posterior demanda de desahucio."},
+      {id:"direccion",label:"Dirección del inmueble",ph:"Calle ...",full:true},
+      {id:"f_contrato",label:"Fecha del contrato",ph:"01/09/2024"},
+      {id:"renta",label:"Renta mensual (€)",ph:"700"},
+      {id:"diapago",label:"Día de pago",ph:"5"},
+      {id:"iban",label:"IBAN",ph:"ES00 ..."},
+      {id:"meses_imp",label:"Meses impagados",ph:"abril, mayo y junio 2026",full:true},
+      {id:"total",label:"Importe total adeudado (€)",ph:"2100"}
+    ]),
+    intro: [
+      "<b>REMITENTE (parte arrendadora / acreedora):</b> D./D.ª <b>{{arr_nombre}}</b>, DNI/NIE <b>{{arr_dni}}</b>, domicilio a efectos de notificaciones en <b>{{arr_dom}}</b>.",
+      "<b>DESTINATARIO (parte arrendataria / deudora):</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, domicilio en <b>{{inq_dom}}</b>.",
+      "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>."
+    ],
+    clauses: [
+      {id:"o_vinc",ttl:"I. Vínculo contractual",ess:true,text:"Las partes suscribieron contrato de arrendamiento sobre el inmueble sito en <b>{{direccion}}</b>, con fecha <b>{{f_contrato}}</b>, por una renta mensual de <b>{{renta}}</b> € pagadera en los <b>{{diapago}}</b> primeros días de cada mes en la cuenta <b>{{iban}}</b>."},
+      {id:"o_conf",ttl:"II. Descripción del conflicto",ess:true,text:"La parte arrendataria adeuda las rentas de los periodos <b>{{meses_imp}}</b>, por un principal total de <b>{{total}}</b> €, sin perjuicio de rentas posteriores e intereses legales."},
+      {id:"o_nat",ttl:"III. Naturaleza de este escrito",ess:true,text:"El presente escrito constituye una Oferta Vinculante Confidencial formulada al amparo del art. 17 de la Ley Orgánica 1/2025, como MASC y requisito de procedibilidad para la posterior demanda civil. Tiene carácter confidencial: su contenido íntegro no se aportará con la demanda, bastando el justificante de envío y recepción."},
+      {id:"o_prop",ttl:"IV. Propuesta",ess:true,text:"<b>Opción A.</b> Abonar la totalidad de la deuda (<b>{{total}}</b> €) en el plazo del apartado siguiente, continuando vigente el contrato.<br/><b>Opción B.</b> Entregar voluntariamente la posesión del inmueble en la fecha indicada y abonar las rentas hasta la entrega, resolviéndose el contrato sin reclamación de costas judiciales."},
+      {id:"o_plazo",ttl:"V. Plazo de aceptación",ess:true,text:"Podrá aceptarse en el plazo de UN (1) MES desde su recepción (plazo mínimo legal). La falta de respuesta se entenderá como rechazo."},
+      {id:"o_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación producirá efectos obligatorios. Transcurrido el plazo sin aceptación, la parte arrendadora podrá interponer demanda de desahucio por falta de pago y reclamación de rentas, con expresa imposición de costas."},
+      {id:"o_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente)."}
+    ],
+    legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC). © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC.",
+    signatures:false
+  },
+
+  "contrato-larga":{
+    tab:"Contrato larga duración", price:"5,99€",
+    title:"CONTRATO DE ARRENDAMIENTO DE VIVIENDA", sub:"Vivienda habitual — Ley 29/1994 (LAU)",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. El arrendamiento de vivienda habitual se rige por la Ley de Arrendamientos Urbanos (Ley 29/1994), en especial su Título II, de carácter en buena parte imperativo en favor del arrendatario.",
+    fields: COMMON_PARTES.concat([
+      {grp:"Inmueble y condiciones", help:"Define la vivienda y las condiciones económicas. En el alquiler de vivienda habitual buena parte de las reglas son imperativas (duración mínima, fianza, actualización), así que el margen de pacto es menor que en habitación o temporada."},
+      {id:"direccion",label:"Dirección de la vivienda",ph:"Calle ..., Córdoba",full:true},
+      {id:"catastral",label:"Referencia catastral",ph:"0000..."},
+      {id:"superficie",label:"Superficie (m²)",ph:"75"},
+      {id:"anios",label:"Duración pactada (años)",ph:"1"},
+      {id:"f_ini",label:"Fecha de inicio",ph:"01/07/2026"},
+      {id:"f_fin",label:"Fecha de fin",ph:"30/06/2027"},
+      {id:"renta",label:"Renta mensual (€)",ph:"800"},
+      {id:"diapago",label:"Día de pago (primeros del mes)",ph:"5"},
+      {id:"iban",label:"IBAN para el cobro",ph:"ES00 ...",full:true},
+      {id:"fianza",label:"Fianza (1 mensualidad, €)",ph:"800"}
+    ]),
+    intro: [
+      "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>.",
+      "__H4__REUNIDOS",
+      "<b>EL ARRENDADOR:</b> D./D.ª <b>{{arr_nombre}}</b>, DNI/NIE <b>{{arr_dni}}</b>, domicilio en <b>{{arr_dom}}</b>, titular de la vivienda.",
+      "<b>EL ARRENDATARIO:</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, domicilio en <b>{{inq_dom}}</b>.",
+      "__H4__EXPONEN",
+      "<b>I.</b> Que el arrendador es titular de la vivienda sita en <b>{{direccion}}</b>, de unos <b>{{superficie}}</b> m², referencia catastral <b>{{catastral}}</b>.",
+      "<b>II.</b> Que ambas partes convienen el arrendamiento de dicha vivienda como <b>vivienda habitual y permanente</b> del arrendatario, sujeto a la Ley 29/1994 de Arrendamientos Urbanos.",
+      "__H4__CLÁUSULAS"
+    ],
+    clauses: [
+      {id:"l_obj",ttl:"Objeto y destino",ess:true,text:"Se arrienda la vivienda descrita para su uso como <b>vivienda habitual y permanente</b> del arrendatario y de quienes con él convivan."},
+      {id:"l_dur",ttl:"Duración y prórrogas",ess:true,text:"El contrato se pacta por <b>{{anios}}</b> año(s), desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>. Llegada la fecha, se prorrogará obligatoriamente por plazos anuales hasta que el arrendamiento alcance los CINCO (5) años (SIETE si el arrendador es persona jurídica), conforme al art. 9 de la LAU; transcurridos estos, operará la prórroga tácita de hasta TRES (3) años del art. 10, salvo preaviso en los plazos legales."},
+      {id:"l_renta",ttl:"Renta",ess:true,text:"La renta mensual es de <b>{{renta}}</b> €, pagadera dentro de los <b>{{diapago}}</b> primeros días de cada mes mediante transferencia a la cuenta <b>{{iban}}</b>."},
+      {id:"l_fianza",ttl:"Fianza",ess:true,text:"Conforme al art. 36 de la LAU, el arrendatario entrega <b>UNA (1) mensualidad</b> de renta en concepto de fianza legal, esto es, <b>{{fianza}}</b> €, sin perjuicio de garantías adicionales legalmente admisibles."},
+      {id:"l_act",ttl:"Actualización de la renta",text:"La renta se actualizará anualmente conforme al Índice de Referencia de Arrendamientos de Vivienda (IRAV) publicado por el INE, aplicable a los contratos firmados desde el 26 de mayo de 2023, en los términos del art. 18 de la LAU."},
+      {id:"l_desist",ttl:"Desistimiento del arrendatario",text:"El arrendatario podrá desistir del contrato una vez transcurridos al menos SEIS (6) meses, comunicándolo al arrendador con una antelación mínima de TREINTA (30) días, conforme al art. 11 de la LAU."},
+      {id:"l_gastos",ttl:"Gastos y suministros",text:"Los suministros (agua, luz, gas, internet) corren a cargo del arrendatario mediante los contratos a su nombre. Los gastos generales y de servicios solo serán repercutibles si se pactan por escrito y constan debidamente cuantificados."},
+      {id:"l_obras",ttl:"Conservación y obras",text:"El arrendador realizará las reparaciones necesarias para conservar la vivienda habitable; las pequeñas reparaciones por el uso ordinario corren a cargo del arrendatario. El arrendatario no podrá realizar obras sin consentimiento escrito."},
+      {id:"l_proh",ttl:"Prohibición de subarriendo y cesión",text:"Quedan prohibidos el subarriendo total o parcial y la cesión del contrato sin consentimiento escrito del arrendador."},
+      {id:"l_masc",ttl:"Resolución y MASC",text:"El incumplimiento, en especial el impago de la renta, facultará para resolver el contrato. Con carácter previo a la vía judicial, las partes intentarán un MASC conforme a la Ley Orgánica 1/2025 (requisito de procedibilidad)."},
+      {id:"l_rgpd",ttl:"Protección de datos",text:"Los datos personales se tratarán conforme al RGPD y la LOPDGDD, con la única finalidad de gestionar la relación arrendaticia."},
+      {id:"l_jur",ttl:"Jurisdicción",text:"Las partes se someten a los Juzgados y Tribunales del lugar donde radica la vivienda."}
+    ],
+    legal:"Base legal: Ley 29/1994 de Arrendamientos Urbanos (Título II; arts. 9, 10, 11, 18 y 36); Ley 12/2023 de Vivienda. © Asesorfy · Normativa española.",
+    signatures:true
+  }
+};
+
+/* ============ BIBLIOTECA DE CLÁUSULAS DE EJEMPLO (opcionales) ============ */
+var LIBRARY = {
+  "contrato-habitacion":[
+    {ttl:"Mascotas", text:"No se permite la tenencia de animales en la habitación ni en las zonas comunes sin autorización escrita y previa del arrendador."},
+    {ttl:"Prohibición de fumar", text:"Queda prohibido fumar en el interior de la vivienda, incluidas la habitación y las zonas comunes."},
+    {ttl:"Penalización por retraso", text:"El retraso en el pago de la renta devengará un interés de demora del [X]% mensual sobre la cantidad adeudada, sin perjuicio de la facultad de resolución."},
+    {ttl:"Empadronamiento", text:"El arrendador [autoriza / no autoriza] el empadronamiento del arrendatario en el domicilio durante la vigencia del contrato."},
+    {ttl:"Depósito de llaves", text:"Se entregan [X] juegos de llaves. Queda prohibido realizar copias o ceder las llaves a terceros sin consentimiento del arrendador."},
+    {ttl:"Pequeñas reparaciones", text:"Las pequeñas reparaciones derivadas del uso ordinario correrán a cargo del arrendatario; las estructurales o de los elementos comunes, del arrendador."},
+    {ttl:"Visitas y pernoctaciones", text:"Las visitas respetarán el descanso del resto de ocupantes; no podrán pernoctar terceros más de [X] noches al mes sin acuerdo previo."},
+    {ttl:"Limpieza de zonas comunes", text:"El arrendatario participará en la limpieza y mantenimiento de las zonas comunes conforme al turno acordado entre los ocupantes."},
+    {ttl:"Desistimiento y preaviso", text:"El arrendatario podrá desistir comunicándolo por escrito con al menos [X] días de antelación; en su defecto, deberá la renta correspondiente a dicho periodo de preaviso."},
+    {ttl:"Notificaciones por email", text:"Las partes admiten como medio válido de notificación el correo electrónico: arrendador [email] y arrendatario [email]."}
+  ],
+  "contrato-temporada":[
+    {ttl:"Número máximo de ocupantes", text:"El inmueble podrá ser ocupado por un máximo de [X] personas. El exceso no autorizado será causa de resolución del contrato."},
+    {ttl:"Gastos de limpieza final", text:"Se establece un cargo de limpieza final de [X] €, que se descontará de la fianza si la limpieza no se realiza adecuadamente."},
+    {ttl:"Ruidos y convivencia", text:"Quedan prohibidas las fiestas y los ruidos que perturben a los vecinos; su incumplimiento facultará la resolución inmediata del contrato."},
+    {ttl:"Inventario y check-out", text:"A la entrada y a la salida se firmará un parte del estado del inmueble; los desperfectos detectados se descontarán de la fianza."},
+    {ttl:"Consumos por contador", text:"Los suministros se facturarán según lectura de contador al inicio y al fin de la estancia, a cargo del arrendatario."},
+    {ttl:"Mascotas", text:"No se permite la entrada de animales sin autorización escrita y previa del arrendador."},
+    {ttl:"Prohibición de fumar", text:"Queda prohibido fumar en el interior del inmueble."},
+    {ttl:"Penalización por retraso", text:"El retraso en el pago devengará un interés de demora del [X]% sobre la cantidad adeudada."},
+    {ttl:"Desistimiento", text:"En caso de desistimiento anticipado, el arrendatario perderá las cantidades entregadas a cuenta en concepto de reserva, salvo pacto en contrario."},
+    {ttl:"Notificaciones por email", text:"Las partes admiten como medio válido de notificación el correo electrónico indicado por cada una."}
+  ],
+  "ovc-impago":[
+    {ttl:"Plan de pago fraccionado", text:"Como alternativa, se ofrece fraccionar la deuda en [X] cuotas mensuales de [importe] €, condicionado al pago puntual de la renta corriente."},
+    {ttl:"Intereses de demora", text:"La cantidad adeudada devengará los intereses de demora legalmente aplicables desde la fecha de cada vencimiento impagado."},
+    {ttl:"Reclamación de suministros", text:"Se incluyen en la reclamación los importes de suministros y gastos repercutibles impagados, además de las rentas."},
+    {ttl:"Advertencia de costas y honorarios", text:"Se advierte de que la interposición de la demanda incrementará la deuda con las costas procesales y los honorarios profesionales que correspondan."},
+    {ttl:"Ofrecimiento de mediación", text:"Con carácter alternativo, se ofrece acudir a una sesión de mediación ante un tercero neutral para intentar alcanzar un acuerdo."}
+  ],
+  "contrato-larga":[
+    {ttl:"Mascotas", text:"Se permite / no se permite la tenencia de animales de compañía en la vivienda; de permitirse, el arrendatario responderá de los daños que ocasionen."},
+    {ttl:"Gastos de comunidad", text:"Los gastos ordinarios de la comunidad de propietarios correrán a cargo de [arrendador/arrendatario], por un importe aproximado de [X] € al mes."},
+    {ttl:"Seguro de hogar", text:"El arrendatario contratará y mantendrá un seguro de responsabilidad civil y contenido durante la vigencia del contrato."},
+    {ttl:"Prohibición de fumar", text:"Queda prohibido fumar en el interior de la vivienda."},
+    {ttl:"Empadronamiento", text:"El arrendador autoriza el empadronamiento del arrendatario en la vivienda a los efectos legales oportunos."},
+    {ttl:"Inventario", text:"La vivienda se entrega con el mobiliario y electrodomésticos relacionados en el Anexo I, que el arrendatario recibe en correcto estado de funcionamiento."},
+    {ttl:"Penalización por retraso", text:"El retraso en el pago de la renta devengará el interés de demora pactado de [X]% sobre la cantidad adeudada."},
+    {ttl:"Notificaciones por email", text:"Las partes admiten como medio válido de notificación el correo electrónico indicado por cada una."}
+  ]
+};
+
+/* ====================== ESTADO Y RENDER ====================== */
+var ORDER = ["contrato-larga","contrato-habitacion","contrato-temporada","ovc-impago"];
+var current = location.hash ? location.hash.slice(1) : "contrato-habitacion";
+if(!CONFIG[current]) current = "contrato-habitacion";
+var values = {};
+var clauseState = {};
+var clauseEdits = {};   // overrides {id:{ttl,text}} para cláusulas base editadas
+var customClauses = [];
+
+function rawForEdit(text){ return (text||'').replace(/<br\s*\/?>/gi,'\n').replace(/<\/?b>/gi,''); }
+function renderEdited(text){ return fill(esc(text||'').replace(/\n/g,'<br>')); }
+function setEdit(id, field, val){
+  if(id.indexOf('custom')===0){
+    var i=parseInt(id.replace('custom',''),10);
+    if(customClauses[i]) customClauses[i][field==='ttl'?'ttl':'text']=val;
+  } else {
+    if(!clauseEdits[id]) clauseEdits[id]={};
+    clauseEdits[id][field]=val;
+  }
+  render();
+}
+var ORD = ["1ª","2ª","3ª","4ª","5ª","6ª","7ª","8ª","9ª","10ª","11ª","12ª","13ª","14ª","15ª","16ª","17ª","18ª"];
+
+function esc(s){return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+function fill(text){
+  return text.replace(/\{\{(\w+)\}\}/g, function(m,k){
+    var v = values[k];
+    if(v && v.trim()!==""){ return '<span class="val">'+esc(v)+'</span>'; }
+    var fld = (CONFIG[current].fields.find(function(f){return f.id===k;})||{});
+    return '<span class="blank">['+(fld.label||k).toUpperCase()+']</span>';
+  });
+}
+
+function buildTabs(){
+  document.getElementById('tabs').innerHTML = ORDER.map(function(k){
+    return '<div class="tab'+(k===current?' active':'')+'" onclick="switchDoc(\''+k+'\')">'+CONFIG[k].tab+'</div>';
+  }).join('');
+}
+
+function switchDoc(k){
+  current=k; location.hash=k;
+  clauseState={}; customClauses=[]; clauseEdits={};
+  CONFIG[k].clauses.forEach(function(c){ clauseState[c.id]= (c.ess===true) ? true : (c.on!==false); });
+  unlocked=false; applyLock();
+  buildTabs(); buildForm(); buildClauses(); render();
+  document.getElementById('price').innerHTML = CONFIG[k].price+'<small>pago único</small>';
+  document.getElementById('payAmount').textContent = CONFIG[k].price;
+  document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[k].price;
+}
+
+function buildForm(){
+  var html="", open=false;
+  CONFIG[current].fields.forEach(function(f){
+    if(f.grp){
+      if(open) html+='</div>';
+      var helpIco = f.help ? '<span class="help" tabindex="0">?<span class="tip">'+esc(f.help)+'</span></span>' : '';
+      html+='<div class="grp-title">'+f.grp+helpIco+'</div><div class="fields">'; open=true; return;
+    }
+    html+='<div class="f'+(f.full?' full':'')+'"><label>'+f.label+'</label><input data-k="'+f.id+'" value="'+esc(values[f.id]||'')+'" placeholder="'+esc(f.ph||'')+'"></div>';
+  });
+  if(open) html+='</div>';
+  var box=document.getElementById('formFields');
+  box.innerHTML=html;
+  box.querySelectorAll('input').forEach(function(inp){
+    inp.addEventListener('input', function(){ values[this.getAttribute('data-k')]=this.value; render(); });
+  });
+}
+
+function buildClauses(){
+  var c=CONFIG[current].clauses, html="";
+  c.forEach(function(cl){
+    var ed=clauseEdits[cl.id]||{};
+    var ttl = ed.ttl!=null?ed.ttl:cl.ttl;
+    var txt = ed.text!=null?ed.text:cl.text;
+    html+=clauseRow(cl.id, ttl, txt, clauseState[cl.id], false, -1, cl.ess===true);
+  });
+  customClauses.forEach(function(cc,i){
+    html+=clauseRow('custom'+i, cc.ttl||'Cláusula personalizada', cc.text||'', true, true, i, false);
+  });
+  document.getElementById('clauseList').innerHTML=html;
+  bindClauses();
+}
+
+function clauseRow(id,ttl,text,on,custom,idx,ess){
+  var preview = (text||'').replace(/<[^>]+>/g,'').slice(0,120);
+  var cls = 'clause'+(on?'':' off')+(ess?' ess':'');
+  var tag = ess ? '<span class="obtag">Obligatoria</span>' : '';
+  var cb = '<input type="checkbox" '+(on?'checked':'')+(ess?' disabled':'')+' data-cb="'+id+'">';
+  var editRaw = rawForEdit(text);
+  return '<div class="'+cls+'" data-id="'+id+'">'
+    + '<div class="head">'
+    +   cb
+    +   '<div class="mid"><div class="ttl">'+esc(ttl)+tag+'</div><div class="txt">'+esc(preview)+((text||'').length>120?'…':'')+'</div></div>'
+    +   '<div class="acts"><button class="editbtn" data-edit="'+id+'">✎ Editar</button>'+(custom?'<button class="del" data-del="'+idx+'">Quitar</button>':'')+'</div>'
+    + '</div>'
+    + '<div class="editor">'
+    +   '<label>Título de la cláusula</label><input class="etitle" data-ek="'+id+'" value="'+esc(ttl)+'">'
+    +   '<label>Texto</label><textarea class="etext" data-ek="'+id+'">'+esc(editRaw)+'</textarea>'
+    +   '<div class="hint">Los campos entre llaves como {{renta}} se rellenan solos con tus datos. Usa saltos de línea para separar párrafos.</div>'
+    + '</div>'
+    + '</div>';
+}
+
+function bindClauses(){
+  var list=document.getElementById('clauseList');
+  list.querySelectorAll('input[type=checkbox]:not(:disabled)').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      var id=this.getAttribute('data-cb');
+      if(id.indexOf('custom')!==0) clauseState[id]=this.checked;
+      this.closest('.clause').classList.toggle('off', !this.checked);
+      render();
+    });
+  });
+  list.querySelectorAll('.editbtn').forEach(function(b){
+    b.addEventListener('click', function(){
+      var open=this.closest('.clause').classList.toggle('editing');
+      this.textContent = open ? '✓ Hecho' : '✎ Editar';
+    });
+  });
+  list.querySelectorAll('.etitle').forEach(function(inp){
+    inp.addEventListener('input', function(){ setEdit(this.getAttribute('data-ek'),'ttl',this.value); });
+  });
+  list.querySelectorAll('.etext').forEach(function(ta){
+    ta.addEventListener('input', function(){ setEdit(this.getAttribute('data-ek'),'text',this.value); });
+  });
+  list.querySelectorAll('[data-del]').forEach(function(b){
+    b.addEventListener('click', function(){
+      customClauses.splice(parseInt(this.getAttribute('data-del')),1);
+      buildClauses(); render();
+    });
+  });
+}
+
+/* ---- MODAL AÑADIR CLÁUSULA ---- */
+function extractPH(text){
+  var re=/\[[^\]]+\]/g, seen={}, out=[], m;
+  while((m=re.exec(text))){ if(!seen[m[0]]){ seen[m[0]]=1; out.push(m[0]); } }
+  return out;
+}
+function showLibView(){ document.getElementById('libView').style.display=''; document.getElementById('fillStep').style.display='none'; }
+
+function addFromLib(i, btn){
+  var c=(LIBRARY[current]||[])[i]; if(!c) return;
+  if(extractPH(c.text).length===0){
+    customClauses.push({ttl:c.ttl, text:c.text});
+    btn.textContent='✓ Añadida'; btn.classList.add('done');
+    buildClauses(); render();
+  } else {
+    openFillStep(c);
+  }
+}
+
+function openFillStep(c){
+  var ph=extractPH(c.text);
+  var rows=ph.map(function(p){
+    var label=p.replace(/^\[|\]$/g,'');
+    return '<div class="fld"><label>'+esc(label)+'</label><input class="phin" data-ph="'+esc(p)+'" placeholder="Completa: '+esc(label)+'"></div>';
+  }).join('');
+  document.getElementById('fillStep').innerHTML =
+      '<button class="back2" id="backLib">← Volver a la lista</button>'
+    + '<div class="seghead">Completa los datos de la cláusula</div>'
+    + '<div class="fld"><label>Título</label><input id="fTtl" value="'+esc(c.ttl)+'"></div>'
+    + rows
+    + '<label style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)">Vista previa</label>'
+    + '<div class="fillprev" id="fillPrev"></div>'
+    + '<button class="btn" id="fAdd" style="width:100%;justify-content:center;margin-top:6px">Añadir cláusula</button>';
+  document.getElementById('libView').style.display='none';
+  document.getElementById('fillStep').style.display='block';
+
+  function buildText(){
+    var t=c.text;
+    document.querySelectorAll('#fillStep .phin').forEach(function(inp){
+      var p=inp.getAttribute('data-ph'), v=inp.value.trim();
+      if(v!=='') t=t.split(p).join(v);
+    });
+    return t;
+  }
+  function refresh(){
+    document.getElementById('fillPrev').innerHTML =
+      esc(buildText()).replace(/\[[^\]]+\]/g, function(m){ return '<span class="phmark">'+esc(m)+'</span>'; });
+  }
+  document.querySelectorAll('#fillStep .phin').forEach(function(inp){ inp.addEventListener('input', refresh); });
+  refresh();
+  document.getElementById('backLib').addEventListener('click', showLibView);
+  document.getElementById('fAdd').addEventListener('click', function(){
+    var ttl=document.getElementById('fTtl').value.trim()||c.ttl;
+    customClauses.push({ttl:ttl, text:buildText()});
+    buildClauses(); render(); closeClause();
+  });
+}
+
+function openClause(){
+  var lib = LIBRARY[current] || [];
+  showLibView();
+  document.getElementById('libList').innerHTML = lib.map(function(c,i){
+    return '<div class="libitem"><div class="info"><div class="lt">'+esc(c.ttl)+'</div><div class="lx">'+esc(c.text)+'</div></div>'
+      + '<button class="add" data-lib="'+i+'">+ Añadir</button></div>';
+  }).join('') || '<p class="lead">No hay ejemplos para este documento; redacta la tuya abajo.</p>';
+  document.getElementById('libList').querySelectorAll('[data-lib]').forEach(function(b){
+    b.addEventListener('click', function(){ addFromLib(parseInt(this.getAttribute('data-lib'),10), this); });
+  });
+  document.getElementById('mTtl').value=''; document.getElementById('mTxt').value='';
+  document.getElementById('clauseModal').classList.add('open');
+}
+function closeClause(){ document.getElementById('clauseModal').classList.remove('open'); }
+document.getElementById('addClause').addEventListener('click', openClause);
+document.getElementById('clauseModal').addEventListener('click', function(e){ if(e.target===this) closeClause(); });
+document.getElementById('mAdd').addEventListener('click', function(){
+  var t=document.getElementById('mTtl').value.trim();
+  var x=document.getElementById('mTxt').value.trim();
+  if(!x){ document.getElementById('mTxt').focus(); return; }
+  customClauses.push({ttl:t||'Cláusula personalizada', text:x});
+  buildClauses(); render(); closeClause();
+});
+
+function render(){
+  var cfg=CONFIG[current], h="";
+  h+='<h1>'+cfg.title+'</h1>';
+  if(cfg.sub) h+='<div class="sub">'+cfg.sub+'</div>';
+  h+='<hr><div class="aviso">'+cfg.aviso+'</div>';
+  cfg.intro.forEach(function(p){
+    if(p.indexOf('__H4__')===0){ h+='<h4>'+p.replace('__H4__','')+'</h4>'; }
+    else h+='<p>'+fill(p)+'</p>';
+  });
+  var n=0;
+  cfg.clauses.forEach(function(cl){
+    if(clauseState[cl.id]){
+      var ed=clauseEdits[cl.id]||{};
+      var ttl = ed.ttl!=null?ed.ttl:cl.ttl;
+      var body = ed.text!=null?renderEdited(ed.text):fill(cl.text);
+      if(cfg.signatures){ n++; h+='<p><b>'+ORD[n-1]+'. '+esc(ttl)+'.</b> '+body+'</p>'; }
+      else { h+='<h4>'+esc(ttl)+'</h4><p>'+body+'</p>'; }
+    }
+  });
+  customClauses.forEach(function(cc){
+    var body = renderEdited(cc.text||'');
+    if(cfg.signatures){ n++; h+='<p><b>'+(ORD[n-1]||(n+'ª'))+'. '+esc(cc.ttl||'Cláusula')+'.</b> '+body+'</p>'; }
+    else { h+='<h4>'+esc(cc.ttl||'Cláusula')+'</h4><p>'+body+'</p>'; }
+  });
+  if(cfg.signatures){
+    h+='<p style="margin-top:18px">Y en prueba de conformidad, firman por duplicado en el lugar y fecha indicados.</p>';
+    h+='<div class="sign"><div>EL ARRENDADOR<br><br><br>Fdo.: ____________</div><div>EL ARRENDATARIO<br><br><br>Fdo.: ____________</div></div>';
+  } else {
+    h+='<p style="margin-top:18px">Atentamente,<br>Fdo.: <b>'+(values.arr_nombre?esc(values.arr_nombre):'[NOMBRE Y APELLIDOS]')+'</b></p>';
+  }
+  h+='<div class="legal">'+cfg.legal+'</div>';
+  document.getElementById('doc').innerHTML=h;
+}
+
+/* BLOQUEO / DESBLOQUEO (teaser) */
+var unlocked = false;
+function applyLock(){ document.getElementById('paper').className = 'paper '+(unlocked?'unlocked':'locked'); }
+function unlock(){ unlocked = true; applyLock(); }
+
+/* PAGO (placeholder) */
+function openPay(){ document.getElementById('payModal').classList.add('open'); }
+document.getElementById('payBtn').addEventListener('click', openPay);
+document.getElementById('unlockBtn').addEventListener('click', openPay);
+document.getElementById('demoBtn').addEventListener('click', function(){ unlock(); });
+function closePay(){ document.getElementById('payModal').classList.remove('open'); }
+document.getElementById('payModal').addEventListener('click', function(e){ if(e.target===this) closePay(); });
+
+// Pago real con Stripe Checkout. Si no hay backend (modo local/preview), cae al desbloqueo de demostración.
+function startCheckout(){
+  var btn=document.getElementById('confirmPay');
+  var original=btn.innerHTML;
+  btn.disabled=true; btn.textContent='Redirigiendo a Stripe…';
+  fetch('/api/create-checkout-session',{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({doc: current})
+  })
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    if(d && d.url){ window.location.href=d.url; }
+    else { throw new Error((d && d.error) || 'sin_url'); }
+  })
+  .catch(function(){
+    // Sin backend disponible: desbloqueo de demostración para poder probar en local.
+    btn.disabled=false; btn.innerHTML=original;
+    closePay(); unlock(); setTimeout(function(){ window.print(); }, 250);
+  });
+}
+document.getElementById('confirmPay').addEventListener('click', startCheckout);
+
+// Al volver del pago (success_url con paid=1), verificar y desbloquear automáticamente.
+function handlePaidReturn(){
+  var qs=new URLSearchParams(location.search);
+  if(qs.get('paid')!=='1') return;
+  var sid=qs.get('session_id');
+  if(sid){
+    fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
+      .then(function(r){ return r.json(); })
+      .then(function(d){ if(d && d.paid){ unlock(); } })
+      .catch(function(){ unlock(); });
+  } else { unlock(); }
+}
+
+/* INIT */
+CONFIG[current].clauses.forEach(function(c){ clauseState[c.id]=(c.ess===true)?true:(c.on!==false); });
+buildTabs(); buildForm(); buildClauses(); render(); applyLock();
+document.getElementById('price').innerHTML = CONFIG[current].price+'<small>pago único</small>';
+document.getElementById('payAmount').textContent = CONFIG[current].price;
+document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[current].price;
+handlePaidReturn();
+</script>
+</body>
+</html>

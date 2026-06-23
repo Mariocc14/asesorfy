@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todos los documentos | Asesorfy</title>
+<meta name="description" content="Todos los documentos legales para propietarios de Asesorfy, con buscador. Contratos de alquiler, habitación, temporada e impago, al día con la ley de 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#0e1a2b;--ink-soft:#1d2a3d;--muted:#5b6776;--line:#e6eaf0;--bg:#fff;--bg-soft:#f6f8fb;--bg-tint:#eef3fb;--accent:#1f5fa6;--accent-dark:#163f6e;--accent-soft:#dbe7f6;--ok:#1d7a52;--radius:14px;--shadow:0 1px 2px rgba(14,26,43,.05),0 12px 30px -12px rgba(14,26,43,.16)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--accent);text-decoration:none}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.01em;color:var(--ink);line-height:1.2}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:9px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;color:var(--ink)}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .navlinks{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+  .navlinks a{padding:8px 13px;border-radius:8px;color:var(--ink-soft);font-weight:500;font-size:14.5px}
+  .navlinks a:hover{background:var(--bg-soft)}
+  .btn{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;font-weight:600;font-size:14.5px;padding:10px 18px;border-radius:9px;border:none;cursor:pointer}
+  .btn:hover{background:var(--accent-dark)}
+  .btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--line)}
+  .btn.sm{padding:9px 16px;font-size:14px}
+
+  .head{padding:50px 0 26px;text-align:center}
+  .head .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;font-weight:700;color:var(--accent)}
+  .head h1{font-size:clamp(30px,4.5vw,44px);margin:12px 0 12px}
+  .head p{color:var(--muted);font-size:17px;max-width:560px;margin:0 auto}
+
+  .searchbar{position:relative;max-width:560px;margin:26px auto 0}
+  .searchbar input{width:100%;padding:14px 16px 14px 46px;border:1px solid var(--line);border-radius:12px;font-family:inherit;font-size:16px;box-shadow:var(--shadow);transition:.15s}
+  .searchbar input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .searchbar svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .count{text-align:center;color:var(--muted);font-size:13.5px;margin-top:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;padding:30px 0 70px}
+  .prod{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:var(--shadow);transition:.2s}
+  .prod:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(14,26,43,.05),0 24px 48px -18px rgba(14,26,43,.28)}
+  .prod .top{padding:24px 24px 0}
+  .tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.03em;padding:5px 11px;border-radius:999px;margin-bottom:13px}
+  .tag.urgente{background:#fdeceb;color:#b3261e}
+  .tag.preventivo{background:#e8f3ee;color:var(--ok)}
+  .tag.temporada{background:var(--bg-tint);color:var(--accent)}
+  .prod h3{font-size:20px;margin-bottom:8px}
+  .prod .desc{color:var(--muted);font-size:14px;min-height:58px}
+  .prod ul{list-style:none;padding:18px 24px 0;margin:0;display:flex;flex-direction:column;gap:8px}
+  .prod ul li{display:flex;gap:9px;font-size:13.5px;color:var(--ink-soft)}
+  .prod ul li svg{flex:none;margin-top:3px;color:var(--ok)}
+  .prod .base{font-size:12px;color:var(--muted);padding:14px 24px 0;border-top:1px dashed var(--line);margin-top:18px}
+  .prod .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px 24px}
+  .price b{font-family:'Fraunces',serif;font-size:24px}
+  .price span{color:var(--muted);font-size:12px;display:block}
+  .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:16px}
+
+  footer{background:var(--ink);color:#7e8ea3;padding:26px 0;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  @media(max-width:880px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="index.html"><span class="dot"></span>Asesorfy</a>
+      <div class="navlinks">
+        <a href="index.html">Inicio</a>
+        <a href="documentos.html">Documentos</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contacto">Contacto</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="head">
+    <span class="eyebrow">Catálogo</span>
+    <h1>Todos los documentos</h1>
+    <p>Busca por tipo de documento o situación. Todos al día con la normativa española de 2026.</p>
+    <div class="searchbar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="text" placeholder="Buscar: impago, habitación, temporada, vivienda...">
+    </div>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Asesorfy · Documentos legales para propietarios · Normativa española</span>
+    <span>Modelos informativos · No constituyen asesoramiento jurídico</span>
+  </div>
+</footer>
+
+<script>
+var PRODUCTS = [
+  {key:"contrato-larga", tag:"temporada", tagText:"Vivienda · Larga duración", title:"Contrato de larga duración",
+   desc:"El contrato de alquiler de vivienda habitual, conforme a la LAU y al día con 2026.",
+   bullets:["Duración y prórrogas (arts. 9 y 10 LAU)","Fianza legal de 1 mensualidad (art. 36)","Actualización con el índice IRAV","Desistimiento (art. 11) y cláusula de MASC"],
+   base:"Base legal: LAU (Título II); Ley 12/2023 de Vivienda.", price:"5,99€",
+   kw:"vivienda habitual larga duracion lau alquiler permanente irav prorroga"},
+  {key:"contrato-habitacion", tag:"preventivo", tagText:"Habitación · Preventivo", title:"Contrato de habitación 2026",
+   desc:"Para alquilar por habitaciones bien atado, con el régimen legal correcto.",
+   bullets:["Regido por Código Civil (no LAU)","Cláusulas de convivencia, fianza y subarriendo","Anexos de inventario y normas","Nota sobre registro NRUA si lo ofreces online"],
+   base:"Base legal: Código Civil, arts. 1255 y 1542 y ss.", price:"9,99€",
+   kw:"habitacion habitaciones cuarto codigo civil compartir piso estudiantes"},
+  {key:"contrato-temporada", tag:"temporada", tagText:"Temporada · Uso distinto", title:"Contrato de temporada 2026",
+   desc:"Alquiler por temporada como uso distinto de vivienda, con su causa bien justificada.",
+   bullets:["Art. 3 LAU: uso distinto del de vivienda","Causa de temporalidad bien redactada","Fianza de 2 mensualidades (art. 36 LAU)","Cláusula de Registro Único (RD 1312/2024)"],
+   base:"Base legal: LAU (arts. 3 y 36); RD 1312/2024 (NRUA).", price:"9,99€",
+   kw:"temporada vacaciones corta duracion turistico nrua registro estudios trabajo"},
+  {key:"ovc-impago", tag:"urgente", tagText:"Impago · Urgente", title:"Kit Impago + MASC 2026",
+   desc:"El escrito que necesitas SÍ o SÍ antes de demandar a un inquilino que no paga.",
+   bullets:["Oferta Vinculante Confidencial (art. 17 LO 1/2025)","Doble propuesta: pago o entrega del inmueble","Instrucciones de plazos y envío por burofax","Checklist para la posterior demanda"],
+   base:"Base legal: Ley Orgánica 1/2025 (MASC).", price:"29€",
+   kw:"impago no paga deuda desahucio masc burofax reclamar renta moroso"}
+];
+
+var CHECK='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+var DL='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+
+function card(p){
+  var lis=p.bullets.map(function(b){return '<li>'+CHECK+' '+b+'</li>';}).join('');
+  return '<div class="prod">'
+    + '<div class="top"><span class="tag '+p.tag+'">'+p.tagText+'</span><h3>'+p.title+'</h3><p class="desc">'+p.desc+'</p></div>'
+    + '<ul>'+lis+'</ul>'
+    + '<p class="base">'+p.base+'</p>'
+    + '<div class="foot"><div class="price"><b>'+p.price+'</b><span>pago único</span></div>'
+    + '<a class="btn sm" href="generador.html#'+p.key+'">'+DL+' Personalizar</a></div>'
+    + '</div>';
+}
+
+function render(q){
+  q=norm(q||'');
+  var list=PRODUCTS.filter(function(p){
+    return q==='' || norm(p.title+' '+p.desc+' '+p.tagText+' '+p.kw).indexOf(q)>=0;
+  });
+  document.getElementById('grid').innerHTML = list.length
+    ? list.map(card).join('')
+    : '<div class="empty">No encontramos documentos para "'+q+'". Prueba con: impago, habitación, temporada o vivienda.</div>';
+  document.getElementById('count').textContent = list.length+' documento'+(list.length===1?'':'s')+(q?' para «'+q+'»':'');
+}
+
+document.getElementById('search').addEventListener('input', function(){ render(this.value); });
+render('');
+</script>
+</body>
+</html>

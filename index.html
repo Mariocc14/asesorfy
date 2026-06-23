@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asesorfy — Documentos legales para propietarios, al día con la ley 2026</title>
+<meta name="description" content="Documentos legales fiables para caseros y propietarios en España, actualizados a la normativa 2026. Basados en el Código Civil, la LAU y el BOE.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0e1a2b; --ink-soft:#1d2a3d; --muted:#5b6776; --line:#e6eaf0;
+    --bg:#ffffff; --bg-soft:#f6f8fb; --bg-tint:#eef3fb;
+    --accent:#1f5fa6; --accent-dark:#163f6e; --accent-soft:#dbe7f6;
+    --ok:#1d7a52; --radius:14px;
+    --shadow:0 1px 2px rgba(14,26,43,.05), 0 12px 30px -12px rgba(14,26,43,.18);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-.01em;color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .accent{color:var(--accent)}
+
+  /* NAVBAR */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-.02em}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+  .navlinks{display:flex;align-items:center;gap:8px}
+  .navlinks a{padding:9px 14px;border-radius:9px;color:var(--ink-soft);font-weight:500;font-size:15px;transition:.18s}
+  .navlinks a:hover{background:var(--bg-soft);color:var(--ink)}
+  .navlinks a.btn{color:#fff}
+  .navlinks a.btn:hover{background:var(--accent-dark);color:#fff}
+  .btn{display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;font-family:inherit;font-weight:600;font-size:15px;padding:11px 20px;border-radius:10px;transition:.18s;background:var(--accent);color:#fff;box-shadow:0 6px 16px -6px rgba(31,95,166,.6)}
+  .btn:hover{background:var(--accent-dark);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;color:var(--accent);box-shadow:none;border:1px solid var(--line)}
+  .btn.ghost:hover{background:var(--bg-soft)}
+  .btn.sm{padding:9px 16px;font-size:14px}
+  .navtoggle{display:none;background:none;border:none;cursor:pointer;font-size:24px;color:var(--ink)}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;background:linear-gradient(180deg,#fbfcfe 0%, #eef3fb 100%)}
+  .hero:before{content:"";position:absolute;inset:0;background-image:radial-gradient(var(--accent-soft) 1px,transparent 1px);background-size:26px 26px;opacity:.5;-webkit-mask-image:linear-gradient(180deg,#000,transparent 75%);mask-image:linear-gradient(180deg,#000,transparent 75%)}
+  .hero .wrap{position:relative;padding:84px 24px 76px;text-align:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);color:var(--ink-soft);font-size:13.5px;font-weight:500;padding:7px 14px;border-radius:999px;box-shadow:var(--shadow);margin-bottom:26px}
+  .pill .led{width:7px;height:7px;border-radius:50%;background:var(--ok)}
+  .hero h1{font-size:clamp(34px,5vw,56px);max-width:880px;margin:0 auto 20px}
+  .hero p.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:660px;margin:0 auto 34px}
+  .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .trust{display:flex;gap:26px;justify-content:center;flex-wrap:wrap;margin-top:46px;color:var(--muted);font-size:14px}
+  .trust span{display:flex;align-items:center;gap:8px}
+  .trust svg{flex:none}
+
+  section{padding:78px 0}
+  .eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:12.5px;font-weight:700;color:var(--accent)}
+  .sec-head{max-width:680px;margin-bottom:46px}
+  .sec-head.center{margin:0 auto 50px;text-align:center}
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px);margin:12px 0 14px}
+  .sec-head p{color:var(--muted);font-size:17px}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;transition:.2s}
+  .feature .ic{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--bg-tint);color:var(--accent);margin-bottom:16px}
+  .feature h3{font-size:20px;margin-bottom:8px}
+  .feature p{color:var(--muted);font-size:15px}
+
+  /* RECURSOS / PRODUCTS */
+  #recursos{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .prod{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--radius);background:#fff;overflow:hidden;box-shadow:var(--shadow);transition:.22s}
+  .prod:hover{transform:translateY(-4px);box-shadow:0 1px 2px rgba(14,26,43,.05),0 24px 48px -18px rgba(14,26,43,.28)}
+  .prod .top{padding:26px 26px 0}
+  .prod .tag{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.03em;padding:5px 11px;border-radius:999px;margin-bottom:14px}
+  .tag.urgente{background:#fdeceb;color:#b3261e}
+  .tag.preventivo{background:#e8f3ee;color:var(--ok)}
+  .tag.temporada{background:var(--bg-tint);color:var(--accent)}
+  .prod h3{font-size:21px;margin-bottom:8px}
+  .prod .desc{color:var(--muted);font-size:14.5px;min-height:62px}
+  .prod ul{list-style:none;padding:20px 26px 0;margin:0;display:flex;flex-direction:column;gap:9px}
+  .prod ul li{display:flex;gap:10px;font-size:14px;color:var(--ink-soft)}
+  .prod ul li svg{flex:none;margin-top:3px;color:var(--ok)}
+  .prod .base{font-size:12.5px;color:var(--muted);padding:16px 26px 0;border-top:1px dashed var(--line);margin-top:20px}
+  .prod .foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 26px 26px}
+  .price b{font-family:'Fraunces',serif;font-size:26px}
+  .price span{color:var(--muted);font-size:13px;display:block}
+  /* CARRUSEL DE PRODUCTOS */
+  .carousel{position:relative;margin-top:8px}
+  .track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:6px 2px 16px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+  .track::-webkit-scrollbar{height:8px}
+  .track::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+  .track .prod{flex:0 0 330px;scroll-snap-align:start}
+  .carot{position:absolute;top:46%;transform:translateY(-50%);z-index:6;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;box-shadow:var(--shadow);cursor:pointer;font-size:24px;line-height:1;color:var(--accent);display:flex;align-items:center;justify-content:center;transition:.16s}
+  .carot:hover{background:var(--bg-soft);transform:translateY(-50%) scale(1.06)}
+  .carot.prev{left:-12px}
+  .carot.next{right:-12px}
+  .showall{text-align:center;margin-top:26px}
+  @media(max-width:880px){.carot{display:none}.track .prod{flex:0 0 86%}}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
+  .step{position:relative;padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
+  .step:before{counter-increment:s;content:counter(s);font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:#fff;background:var(--accent);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;margin-bottom:16px}
+  .step h3{font-size:18px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:14.5px}
+
+  #contacto{background:var(--ink);color:#dbe3ee}
+  #contacto h2{color:#fff}
+  #contacto .sec-head p{color:#9fb0c6}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  .contact-info p{color:#aebccf;margin-bottom:18px;font-size:15px}
+  .contact-info .row{display:flex;align-items:center;gap:12px;margin-bottom:14px;color:#cdd8e6}
+  .contact-info .row svg{color:var(--accent-soft)}
+  form .field{margin-bottom:16px}
+  form label{display:block;font-size:13.5px;font-weight:500;margin-bottom:6px;color:#c4d0e0}
+  form input,form textarea{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #2b3a50;background:#142235;color:#fff;font-family:inherit;font-size:15px;transition:.18s}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--accent);background:#16273c}
+  form textarea{resize:vertical;min-height:120px}
+  .form-note{font-size:12.5px;color:#8497ad;margin-top:6px}
+  .msg-ok{background:#16314a;border:1px solid var(--accent);color:#dff;padding:14px;border-radius:10px;font-size:14px;margin-top:10px;display:none}
+
+  footer{background:var(--ink);color:#7e8ea3;border-top:1px solid #1e2c40;padding:30px 0;font-size:13px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  .disclaimer{background:var(--bg-tint);border:1px solid var(--accent-soft);border-radius:var(--radius);padding:20px 24px;font-size:13.5px;color:var(--ink-soft);margin-top:30px}
+  .disclaimer b{color:var(--ink)}
+
+  @media(max-width:880px){
+    .grid3,.steps{grid-template-columns:1fr}
+    .contact-grid{grid-template-columns:1fr;gap:30px}
+    .navlinks{position:fixed;inset:68px 0 auto 0;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);padding:14px 24px 22px;gap:4px;display:none;box-shadow:var(--shadow)}
+    .navlinks.open{display:flex}
+    .navlinks a{width:100%}
+    .navtoggle{display:block}
+    .navlinks .btn{width:100%;justify-content:center;margin-top:6px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#inicio" class="brand"><span class="dot"></span>Asesorfy</a>
+      <button class="navtoggle" id="navToggle" aria-label="Menú">☰</button>
+      <div class="navlinks" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#recursos">Recursos</a>
+        <a href="blog.html">Blog</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#recursos" class="btn sm">Ver documentos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="inicio" style="padding:0">
+  <div class="wrap">
+    <span class="pill"><span class="led"></span> Actualizado a la normativa española de 2026</span>
+    <h1>Documentos legales para propietarios, <span class="accent">al día con la ley</span></h1>
+    <p class="lead">Contratos y escritos fiables para caseros y pequeños propietarios, redactados sobre el Código Civil, la LAU y la última normativa publicada en el BOE. Sin letra pequeña que no entiendas.</p>
+    <div class="hero-cta">
+      <a href="#recursos" class="btn">Ver documentos descargables</a>
+      <a href="#como" class="btn ghost">Cómo funciona</a>
+    </div>
+    <div class="trust">
+      <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d7a52" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg> Basado en BOE y Código Civil</span>
+      <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d7a52" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Revisión normativa trimestral</span>
+      <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d7a52" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> Solo normativa de España</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VALOR ===================== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Por qué Asesorfy</span>
+      <h2>Documentos que aguantan un juzgado, no un susto</h2>
+      <p>La normativa de alquiler ha cambiado mucho en el último año. Usar un modelo desfasado puede tumbarte una demanda. Aquí no.</p>
+    </div>
+    <div class="grid3">
+      <div class="card feature">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg></div>
+        <h3>Fuentes fiables, no plantillas de Google</h3>
+        <p>Cada documento cita su base legal: Código Civil, Ley de Arrendamientos Urbanos, Ley Orgánica 1/2025 y RD 1312/2024. Nada inventado.</p>
+      </div>
+      <div class="card feature">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+        <h3>Pensado para el pequeño propietario</h3>
+        <p>El que tiene uno o dos pisos y no un bufete detrás. Lenguaje claro, instrucciones de uso y campos listos para rellenar.</p>
+      </div>
+      <div class="card feature">
+        <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Al día con los cambios de 2025-2026</h3>
+        <p>MASC obligatorio antes del desahucio, Registro Único (NRUA) e índice IRAV. Lo que la mayoría de modelos antiguos ya no recoge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RECURSOS ===================== -->
+<section id="recursos">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Recursos</span>
+      <h2>Documentos descargables</h2>
+      <p>Tres documentos esenciales para el casero en 2026. Descárgalos en Word, rellena los campos y listo. Esta es una versión de muestra: la descarga es gratuita y funcional.</p>
+    </div>
+    <div class="carousel">
+      <button class="carot prev" id="prodPrev" aria-label="Anterior">‹</button>
+      <div class="track" id="productsGrid"></div>
+      <button class="carot next" id="prodNext" aria-label="Siguiente">›</button>
+    </div>
+    <div class="showall"><a class="btn ghost" href="documentos.html">Mostrar todos los documentos</a></div>
+    <div class="disclaimer">
+      <b>Aviso legal.</b> Los documentos de Asesorfy son modelos de carácter informativo y orientativo, no asesoramiento jurídico personalizado. Para asuntos cuya cuantía supere los 2.000 € o que requieran procedimiento judicial, recomendamos la intervención de un abogado colegiado. Normativa aplicable: España.
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CÓMO FUNCIONA ===================== -->
+<section id="como">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>De la duda al documento en tres pasos</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Elige tu documento</h3><p>Identifica tu situación: impago, alquiler de habitación o de temporada. Cada producto indica su base legal.</p></div>
+      <div class="step"><h3>Descárgalo y rellénalo</h3><p>Lo recibes en Word. Solo tienes que completar los campos entre corchetes con tus datos.</p></div>
+      <div class="step"><h3>Úsalo con seguridad</h3><p>Sigue las instrucciones de uso incluidas. Si el caso se complica, te derivamos a un abogado colegiado.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO ===================== -->
+<section id="contacto">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="sec-head" style="margin-bottom:24px">
+          <span class="eyebrow" style="color:#7fa8d6">Contacto</span>
+          <h2>¿Tienes una duda o un caso particular?</h2>
+          <p>Escríbenos y te orientamos sobre qué documento encaja con tu situación. Para casos que requieran litigio, te ponemos en contacto con un abogado colegiado.</p>
+        </div>
+        <div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg> hola@asesorfy.es</div>
+        <div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg> Respuesta en 24-48 h laborables</div>
+        <div class="row"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/></svg> Solo normativa española</div>
+      </div>
+      <div>
+        <form id="contactForm">
+          <div class="field"><label>Nombre</label><input type="text" required placeholder="Tu nombre"></div>
+          <div class="field"><label>Email</label><input type="email" required placeholder="tucorreo@email.com"></div>
+          <div class="field"><label>¿En qué podemos ayudarte?</label><textarea required placeholder="Cuéntanos tu situación (impago, alquiler de habitación, temporada...)"></textarea></div>
+          <button class="btn" type="submit" style="width:100%;justify-content:center">Enviar consulta</button>
+          <p class="form-note">Versión de muestra: el formulario no envía datos a ningún servidor. Al integrar el backend, las consultas llegarán a tu correo.</p>
+          <div class="msg-ok" id="msgOk">¡Gracias! En la versión final tu consulta llegaría a nuestro equipo. Te responderíamos en 24-48 h.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span id="footYear">© Asesorfy · Documentos legales para propietarios · Normativa española</span>
+    <span>Modelos informativos · No constituyen asesoramiento jurídico personalizado</span>
+  </div>
+</footer>
+
+<!-- ===================== DOCUMENTOS (fuentes: CC, LAU, LO 1/2025, RD 1312/2024) ===================== -->
+<script>
+var ASESORFY_DOCS = {
+  "ovc-impago": {
+    archivo: "Asesorfy - OVC Impago MASC 2026",
+    html: ''
+      + '<h1 style="text-align:center;">OFERTA VINCULANTE CONFIDENCIAL</h1>'
+      + '<p style="text-align:center;"><i>Medio Adecuado de Solución de Controversias (MASC) — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero</i></p><hr>'
+      + '<p style="border:1px solid #888;padding:8px;font-size:11px;"><b>AVISO LEGAL.</b> Modelo informativo y orientativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.</p>'
+      + '<p><b>REMITENTE (parte arrendadora / acreedora):</b><br>D./D.ª <b>[NOMBRE Y APELLIDOS]</b>, DNI/NIE <b>[NÚMERO]</b>, domicilio a efectos de notificaciones en <b>[DOMICILIO]</b>.</p>'
+      + '<p><b>DESTINATARIO (parte arrendataria / deudora):</b><br>D./D.ª <b>[NOMBRE Y APELLIDOS]</b>, DNI/NIE <b>[NÚMERO]</b>, domicilio en <b>[DIRECCIÓN DEL INMUEBLE U OTRO DOMICILIO]</b>.</p>'
+      + '<p>En <b>[LOCALIDAD]</b>, a <b>[DÍA]</b> de <b>[MES]</b> de <b>[AÑO]</b>.</p>'
+      + '<h3>I. VÍNCULO CONTRACTUAL</h3><p>Las partes suscribieron contrato de arrendamiento sobre el inmueble sito en <b>[DIRECCIÓN]</b>, con fecha <b>[FECHA]</b>, por una renta mensual de <b>[IMPORTE]</b> € pagadera en los <b>[Nº]</b> primeros días de cada mes en la cuenta <b>[IBAN]</b>.</p>'
+      + '<h3>II. DESCRIPCIÓN DEL CONFLICTO</h3><p>La parte arrendataria adeuda las rentas de los periodos <b>[MESES IMPAGADOS]</b>, por un principal total de <b>[IMPORTE TOTAL]</b> €, sin perjuicio de rentas posteriores e intereses legales.</p>'
+      + '<h3>III. NATURALEZA DE ESTE ESCRITO</h3><p>El presente escrito constituye una <b>Oferta Vinculante Confidencial</b> formulada al amparo del art. 17 de la Ley Orgánica 1/2025, como <b>MASC</b> y requisito de procedibilidad para la posterior demanda civil. Tiene carácter <b>confidencial</b>: su contenido íntegro no se aportará con la demanda, bastando el justificante de envío y recepción.</p>'
+      + '<h3>IV. PROPUESTA</h3><p><b>Opción A.</b> Abonar la totalidad de la deuda (<b>[IMPORTE]</b> €) en el plazo del apartado V, continuando vigente el contrato.</p><p><b>Opción B.</b> Entregar voluntariamente la posesión del inmueble en la fecha indicada y abonar las rentas hasta la entrega, resolviéndose el contrato sin reclamación de costas judiciales.</p>'
+      + '<h3>V. PLAZO DE ACEPTACIÓN</h3><p>Podrá aceptarse en el plazo de <b>UN (1) MES</b> desde su recepción (plazo mínimo legal). La <b>falta de respuesta se entenderá como rechazo</b>.</p>'
+      + '<h3>VI. EFECTOS</h3><p>La aceptación producirá <b>efectos obligatorios</b>. Transcurrido el plazo sin aceptación, la parte arrendadora podrá interponer <b>demanda de desahucio por falta de pago y reclamación de rentas</b>, con expresa imposición de costas.</p>'
+      + '<h3>VII. FORMA Y CONSTANCIA</h3><p>Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente).</p>'
+      + '<p style="margin-top:24px;">Atentamente,<br>Fdo.: <b>[NOMBRE Y APELLIDOS]</b></p><hr>'
+      + '<h3>INSTRUCCIONES (no incluir en el envío)</h3><ol><li>Rellena todos los campos entre corchetes [ ].</li><li>Envíalo por <b>burofax con certificación de texto y acuse de recibo</b> y guarda el justificante: es la prueba del MASC.</li><li>Espera <b>1 mes</b>. Si no contestan o rechazan, ya puedes demandar aportando el justificante de envío/recepción.</li><li>No adjuntes el contenido íntegro a la demanda: es confidencial.</li><li>Acuerdos &gt; 2.000 €: su aceptación requiere firma de abogado.</li></ol>'
+      + '<p style="font-size:11px;color:#666;">Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC). © Asesorfy · Normativa española.</p>'
+  },
+  "contrato-habitacion": {
+    archivo: "Asesorfy - Contrato Arrendamiento Habitacion 2026",
+    html: ''
+      + '<h1 style="text-align:center;">CONTRATO DE ARRENDAMIENTO DE HABITACIÓN</h1><hr>'
+      + '<p style="border:1px solid #888;padding:8px;font-size:11px;"><b>AVISO LEGAL.</b> Modelo informativo de Asesorfy. El arrendamiento de habitación NO se rige por la LAU, sino por la libertad de pactos (art. 1255 CC) y, supletoriamente, por los arts. 1542 y ss. del Código Civil.</p>'
+      + '<p>En <b>[LOCALIDAD]</b>, a <b>[DÍA]</b> de <b>[MES]</b> de <b>[AÑO]</b>.</p>'
+      + '<h3>REUNIDOS</h3><p><b>EL ARRENDADOR:</b> D./D.ª <b>[NOMBRE]</b>, DNI/NIE <b>[NÚMERO]</b>, domicilio en <b>[DOMICILIO]</b>, titular/poseedor legítimo de la vivienda.</p><p><b>EL ARRENDATARIO:</b> D./D.ª <b>[NOMBRE]</b>, DNI/NIE <b>[NÚMERO]</b>, domicilio en <b>[DOMICILIO]</b>.</p>'
+      + '<h3>EXPONEN</h3><p><b>I.</b> Que el arrendador es titular de la vivienda sita en <b>[DIRECCIÓN]</b>, ref. catastral <b>[REFERENCIA]</b>.</p><p><b>II.</b> Que el objeto es el arrendamiento de una <b>habitación</b> con uso compartido de zonas comunes, NO de la vivienda completa, sujeto a lo pactado y, en su defecto, a los arts. 1542 y ss. del CC, no siendo aplicable la LAU.</p>'
+      + '<h3>CLÁUSULAS</h3>'
+      + '<p><b>1ª. Objeto.</b> Habitación <b>[Nº/DESCRIPCIÓN]</b> con uso compartido de <b>[cocina, baño, salón...]</b>. Mobiliario en Anexo I.</p>'
+      + '<p><b>2ª. Duración.</b> <b>[Nº MESES]</b>, del <b>[FECHA]</b> al <b>[FECHA]</b>. Prórroga por acuerdo escrito.</p>'
+      + '<p><b>3ª. Renta.</b> <b>[IMPORTE]</b> €/mes, en los <b>[Nº]</b> primeros días, mediante <b>[transferencia IBAN ____]</b>.</p>'
+      + '<p><b>4ª. Actualización.</b> Conforme a lo pactado. (El IRAV y los topes de la Ley de Vivienda aplican al alquiler de vivienda habitual bajo la LAU; aquí rige la libertad de pactos.)</p>'
+      + '<p><b>5ª. Fianza.</b> <b>[IMPORTE]</b> € entregados en este acto, devueltos al término previa verificación del estado.</p>'
+      + '<p><b>6ª. Suministros.</b> Reparto: <b>[DESCRIBIR]</b>.</p>'
+      + '<p><b>7ª. Uso y convivencia.</b> Uso propio, respeto a las normas del Anexo II, no perturbar al resto de ocupantes.</p>'
+      + '<p><b>8ª. Prohibiciones.</b> Prohibido subarrendar, ceder o cambiar el uso sin consentimiento escrito.</p>'
+      + '<p><b>9ª. Resolución y MASC.</b> El impago faculta a resolver. Previo a la vía judicial, se intentará un MASC conforme a la Ley Orgánica 1/2025.</p>'
+      + '<p><b>10ª. Protección de datos.</b> Tratamiento conforme a RGPD y LOPDGDD.</p>'
+      + '<p><b>11ª. Registro (NRUA).</b> Si se comercializa por temporada/corta duración online, el arrendador obtendrá el NRUA conforme al RD 1312/2024.</p>'
+      + '<p><b>12ª. Jurisdicción.</b> Juzgados del lugar del inmueble.</p>'
+      + '<table style="width:100%;margin-top:24px;"><tr><td style="width:50%;">EL ARRENDADOR<br><br><br>Fdo.: ____________</td><td style="width:50%;">EL ARRENDATARIO<br><br><br>Fdo.: ____________</td></tr></table><hr>'
+      + '<p><b>ANEXO I — Inventario:</b> [MOBILIARIO Y ESTADO]</p><p><b>ANEXO II — Normas de convivencia:</b> [HORARIOS, VISITAS, LIMPIEZA...]</p>'
+      + '<p style="font-size:11px;color:#666;">Base legal: Código Civil, arts. 1255 y 1542 y ss.; jurisprudencia consolidada. © Asesorfy · Normativa española.</p>'
+  },
+  "contrato-temporada": {
+    archivo: "Asesorfy - Contrato Arrendamiento Temporada 2026",
+    html: ''
+      + '<h1 style="text-align:center;">CONTRATO DE ARRENDAMIENTO DE TEMPORADA</h1>'
+      + '<p style="text-align:center;"><i>Uso distinto del de vivienda — Art. 3 de la Ley 29/1994 (LAU)</i></p><hr>'
+      + '<p style="border:1px solid #888;padding:8px;font-size:11px;"><b>AVISO LEGAL.</b> Modelo informativo de Asesorfy. El arrendamiento de temporada es de uso distinto del de vivienda (art. 3 LAU): se rige por la voluntad de las partes, en su defecto por el Título III LAU y supletoriamente por el CC. Si el destino es turístico y la CCAA tiene normativa de vivienda vacacional, esta puede aplicarse con preferencia.</p>'
+      + '<p>En <b>[LOCALIDAD]</b>, a <b>[DÍA]</b> de <b>[MES]</b> de <b>[AÑO]</b>.</p>'
+      + '<h3>REUNIDOS</h3><p><b>EL ARRENDADOR:</b> D./D.ª <b>[NOMBRE]</b>, DNI/NIE <b>[NÚMERO]</b>, domicilio en <b>[DOMICILIO]</b>.</p><p><b>EL ARRENDATARIO:</b> D./D.ª <b>[NOMBRE]</b>, DNI/NIE <b>[NÚMERO]</b>, domicilio habitual y permanente en <b>[DOMICILIO]</b>.</p>'
+      + '<h3>EXPONEN</h3><p><b>I.</b> Que el arrendador es titular del inmueble sito en <b>[DIRECCIÓN]</b>, ref. catastral <b>[REFERENCIA]</b>.</p><p><b>II.</b> Que la necesidad del arrendatario es <b>temporal</b> y no permanente, siendo su causa: <b>[MOTIVO: trabajo, estudios, vacaciones, obras...]</b>, manteniendo su residencia habitual en el domicilio indicado.</p><p><b>III.</b> Que el contrato se considera de uso distinto del de vivienda (art. 3 LAU).</p>'
+      + '<h3>CLÁUSULAS</h3>'
+      + '<p><b>1ª. Objeto y destino.</b> Uso de temporada, excluido expresamente el uso como vivienda habitual.</p>'
+      + '<p><b>2ª. Duración.</b> Determinada, del <b>[INICIO]</b> al <b>[FIN]</b>, sin prórroga tácita dada la naturaleza temporal. La permanencia posterior exige nuevo acuerdo escrito.</p>'
+      + '<p><b>3ª. Renta.</b> <b>[IMPORTE]</b> € por <b>[mes/quincena/estancia]</b>, mediante <b>[transferencia IBAN ____]</b>.</p>'
+      + '<p><b>4ª. Fianza.</b> Conforme al art. 36 LAU, <b>DOS (2) mensualidades</b> = <b>[IMPORTE]</b> €, sin perjuicio de garantías adicionales.</p>'
+      + '<p><b>5ª. Suministros e inventario.</b> A cargo de <b>[ARRENDADOR/ARRENDATARIO]</b>. Enseres en Anexo I, recibidos en buen estado.</p>'
+      + '<p><b>6ª. Obligaciones.</b> Conservar el inmueble, destinarlo solo al uso pactado, no hacer obras, no subarrendar ni ceder, devolverlo en igual estado.</p>'
+      + '<p><b>7ª. Registro (NRUA).</b> Si se comercializa online por temporada/corta duración, el arrendador dispone u obtendrá el NRUA conforme al RD 1312/2024 y la Ventanilla Única Digital.</p>'
+      + '<p><b>8ª. Resolución y MASC.</b> Previo a la vía judicial se intentará un MASC conforme a la Ley Orgánica 1/2025 (requisito de procedibilidad).</p>'
+      + '<p><b>9ª. Protección de datos.</b> Conforme a RGPD y LOPDGDD.</p>'
+      + '<p><b>10ª. Jurisdicción.</b> Juzgados del lugar del inmueble.</p>'
+      + '<table style="width:100%;margin-top:24px;"><tr><td style="width:50%;">EL ARRENDADOR<br><br><br>Fdo.: ____________</td><td style="width:50%;">EL ARRENDATARIO<br><br><br>Fdo.: ____________</td></tr></table><hr>'
+      + '<p><b>ANEXO I — Inventario y estado:</b> [DETALLAR]</p>'
+      + '<p style="font-size:11px;color:#666;">Base legal: Ley 29/1994 LAU (arts. 3 y 36); Código Civil (supletorio); RD 1312/2024 (NRUA). © Asesorfy · Normativa española.</p>'
+  }
+};
+
+var PRODUCTS = [
+  {key:"contrato-larga", tag:"temporada", tagText:"Vivienda · Larga duración", title:"Contrato de larga duración",
+   desc:"El contrato de alquiler de vivienda habitual, conforme a la LAU y al día con 2026.",
+   bullets:["Duración y prórrogas según los arts. 9 y 10 de la LAU","Fianza legal de 1 mensualidad (art. 36)","Actualización con el índice IRAV","Desistimiento (art. 11) y cláusula de MASC"],
+   base:"Base legal: LAU (Título II); Ley 12/2023 de Vivienda.", price:"5,99€", note:"pago único"},
+  {key:"ovc-impago", tag:"urgente", tagText:"Impago · Urgente", title:"Kit Impago + MASC 2026",
+   desc:"El escrito que necesitas SÍ o SÍ antes de demandar a un inquilino que no paga.",
+   bullets:["Modelo de Oferta Vinculante Confidencial (art. 17 LO 1/2025)","Doble propuesta: pago o entrega del inmueble","Instrucciones de plazos y de envío por burofax","Checklist para la posterior demanda"],
+   base:"Base legal: Ley Orgánica 1/2025 (MASC, requisito de procedibilidad).", price:"29€", note:"pago único"},
+  {key:"contrato-habitacion", tag:"preventivo", tagText:"Habitación · Preventivo", title:"Contrato de habitación 2026",
+   desc:"Para alquilar por habitaciones bien atado, con el régimen legal correcto.",
+   bullets:["Regido por Código Civil (no LAU), como marca la jurisprudencia","Cláusulas de convivencia, fianza y prohibición de subarriendo","Anexos de inventario y normas","Nota sobre registro NRUA si lo ofreces online"],
+   base:"Base legal: Código Civil, arts. 1255 y 1542 y ss.", price:"9,99€", note:"pago único"},
+  {key:"contrato-temporada", tag:"temporada", tagText:"Temporada · Uso distinto", title:"Contrato de temporada 2026",
+   desc:"Alquiler por temporada como uso distinto de vivienda, con su causa bien justificada.",
+   bullets:["Art. 3 LAU: uso distinto del de vivienda","Causa de temporalidad redactada para evitar reclamaciones","Fianza de 2 mensualidades (art. 36 LAU)","Cláusula de Registro Único (RD 1312/2024)"],
+   base:"Base legal: LAU (arts. 3 y 36); RD 1312/2024 (NRUA).", price:"9,99€", note:"pago único"}
+];
+
+var CHECK = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+var DLICON = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>';
+
+function renderProducts(){
+  var grid = document.getElementById('productsGrid');
+  grid.innerHTML = PRODUCTS.map(function(p){
+    var lis = p.bullets.map(function(b){ return '<li>'+CHECK+' '+b+'</li>'; }).join('');
+    return ''
+      + '<div class="prod">'
+      +   '<div class="top"><span class="tag '+p.tag+'">'+p.tagText+'</span><h3>'+p.title+'</h3><p class="desc">'+p.desc+'</p></div>'
+      +   '<ul>'+lis+'</ul>'
+      +   '<p class="base">'+p.base+'</p>'
+      +   '<div class="foot"><div class="price"><b>'+p.price+'</b><span>'+p.note+'</span></div>'
+      +     '<button class="btn sm" onclick="downloadDoc(\''+p.key+'\')">'+DLICON+' Personalizar</button>'
+      +   '</div>'
+      + '</div>';
+  }).join('');
+}
+
+function downloadDoc(key){
+  // Abre el generador interactivo (formulario + cláusulas editables) para este documento
+  window.location.href = 'generador.html#' + key;
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  renderProducts();
+  var track=document.getElementById('productsGrid');
+  var step=function(){ var c=track.querySelector('.prod'); return c?c.getBoundingClientRect().width+22:340; };
+  document.getElementById('prodNext').addEventListener('click', function(){ track.scrollBy({left:step(),behavior:'smooth'}); });
+  document.getElementById('prodPrev').addEventListener('click', function(){ track.scrollBy({left:-step(),behavior:'smooth'}); });
+  document.getElementById('footYear').textContent = '© ' + new Date().getFullYear() + ' Asesorfy · Documentos legales para propietarios · Normativa española';
+
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.textContent = open ? '✕' : '☰';
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); toggle.textContent='☰'; });
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('msgOk').style.display = 'block';
+    this.reset();
+  });
+});
+</script>
+</body>
+</html>

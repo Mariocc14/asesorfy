@@ -1,0 +1,9 @@
+{
+  "name": "asesorfy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Asesorfy — documentos legales para propietarios (web estática + funciones Stripe en Vercel)",
+  "dependencies": {
+    "stripe": "^16.12.0"
+  }
+}
