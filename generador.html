@@ -748,17 +748,17 @@ function startCheckout(){
 }
 document.getElementById('confirmPay').addEventListener('click', startCheckout);
 
-// Al volver del pago (success_url con paid=1), verificar y desbloquear automáticamente.
+// Al volver del pago, desbloquear SOLO si Stripe confirma que la sesión está pagada.
+// (No nos fiamos de la URL: sin verificación con el servidor, no se desbloquea.)
 function handlePaidReturn(){
   var qs=new URLSearchParams(location.search);
   if(qs.get('paid')!=='1') return;
   var sid=qs.get('session_id');
-  if(sid){
-    fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
-      .then(function(r){ return r.json(); })
-      .then(function(d){ if(d && d.paid){ unlock(); } })
-      .catch(function(){ unlock(); });
-  } else { unlock(); }
+  if(!sid) return; // sin id de sesión no hay desbloqueo
+  fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if(d && d.paid){ unlock(); } })
+    .catch(function(){ /* si no se puede verificar, no se desbloquea */ });
 }
 
 /* INIT */
