@@ -10,7 +10,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 
 ### Clúster Impago → enlaza a generador.html#ovc-impago
 - [x] Cómo desahuciar a un inquilino que no paga en 2026 (guía paso a paso) — kw: "desahucio por impago 2026"
-- [ ] Burofax por impago de alquiler: cómo enviarlo y qué poner — kw: "burofax impago alquiler"
+- [x] Burofax por impago de alquiler: cómo enviarlo y qué poner — kw: "burofax impago alquiler"
 - [ ] Qué es la Oferta Vinculante Confidencial (OVC) y cómo usarla — kw: "oferta vinculante confidencial"
 - [ ] Cuánto tarda un desahucio por impago en 2026 — kw: "cuanto tarda un desahucio"
 - [ ] Ficheros de inquilinos morosos (FIM, ASNEF): cómo funcionan — kw: "fichero inquilinos morosos"
@@ -79,3 +79,4 @@ Cada artículo DEBE cumplir:
 
 (Se va rellenando: fecha — archivo — palabra clave)
 2026-06-25 — blog-desahucio-impago-2026.html — desahucio por impago 2026
+2026-06-26 — blog-burofax-impago-alquiler.html — burofax impago alquiler
