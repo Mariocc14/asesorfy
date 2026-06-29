@@ -13,7 +13,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Burofax por impago de alquiler: cómo enviarlo y qué poner — kw: "burofax impago alquiler"
 - [x] Qué es la Oferta Vinculante Confidencial (OVC) y cómo usarla — kw: "oferta vinculante confidencial"
 - [x] Cuánto tarda un desahucio por impago en 2026 — kw: "cuanto tarda un desahucio"
-- [ ] Ficheros de inquilinos morosos (FIM, ASNEF): cómo funcionan — kw: "fichero inquilinos morosos"
+- [x] Ficheros de inquilinos morosos (FIM, ASNEF): cómo funcionan — kw: "fichero inquilinos morosos"
 - [ ] Reclamar las rentas atrasadas tras el desahucio — kw: "reclamar rentas impagadas"
 
 ### Clúster Habitación → enlaza a generador.html#contrato-habitacion
@@ -82,3 +82,4 @@ Cada artículo DEBE cumplir:
 2026-06-26 — blog-burofax-impago-alquiler.html — burofax impago alquiler
 2026-06-27 — blog-oferta-vinculante-confidencial.html — oferta vinculante confidencial
 2026-06-28 — blog-cuanto-tarda-un-desahucio.html — cuanto tarda un desahucio
+2026-06-29 — blog-fichero-inquilinos-morosos.html — fichero inquilinos morosos
