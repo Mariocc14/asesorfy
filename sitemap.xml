@@ -10,4 +10,8 @@
   <url><loc>https://asesorfy.app/blog-temporada.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://asesorfy.app/blog-irav.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://asesorfy.app/asesoria.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://asesorfy.app/aviso-legal.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://asesorfy.app/privacidad.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://asesorfy.app/condiciones.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://asesorfy.app/cookies.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
