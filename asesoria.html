@@ -78,7 +78,7 @@
   <div class="calwrap"><div id="cal-inline"></div></div>
 
   <div class="setup-note" id="setupNote">
-    <b>¿Ves esto en blanco?</b> El calendario carga desde Cal.com. Para activarlo: crea una cuenta gratis en cal.com, monta el evento "Asesoría 30 min" (lunes a viernes, 12:00–14:00 y 18:00–20:00, pago de 20€ con Stripe y Cal&nbsp;Video), y asegúrate de que tu enlace sea <b>asesorfy/asesoria-30min</b>. Si usas otro nombre, edita la variable <code>CAL_LINK</code> en esta página.
+    <b>¿Ves esto en blanco?</b> El calendario carga desde Cal.com (evento <b>mario-calvo-gncete/asesorfy</b>). Si no aparece, revisa que el evento esté público y que tengas conectado Stripe con el pago de 20€ activado. La videollamada y los recordatorios los gestiona Cal.com.
   </div>
 </div>
 
@@ -91,8 +91,8 @@
 </footer>
 
 <script>
-// 👉 Tu enlace de Cal.com: "usuario/evento". Por defecto asume usuario "asesorfy" y evento "asesoria-30min".
-var CAL_LINK = "asesorfy/asesoria-30min";
+// 👉 Tu enlace de Cal.com (usuario/evento).
+var CAL_LINK = "mario-calvo-gncete/asesorfy";
 
 (function (C, A, L) {
   let p = function (a, ar) { a.q.push(ar); };
