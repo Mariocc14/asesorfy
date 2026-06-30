@@ -12,9 +12,12 @@ module.exports = async (req, res) => {
       return;
     }
     const session = await stripe.checkout.sessions.retrieve(id);
+    const m = session.metadata || {};
     res.status(200).json({
       paid: session.payment_status === 'paid',
-      doc: session.metadata && session.metadata.doc
+      doc: m.doc,
+      fecha: m.fecha,
+      hora: m.hora
     });
   } catch (e) {
     res.status(500).json({ paid: false, error: e.message });
