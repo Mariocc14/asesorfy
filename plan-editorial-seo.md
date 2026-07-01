@@ -14,7 +14,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Qué es la Oferta Vinculante Confidencial (OVC) y cómo usarla — kw: "oferta vinculante confidencial"
 - [x] Cuánto tarda un desahucio por impago en 2026 — kw: "cuanto tarda un desahucio"
 - [x] Ficheros de inquilinos morosos (FIM, ASNEF): cómo funcionan — kw: "fichero inquilinos morosos"
-- [ ] Reclamar las rentas atrasadas tras el desahucio — kw: "reclamar rentas impagadas"
+- [x] Reclamar las rentas atrasadas tras el desahucio — kw: "reclamar rentas impagadas"
 
 ### Clúster Habitación → enlaza a generador.html#contrato-habitacion
 - [ ] Fianza en el alquiler de habitación: cuánto y cómo se devuelve — kw: "fianza alquiler habitacion"
@@ -83,3 +83,4 @@ Cada artículo DEBE cumplir:
 2026-06-27 — blog-oferta-vinculante-confidencial.html — oferta vinculante confidencial
 2026-06-28 — blog-cuanto-tarda-un-desahucio.html — cuanto tarda un desahucio
 2026-06-29 — blog-fichero-inquilinos-morosos.html — fichero inquilinos morosos
+2026-07-01 — blog-reclamar-rentas-impagadas.html — reclamar rentas impagadas
