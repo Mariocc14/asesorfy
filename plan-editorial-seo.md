@@ -17,7 +17,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Reclamar las rentas atrasadas tras el desahucio — kw: "reclamar rentas impagadas"
 
 ### Clúster Habitación → enlaza a generador.html#contrato-habitacion
-- [ ] Fianza en el alquiler de habitación: cuánto y cómo se devuelve — kw: "fianza alquiler habitacion"
+- [x] Fianza en el alquiler de habitación: cuánto y cómo se devuelve — kw: "fianza alquiler habitacion"
 - [ ] Normas de convivencia en piso compartido (con modelo) — kw: "normas convivencia piso compartido"
 - [ ] Empadronarse en una habitación alquilada: ¿se puede? — kw: "empadronarse habitacion alquilada"
 - [ ] Alquiler de habitaciones e IRPF: cómo tributa — kw: "alquiler habitaciones declaracion renta"
@@ -84,3 +84,4 @@ Cada artículo DEBE cumplir:
 2026-06-28 — blog-cuanto-tarda-un-desahucio.html — cuanto tarda un desahucio
 2026-06-29 — blog-fichero-inquilinos-morosos.html — fichero inquilinos morosos
 2026-07-01 — blog-reclamar-rentas-impagadas.html — reclamar rentas impagadas
+2026-07-02 — blog-fianza-alquiler-habitacion.html — fianza alquiler habitacion
