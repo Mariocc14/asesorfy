@@ -20,7 +20,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Fianza en el alquiler de habitación: cuánto y cómo se devuelve — kw: "fianza alquiler habitacion"
 - [x] Normas de convivencia en piso compartido (con modelo) — kw: "normas convivencia piso compartido"
 - [x] Empadronarse en una habitación alquilada: ¿se puede? — kw: "empadronarse habitacion alquilada"
-- [ ] Alquiler de habitaciones e IRPF: cómo tributa — kw: "alquiler habitaciones declaracion renta"
+- [x] Alquiler de habitaciones e IRPF: cómo tributa — kw: "alquiler habitaciones declaracion renta"
 
 ### Clúster Temporada → enlaza a generador.html#contrato-temporada
 - [ ] Alquiler de temporada vs alquiler turístico: diferencias clave — kw: "alquiler temporada o turistico"
@@ -87,3 +87,4 @@ Cada artículo DEBE cumplir:
 2026-07-02 — blog-fianza-alquiler-habitacion.html — fianza alquiler habitacion
 2026-07-03 — blog-normas-convivencia-piso-compartido.html — normas convivencia piso compartido
 2026-07-04 — blog-empadronarse-habitacion-alquilada.html — empadronarse habitacion alquilada
+2026-07-05 — blog-alquiler-habitaciones-declaracion-renta.html — alquiler habitaciones declaracion renta
