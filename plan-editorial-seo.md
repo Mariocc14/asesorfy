@@ -23,7 +23,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Alquiler de habitaciones e IRPF: cómo tributa — kw: "alquiler habitaciones declaracion renta"
 
 ### Clúster Temporada → enlaza a generador.html#contrato-temporada
-- [ ] Alquiler de temporada vs alquiler turístico: diferencias clave — kw: "alquiler temporada o turistico"
+- [x] Alquiler de temporada vs alquiler turístico: diferencias clave — kw: "alquiler temporada o turistico"
 - [ ] Número de registro NRUA paso a paso (Ventanilla Única) — kw: "numero registro alquiler nrua"
 - [ ] El modelo informativo anual de febrero del registro de arrendamientos — kw: "modelo anual registro arrendamientos"
 
@@ -88,3 +88,4 @@ Cada artículo DEBE cumplir:
 2026-07-03 — blog-normas-convivencia-piso-compartido.html — normas convivencia piso compartido
 2026-07-04 — blog-empadronarse-habitacion-alquilada.html — empadronarse habitacion alquilada
 2026-07-05 — blog-alquiler-habitaciones-declaracion-renta.html — alquiler habitaciones declaracion renta
+2026-07-06 — blog-alquiler-temporada-o-turistico.html — alquiler temporada o turistico
