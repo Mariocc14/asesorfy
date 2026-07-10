@@ -25,7 +25,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 ### Clúster Temporada → enlaza a generador.html#contrato-temporada
 - [x] Alquiler de temporada vs alquiler turístico: diferencias clave — kw: "alquiler temporada o turistico"
 - [x] Número de registro NRUA paso a paso (Ventanilla Única) — kw: "numero registro alquiler nrua"
-- [ ] El modelo informativo anual de febrero del registro de arrendamientos — kw: "modelo anual registro arrendamientos"
+- [x] El modelo informativo anual de febrero del registro de arrendamientos — kw: "modelo anual registro arrendamientos"
 
 ### Clúster Larga duración → enlaza a generador.html#contrato-larga
 - [ ] Duración del contrato de alquiler en 2026: prórrogas de la LAU — kw: "duracion contrato alquiler 2026"
@@ -90,3 +90,4 @@ Cada artículo DEBE cumplir:
 2026-07-05 — blog-alquiler-habitaciones-declaracion-renta.html — alquiler habitaciones declaracion renta
 2026-07-06 — blog-alquiler-temporada-o-turistico.html — alquiler temporada o turistico
 2026-07-07 — blog-numero-registro-alquiler-nrua.html — numero registro alquiler nrua
+2026-07-10 — blog-modelo-informativo-anual-arrendamientos.html — modelo informativo anual registro arrendamientos
