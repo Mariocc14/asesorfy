@@ -152,6 +152,10 @@
     @page{margin:2cm}
   }
 </style>
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 
@@ -719,10 +723,16 @@ function applyLock(){ document.getElementById('paper').className = 'paper '+(unl
 function unlock(){ unlocked = true; applyLock(); }
 
 /* PAGO (placeholder) */
-function openPay(){ document.getElementById('payModal').classList.add('open'); }
+function openPay(){
+  document.getElementById('payModal').classList.add('open');
+  if(window.va) va('event', { name: 'ver_pago', data: { doc: current } });
+}
 document.getElementById('payBtn').addEventListener('click', openPay);
 document.getElementById('unlockBtn').addEventListener('click', openPay);
-document.getElementById('demoBtn').addEventListener('click', function(){ unlock(); });
+document.getElementById('demoBtn').addEventListener('click', function(){
+  if(window.va) va('event', { name: 'desbloqueo_demo', data: { doc: current } });
+  unlock();
+});
 function closePay(){ document.getElementById('payModal').classList.remove('open'); }
 document.getElementById('payModal').addEventListener('click', function(e){ if(e.target===this) closePay(); });
 
@@ -737,7 +747,10 @@ function startCheckout(){
   })
   .then(function(r){ return r.json(); })
   .then(function(d){
-    if(d && d.url){ window.location.href=d.url; }
+    if(d && d.url){
+      if(window.va) va('event', { name: 'checkout_iniciado', data: { doc: current, precio: CONFIG[current].price } });
+      window.location.href=d.url;
+    }
     else { throw new Error((d && d.error) || 'sin_url'); }
   })
   .catch(function(){
@@ -756,7 +769,12 @@ function handlePaidReturn(){
   if(sid){
     fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
       .then(function(r){ return r.json(); })
-      .then(function(d){ if(d && d.paid){ unlock(); } })
+      .then(function(d){
+        if(d && d.paid){
+          if(window.va) va('event', { name: 'compra_completada', data: { doc: (d.doc||current) } });
+          unlock();
+        }
+      })
       .catch(function(){ unlock(); });
   } else { unlock(); }
 }
