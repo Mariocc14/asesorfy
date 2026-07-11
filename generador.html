@@ -158,6 +158,7 @@
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+<div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>20€</strong>.</span><a href="asesoria.html" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
 
 <header>
   <div class="bar">
@@ -761,22 +762,22 @@ function startCheckout(){
 }
 document.getElementById('confirmPay').addEventListener('click', startCheckout);
 
-// Al volver del pago (success_url con paid=1), verificar y desbloquear automáticamente.
+// Al volver del pago, desbloquear SOLO si Stripe confirma que la sesión está pagada.
+// (No nos fiamos de la URL: sin verificación con el servidor, no se desbloquea.)
 function handlePaidReturn(){
   var qs=new URLSearchParams(location.search);
   if(qs.get('paid')!=='1') return;
   var sid=qs.get('session_id');
-  if(sid){
-    fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
-      .then(function(r){ return r.json(); })
-      .then(function(d){
-        if(d && d.paid){
-          if(window.va) va('event', { name: 'compra_completada', data: { doc: (d.doc||current) } });
-          unlock();
-        }
-      })
-      .catch(function(){ unlock(); });
-  } else { unlock(); }
+  if(!sid) return; // sin id de sesión no hay desbloqueo
+  fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.paid){
+        if(window.va) va('event', { name: 'compra_completada', data: { doc: (d.doc||current) } });
+        unlock();
+      }
+    })
+    .catch(function(){ /* si no se puede verificar, no se desbloquea */ });
 }
 
 /* INIT */
@@ -787,5 +788,7 @@ document.getElementById('payAmount').textContent = CONFIG[current].price;
 document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[current].price;
 handlePaidReturn();
 </script>
+<footer data-legalbar style="background:#0e1a2b;color:#9fb0c6;padding:18px;text-align:center;font-size:12.5px"><a href="aviso-legal.html" style="color:#9fb0c6">Aviso legal</a> · <a href="privacidad.html" style="color:#9fb0c6">Privacidad</a> · <a href="condiciones.html" style="color:#9fb0c6">Condiciones</a> · <a href="cookies.html" style="color:#9fb0c6">Cookies</a></footer>
+<div id="ck-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0e1a2b;color:#dbe3ee;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;padding:14px 18px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.25)"><span style="max-width:680px">Usamos cookies propias y de terceros (Stripe, Cal.com) para el funcionamiento del sitio y procesar pagos. <a href="cookies.html" style="color:#9fc1e8">Más información</a>.</span><span style="display:flex;gap:8px"><button onclick="ckSet(0)" style="background:transparent;border:1px solid #3a4a60;color:#cdd8e6;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Rechazar</button><button onclick="ckSet(1)" style="background:#1f5fa6;border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Aceptar</button></span></div><script>function ckSet(v){try{localStorage.setItem('asesorfy_cookies',v?'accepted':'rejected');}catch(e){}var b=document.getElementById('ck-banner');if(b)b.style.display='none';}(function(){try{if(!localStorage.getItem('asesorfy_cookies')){var b=document.getElementById('ck-banner');if(b)b.style.display='flex';}}catch(e){}})();</script>
 </body>
 </html>
