@@ -30,7 +30,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 ### Clúster Larga duración → enlaza a generador.html#contrato-larga
 - [x] Duración del contrato de alquiler en 2026: prórrogas de la LAU — kw: "duracion contrato alquiler 2026"
 - [x] Cómo hacer un contrato de alquiler de vivienda paso a paso — kw: "como hacer contrato de alquiler"
-- [ ] Devolución de la fianza: plazos y descuentos por desperfectos — kw: "devolucion fianza alquiler"
+- [x] Devolución de la fianza: plazos y descuentos por desperfectos — kw: "devolucion fianza alquiler"
 - [ ] Desistimiento del inquilino: preaviso y penalización (art. 11 LAU) — kw: "desistimiento contrato alquiler inquilino"
 - [ ] IBI, comunidad y suministros: ¿quién paga en el alquiler? — kw: "quien paga ibi alquiler"
 - [ ] Zonas tensionadas: qué son y cómo afectan al casero — kw: "zonas tensionadas propietario"
@@ -93,3 +93,4 @@ Cada artículo DEBE cumplir:
 2026-07-10 — blog-modelo-informativo-anual-arrendamientos.html — modelo informativo anual registro arrendamientos
 2026-07-11 — blog-duracion-contrato-alquiler-2026.html — duracion contrato alquiler 2026
 2026-07-15 — blog-como-hacer-contrato-alquiler-vivienda.html — como hacer contrato de alquiler
+2026-07-15 — blog-devolucion-fianza-alquiler.html — devolucion fianza alquiler
