@@ -50,11 +50,21 @@
     try { if (localStorage.getItem('asesorfy_cookies') === 'accepted') init(); } catch (e) {}
 
     document.addEventListener('click', function (event) {
-      var target = event.target.closest && event.target.closest('a,button');
+      var target = event.target.closest && event.target.closest('a,button,[role="button"]');
       if (!target) return;
       var href = target.getAttribute('href') || '';
+      var label = target.getAttribute('data-analytics-name') ||
+        target.getAttribute('aria-label') ||
+        (target.textContent || '').replace(/\s+/g, ' ').trim() ||
+        target.getAttribute('title') || target.id || href || 'CTA sin nombre';
+      window.asesorfyTrack('cta_clicked', {
+        button_name: label.slice(0, 100),
+        element_type: target.tagName.toLowerCase(),
+        destination: href.split('?')[0],
+        source_path: location.pathname
+      });
       if (/^(mailto:|tel:|https:\/\/cal\.com)/.test(href)) {
-        window.asesorfyTrack('contact_cta_clicked', { destination: href.split('?')[0], label: (target.textContent || '').trim().slice(0, 80) });
+        window.asesorfyTrack('contact_cta_clicked', { destination: href.split('?')[0], label: label.slice(0, 80) });
       }
     });
   });

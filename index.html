@@ -172,7 +172,7 @@
 <script defer src="/posthog-analytics.js"></script>
 </head>
 <body>
-<div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>20€</strong>.</span><a href="asesoria.html" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
+<div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>20€</strong>.</span><a href="asesoria.html" data-analytics-name="Reservar asesoría" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
 
 <!-- ===================== NAVBAR ===================== -->
 <header>
@@ -199,8 +199,8 @@
     <h1>Documentos legales para propietarios, <span class="accent">al día con la ley</span></h1>
     <p class="lead">Contratos y escritos fiables para caseros y pequeños propietarios, redactados sobre el Código Civil, la LAU y la última normativa publicada en el BOE. Sin letra pequeña que no entiendas.</p>
     <div class="hero-cta">
-      <a href="#recursos" class="btn">Ver documentos descargables</a>
-      <a href="calculadora-rentabilidad-alquiler.html" class="btn ghost">Calcular rentabilidad del alquiler</a>
+      <a href="#recursos" class="btn" data-analytics-name="Ver documentos descargables">Ver documentos descargables</a>
+      <a href="calculadora-rentabilidad-alquiler.html" class="btn ghost" data-analytics-name="Abrir calculadora de rentabilidad">Calcular rentabilidad del alquiler</a>
       <a href="#como" class="btn ghost">Cómo funciona</a>
     </div>
     <div class="trust">
@@ -293,7 +293,7 @@
           <div class="field"><label>Nombre</label><input type="text" required placeholder="Tu nombre"></div>
           <div class="field"><label>Email</label><input type="email" required placeholder="tucorreo@email.com"></div>
           <div class="field"><label>¿En qué podemos ayudarte?</label><textarea required placeholder="Cuéntanos tu situación (impago, alquiler de habitación, temporada...)"></textarea></div>
-          <button class="btn" type="submit" style="width:100%;justify-content:center">Enviar consulta</button>
+          <button class="btn" type="submit" data-analytics-name="Enviar consulta" style="width:100%;justify-content:center">Enviar consulta</button>
           <p class="form-note">Versión de muestra: el formulario no envía datos a ningún servidor. Al integrar el backend, las consultas llegarán a tu correo.</p>
           <div class="msg-ok" id="msgOk">¡Gracias! En la versión final tu consulta llegaría a nuestro equipo. Te responderíamos en 24-48 h.</div>
         </form>
