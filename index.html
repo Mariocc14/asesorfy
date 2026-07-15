@@ -169,6 +169,7 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/posthog-analytics.js"></script>
 </head>
 <body>
 <div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>20€</strong>.</span><a href="asesoria.html" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
@@ -422,6 +423,7 @@ function renderProducts(){
 
 function downloadDoc(key){
   // Abre el generador interactivo (formulario + cláusulas editables) para este documento
+  if(window.asesorfyTrack) asesorfyTrack('document_selected',{document_type:key});
   window.location.href = 'generador.html#' + key;
 }
 
@@ -445,6 +447,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();
+    if(window.asesorfyTrack) asesorfyTrack('lead_submitted',{form:'homepage_contact'});
     document.getElementById('msgOk').style.display = 'block';
     this.reset();
   });

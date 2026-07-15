@@ -176,6 +176,7 @@
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/posthog-analytics.js"></script>
 </head>
 <body>
 <div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>20€</strong>.</span><a href="asesoria.html" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
@@ -530,6 +531,7 @@ function buildTabs(){
 
 function switchDoc(k){
   current=k; location.hash=k;
+  if(window.asesorfyTrack) asesorfyTrack('document_selected',{document_type:k,source:'generator_tab'});
   clauseState={}; customClauses=[]; clauseEdits={};
   CONFIG[k].clauses.forEach(function(c){ clauseState[c.id]= (c.ess===true) ? true : (c.on!==false); });
   unlocked=false; applyLock();
@@ -746,6 +748,7 @@ function unlock(){ unlocked = true; applyLock(); }
 /* PAGO (placeholder) */
 function openPay(){
   document.getElementById('payModal').classList.add('open');
+  if(window.asesorfyTrack) asesorfyTrack('paywall_viewed',{document_type:current,price:CONFIG[current].price});
   if(window.va) va('event', { name: 'ver_pago', data: { doc: current } });
 }
 document.getElementById('payBtn').addEventListener('click', openPay);
@@ -762,6 +765,7 @@ function startCheckout(){
   var btn=document.getElementById('confirmPay');
   var original=btn.innerHTML;
   btn.disabled=true; btn.textContent='Redirigiendo a Stripe…';
+  if(window.asesorfyTrack) asesorfyTrack('checkout_started',{document_type:current,price:CONFIG[current].price,currency:'EUR'});
   fetch('/api/create-checkout-session',{
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({doc: current})
@@ -794,6 +798,7 @@ function handlePaidReturn(){
     .then(function(d){
       if(d && d.paid){
         if(window.va) va('event', { name: 'compra_completada', data: { doc: (d.doc||current) } });
+        if(window.asesorfyTrack) asesorfyTrack('purchase_completed',{document_type:(d.doc||current),price:CONFIG[d.doc||current]&&CONFIG[d.doc||current].price,currency:'EUR'});
         unlock();
       }
     })
