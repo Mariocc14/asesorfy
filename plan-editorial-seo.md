@@ -33,7 +33,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Devolución de la fianza: plazos y descuentos por desperfectos — kw: "devolucion fianza alquiler"
 - [x] Desistimiento del inquilino: preaviso y penalización (art. 11 LAU) — kw: "desistimiento contrato alquiler inquilino"
 - [x] IBI, comunidad y suministros: ¿quién paga en el alquiler? — kw: "quien paga ibi alquiler"
-- [ ] Zonas tensionadas: qué son y cómo afectan al casero — kw: "zonas tensionadas propietario"
+- [x] Zonas tensionadas: qué son y cómo afectan al casero — kw: "zonas tensionadas propietario"
 
 ### Clúster Subida de renta / fiscalidad → enlaza al artículo IRAV y a documentos.html
 - [ ] IRAV vs IPC: cuál aplico a mi contrato — kw: "irav o ipc alquiler"
@@ -96,3 +96,4 @@ Cada artículo DEBE cumplir:
 2026-07-15 — blog-devolucion-fianza-alquiler.html — devolucion fianza alquiler
 2026-07-16 — blog-desistimiento-contrato-alquiler-inquilino.html — desistimiento contrato alquiler inquilino
 2026-07-17 — blog-quien-paga-ibi-alquiler.html — quien paga ibi alquiler
+2026-07-18 — blog-zonas-tensionadas-propietario.html — zonas tensionadas propietario
