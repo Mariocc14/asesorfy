@@ -130,6 +130,17 @@
   .showall{text-align:center;margin-top:26px}
   @media(max-width:880px){.carot{display:none}.track .prod{flex:0 0 86%}}
 
+  /* DOCUMENTOS POR SITUACIÓN */
+  #casos{background:#fff}
+  .case-catalog{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .case-card{display:flex;flex-direction:column;min-height:205px;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:0 8px 24px -20px rgba(14,26,43,.35);transition:.2s}
+  .case-card:hover{transform:translateY(-3px);border-color:#b8cce5;box-shadow:0 18px 36px -22px rgba(14,26,43,.35)}
+  .case-card .case-type{display:inline-flex;align-self:flex-start;padding:4px 9px;border-radius:999px;background:var(--bg-tint);color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:14px}
+  .case-card h3{font-size:18px;margin-bottom:8px}
+  .case-card p{color:var(--muted);font-size:13.5px;line-height:1.55;margin-bottom:18px}
+  .case-card .case-link{margin-top:auto;color:var(--accent);font-size:13.5px;font-weight:700}
+  .case-note{max-width:760px;margin:26px auto 0;padding:15px 18px;border-radius:11px;background:var(--bg-soft);color:var(--muted);font-size:13.5px;text-align:center}
+
   .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
   .step{position:relative;padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:#fff}
   .step:before{counter-increment:s;content:counter(s);font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:#fff;background:var(--accent);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;margin-bottom:16px}
@@ -157,7 +168,7 @@
   .disclaimer b{color:var(--ink)}
 
   @media(max-width:880px){
-    .grid3,.steps{grid-template-columns:1fr}
+    .grid3,.steps,.case-catalog{grid-template-columns:1fr 1fr}
     .contact-grid{grid-template-columns:1fr;gap:30px}
     .navlinks{position:fixed;inset:68px 0 auto 0;flex-direction:column;background:#fff;border-bottom:1px solid var(--line);padding:14px 24px 22px;gap:4px;display:none;box-shadow:var(--shadow)}
     .navlinks.open{display:flex}
@@ -165,6 +176,7 @@
     .navtoggle{display:block}
     .navlinks .btn{width:100%;justify-content:center;margin-top:6px}
   }
+  @media(max-width:560px){.case-catalog{grid-template-columns:1fr}.case-card{min-height:auto}}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -184,6 +196,7 @@
       <div class="navlinks" id="navLinks">
         <a href="#inicio">Inicio</a>
         <a href="#recursos">Recursos</a>
+        <a href="#casos">Casos</a>
         <a href="calculadora-rentabilidad-alquiler.html">Calculadora</a>
         <a href="blog.html">Blog</a>
         <a href="#contacto">Contacto</a>
@@ -246,7 +259,7 @@
     <div class="sec-head center">
       <span class="eyebrow">Recursos</span>
       <h2>Documentos descargables</h2>
-      <p>Tres documentos esenciales para el casero en 2026. Descárgalos en Word, rellena los campos y listo. Esta es una versión de muestra: la descarga es gratuita y funcional.</p>
+      <p>Cuatro documentos base para el casero en 2026. Elige uno, personaliza los datos y revisa las cláusulas antes de descargarlo.</p>
     </div>
     <div class="carousel">
       <button class="carot prev" id="prodPrev" aria-label="Anterior">‹</button>
@@ -257,6 +270,28 @@
     <div class="disclaimer">
       <b>Aviso legal.</b> Los documentos de Asesorfy son modelos de carácter informativo y orientativo, no asesoramiento jurídico personalizado. Para asuntos cuya cuantía supere los 2.000 € o que requieran procedimiento judicial, recomendamos la intervención de un abogado colegiado. Normativa aplicable: España.
     </div>
+  </div>
+</section>
+
+<!-- ===================== DOCUMENTOS POR SITUACIÓN ===================== -->
+<section id="casos">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Elige según tu caso</span>
+      <h2>Un punto de partida para cada situación</h2>
+      <p>Estas versiones te ayudan a identificar qué documento base necesitas y qué cláusulas debes revisar antes de personalizarlo.</p>
+    </div>
+    <div class="case-catalog">
+      <a class="case-card" href="casos/modelo-contrato-alquiler-vivienda-habitual.html"><span class="case-type">Vivienda</span><h3>Vivienda habitual</h3><p>Duración, prórrogas, fianza, renta y actualización conforme a la LAU.</p><span class="case-link">Ver modelo y requisitos →</span></a>
+      <a class="case-card" href="casos/contrato-alquiler-vivienda-con-mascotas.html"><span class="case-type">Vivienda</span><h3>Alquiler con mascotas</h3><p>Cláusulas sobre autorización, daños, convivencia y responsabilidades.</p><span class="case-link">Ver modelo y requisitos →</span></a>
+      <a class="case-card" href="casos/contrato-alquiler-habitacion-estudiantes.html"><span class="case-type">Habitación</span><h3>Habitación para estudiantes</h3><p>Curso académico, zonas comunes, gastos, inventario y devolución de fianza.</p><span class="case-link">Ver modelo y requisitos →</span></a>
+      <a class="case-card" href="casos/contrato-alquiler-habitacion-piso-compartido.html"><span class="case-type">Habitación</span><h3>Piso compartido</h3><p>Convivencia, suministros, visitas, limpieza y espacios de uso exclusivo.</p><span class="case-link">Ver modelo y requisitos →</span></a>
+      <a class="case-card" href="casos/contrato-alquiler-temporada-por-trabajo.html"><span class="case-type">Temporada</span><h3>Desplazamiento laboral</h3><p>Causa temporal acreditable, domicilio habitual, duración y fianza.</p><span class="case-link">Ver modelo y requisitos →</span></a>
+      <a class="case-card" href="casos/contrato-alquiler-temporada-estudiantes.html"><span class="case-type">Temporada</span><h3>Temporada para estudiantes</h3><p>Vivienda completa durante estudios, prácticas o curso académico.</p><span class="case-link">Ver modelo y requisitos →</span></a>
+      <a class="case-card" href="casos/oferta-vinculante-confidencial-impago-alquiler.html"><span class="case-type">Impago</span><h3>Oferta vinculante por impago</h3><p>Deuda, propuesta, plazo de aceptación y prueba de comunicación.</p><span class="case-link">Ver documento y requisitos →</span></a>
+      <a class="case-card" href="casos/masc-impago-alquiler-antes-desahucio.html"><span class="case-type">Impago</span><h3>MASC antes del desahucio</h3><p>Preparación del intento negociador previo y documentación necesaria.</p><span class="case-link">Ver documento y requisitos →</span></a>
+    </div>
+    <p class="case-note"><strong>No son ocho productos duplicados:</strong> son ocho situaciones guiadas conectadas con los cuatro documentos base del generador.</p>
   </div>
 </section>
 
