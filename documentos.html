@@ -71,10 +71,11 @@
   .price b{font-family:'Fraunces',serif;font-size:24px}
   .price span{color:var(--muted);font-size:12px;display:block}
   .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:16px}
+  .casehub{padding:0 0 70px}.casehub h2{text-align:center;font-size:30px;margin-bottom:10px}.casehub>p{text-align:center;color:var(--muted);margin-bottom:24px}.casegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:850px;margin:auto}.casegrid a{display:block;border:1px solid var(--line);border-radius:11px;padding:15px 18px;color:var(--ink-soft);font-weight:600;background:var(--bg-soft)}.casegrid a:hover{border-color:var(--accent);color:var(--accent)}
 
   footer{background:var(--ink);color:#7e8ea3;padding:26px 0;font-size:13px}
   footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-  @media(max-width:880px){.grid{grid-template-columns:1fr}}
+  @media(max-width:880px){.grid,.casegrid{grid-template-columns:1fr}}
 </style>
 <script>
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -111,6 +112,20 @@
     <div class="count" id="count"></div>
   </div>
   <div class="grid" id="grid"></div>
+  <section class="casehub">
+    <h2>Encuentra el modelo para tu situación</h2>
+    <p>Guías prácticas conectadas con el documento que puedes personalizar.</p>
+    <div class="casegrid">
+      <a href="casos/modelo-contrato-alquiler-vivienda-habitual.html">Contrato de vivienda habitual →</a>
+      <a href="casos/contrato-alquiler-vivienda-con-mascotas.html">Contrato de alquiler con mascotas →</a>
+      <a href="casos/contrato-alquiler-habitacion-estudiantes.html">Habitación para estudiantes →</a>
+      <a href="casos/contrato-alquiler-habitacion-piso-compartido.html">Habitación en piso compartido →</a>
+      <a href="casos/contrato-alquiler-temporada-por-trabajo.html">Temporada por desplazamiento laboral →</a>
+      <a href="casos/contrato-alquiler-temporada-estudiantes.html">Temporada para estudiantes →</a>
+      <a href="casos/oferta-vinculante-confidencial-impago-alquiler.html">Oferta vinculante por impago →</a>
+      <a href="casos/masc-impago-alquiler-antes-desahucio.html">MASC antes del desahucio →</a>
+    </div>
+  </section>
 </div>
 
 <footer>
@@ -129,13 +144,13 @@ var PRODUCTS = [
    kw:"vivienda habitual larga duracion lau alquiler permanente irav prorroga"},
   {key:"contrato-habitacion", tag:"preventivo", tagText:"Habitación · Preventivo", title:"Contrato de habitación 2026",
    desc:"Para alquilar por habitaciones bien atado, con el régimen legal correcto.",
-   bullets:["Regido por Código Civil (no LAU)","Cláusulas de convivencia, fianza y subarriendo","Anexos de inventario y normas","Nota sobre registro NRUA si lo ofreces online"],
+   bullets:["Regido por Código Civil (no LAU)","Cláusulas de convivencia, fianza y subarriendo","Anexos de inventario y normas","Aviso sobre registros autonómicos si lo ofreces online"],
    base:"Base legal: Código Civil, arts. 1255 y 1542 y ss.", price:"9,99€",
    kw:"habitacion habitaciones cuarto codigo civil compartir piso estudiantes"},
   {key:"contrato-temporada", tag:"temporada", tagText:"Temporada · Uso distinto", title:"Contrato de temporada 2026",
    desc:"Alquiler por temporada como uso distinto de vivienda, con su causa bien justificada.",
-   bullets:["Art. 3 LAU: uso distinto del de vivienda","Causa de temporalidad bien redactada","Fianza de 2 mensualidades (art. 36 LAU)","Cláusula de Registro Único (RD 1312/2024)"],
-   base:"Base legal: LAU (arts. 3 y 36); RD 1312/2024 (NRUA).", price:"9,99€",
+   bullets:["Art. 3 LAU: uso distinto del de vivienda","Causa de temporalidad bien redactada","Fianza de 2 mensualidades (art. 36 LAU)","Aviso sobre registros autonómicos y locales"],
+   base:"Base legal: LAU (arts. 3 y 36); revisión TS de junio de 2026 sobre el RD 1312/2024.", price:"9,99€",
    kw:"temporada vacaciones corta duracion turistico nrua registro estudios trabajo"},
   {key:"ovc-impago", tag:"urgente", tagText:"Impago · Urgente", title:"Kit Impago + MASC 2026",
    desc:"El escrito que necesitas SÍ o SÍ antes de demandar a un inquilino que no paga.",
