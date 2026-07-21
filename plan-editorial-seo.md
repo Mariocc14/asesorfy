@@ -36,8 +36,8 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Zonas tensionadas: qué son y cómo afectan al casero — kw: "zonas tensionadas propietario"
 
 ### Clúster Subida de renta / fiscalidad → enlaza al artículo IRAV y a documentos.html
-- [ ] IRAV vs IPC: cuál aplico a mi contrato — kw: "irav o ipc alquiler"
-- [ ] Cómo actualizar la renta del alquiler paso a paso (carta modelo) — kw: "carta actualizacion renta alquiler"
+- [x] IRAV vs IPC: cuál aplico a mi contrato — kw: "irav o ipc alquiler" (intención ya cubierta por blog-irav.html; no crear otra URL para evitar canibalización)
+- [x] Cómo actualizar la renta del alquiler paso a paso (carta modelo) — kw: "carta actualizacion renta alquiler"
 - [ ] Fiscalidad del alquiler 2026: reducciones del IRPF para propietarios — kw: "reduccion irpf alquiler vivienda"
 - [ ] Seguro de impago de alquiler: ¿merece la pena? — kw: "seguro impago alquiler"
 - [ ] Okupación vs inquilino moroso: diferencias legales — kw: "diferencia okupa inquilino moroso"
@@ -97,3 +97,4 @@ Cada artículo DEBE cumplir:
 2026-07-16 — blog-desistimiento-contrato-alquiler-inquilino.html — desistimiento contrato alquiler inquilino
 2026-07-17 — blog-quien-paga-ibi-alquiler.html — quien paga ibi alquiler
 2026-07-18 — blog-zonas-tensionadas-propietario.html — zonas tensionadas propietario
+2026-07-21 — blog-carta-actualizacion-renta-alquiler.html — carta actualizacion renta alquiler
