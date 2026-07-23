@@ -40,7 +40,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Cómo actualizar la renta del alquiler paso a paso (carta modelo) — kw: "carta actualizacion renta alquiler"
 - [x] Fiscalidad del alquiler 2026: reducciones del IRPF para propietarios — kw: "reduccion irpf alquiler vivienda"
 - [x] Seguro de impago de alquiler: ¿merece la pena? — kw: "seguro impago alquiler"
-- [ ] Okupación vs inquilino moroso: diferencias legales — kw: "diferencia okupa inquilino moroso"
+- [x] Okupación vs inquilino moroso: diferencias legales — kw: "diferencia okupa inquilino moroso"
 
 ---
 
@@ -100,3 +100,4 @@ Cada artículo DEBE cumplir:
 2026-07-21 — blog-carta-actualizacion-renta-alquiler.html — carta actualizacion renta alquiler
 2026-07-22 — blog-reduccion-irpf-alquiler-vivienda.html — reduccion irpf alquiler vivienda
 2026-07-23 — blog-seguro-impago-alquiler.html — seguro impago alquiler
+2026-07-23 — blog-okupacion-vs-inquilino-moroso.html — diferencia okupa inquilino moroso
