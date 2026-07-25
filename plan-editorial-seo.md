@@ -28,6 +28,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] El modelo informativo anual de febrero del registro de arrendamientos — kw: "modelo anual registro arrendamientos"
 
 ### Clúster Larga duración → enlaza a generador.html#contrato-larga
+- [x] Reparaciones y obras en la vivienda alquilada: quién paga cada avería (casero vs. inquilino, art. 21 LAU) — kw: "reparaciones alquiler quien paga"
 - [x] Duración del contrato de alquiler en 2026: prórrogas de la LAU — kw: "duracion contrato alquiler 2026"
 - [x] Cómo hacer un contrato de alquiler de vivienda paso a paso — kw: "como hacer contrato de alquiler"
 - [x] Devolución de la fianza: plazos y descuentos por desperfectos — kw: "devolucion fianza alquiler"
@@ -101,3 +102,4 @@ Cada artículo DEBE cumplir:
 2026-07-22 — blog-reduccion-irpf-alquiler-vivienda.html — reduccion irpf alquiler vivienda
 2026-07-23 — blog-seguro-impago-alquiler.html — seguro impago alquiler
 2026-07-23 — blog-okupacion-vs-inquilino-moroso.html — diferencia okupa inquilino moroso
+2026-07-25 — blog-reparaciones-alquiler-quien-paga.html — reparaciones alquiler quien paga
