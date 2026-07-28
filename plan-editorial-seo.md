@@ -107,3 +107,4 @@ Cada artículo DEBE cumplir:
 2026-07-25 — blog-reparaciones-alquiler-quien-paga.html — reparaciones alquiler quien paga
 2026-07-25 — blog-inventario-contrato-alquiler.html — inventario contrato alquiler
 2026-07-26 — blog-garantia-adicional-alquiler.html — garantia adicional alquiler
+2026-07-28 — blog-certificado-energetico-alquiler.html — certificado energetico alquiler
