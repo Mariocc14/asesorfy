@@ -109,3 +109,4 @@ Cada artículo DEBE cumplir:
 2026-07-26 — blog-garantia-adicional-alquiler.html — garantia adicional alquiler
 2026-07-28 — blog-certificado-energetico-alquiler.html — certificado energetico alquiler
 2026-08-08 — blog-gastos-deducibles-alquiler-irpf.html — gastos deducibles alquiler irpf
+2026-08-09 — blog-actualizar-fianza-alquiler.html — actualizar fianza alquiler
