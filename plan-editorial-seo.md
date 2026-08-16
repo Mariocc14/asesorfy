@@ -45,6 +45,9 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] Seguro de impago de alquiler: ¿merece la pena? — kw: "seguro impago alquiler"
 - [x] Okupación vs inquilino moroso: diferencias legales — kw: "diferencia okupa inquilino moroso"
 
+### Clúster Rentabilidad → enlaza a calculadora-rentabilidad-alquiler.html
+- [x] Cómo calcular la rentabilidad del alquiler: bruta, neta y flujo de caja — kw: "calcular rentabilidad alquiler"
+
 ---
 
 ## Checklist SEO obligatorio (Google)
@@ -81,6 +84,7 @@ Cada artículo DEBE cumplir:
 ## Log de publicaciones
 
 (Se va rellenando: fecha — archivo — palabra clave)
+2026-08-16 — blog-calcular-rentabilidad-alquiler.html — calcular rentabilidad alquiler
 2026-06-25 — blog-desahucio-impago-2026.html — desahucio por impago 2026
 2026-06-26 — blog-burofax-impago-alquiler.html — burofax impago alquiler
 2026-06-27 — blog-oferta-vinculante-confidencial.html — oferta vinculante confidencial
