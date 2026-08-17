@@ -28,6 +28,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] El modelo informativo anual de febrero del registro de arrendamientos — kw: "modelo anual registro arrendamientos"
 
 ### Clúster Larga duración → enlaza a generador.html#contrato-larga
+- [x] Recibo de alquiler: obligación, contenido y modelo — kw: "recibo de alquiler"
 - [x] Garantía adicional del alquiler: depósito, aval bancario o fiador — kw: "garantia adicional alquiler"
 - [x] Reparaciones y obras en la vivienda alquilada: quién paga cada avería (casero vs. inquilino, art. 21 LAU) — kw: "reparaciones alquiler quien paga"
 - [x] Inventario anexo al contrato: muebles, estado y fotos — kw: "inventario contrato alquiler"
@@ -84,6 +85,7 @@ Cada artículo DEBE cumplir:
 ## Log de publicaciones
 
 (Se va rellenando: fecha — archivo — palabra clave)
+2026-08-17 — blog-recibo-alquiler.html — recibo de alquiler
 2026-08-16 — blog-calcular-rentabilidad-alquiler.html — calcular rentabilidad alquiler
 2026-06-25 — blog-desahucio-impago-2026.html — desahucio por impago 2026
 2026-06-26 — blog-burofax-impago-alquiler.html — burofax impago alquiler
