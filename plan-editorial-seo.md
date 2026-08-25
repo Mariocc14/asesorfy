@@ -28,6 +28,7 @@ Marca con [x] cuando se publique. Cada tema indica la palabra clave principal y 
 - [x] El modelo informativo anual de febrero del registro de arrendamientos — kw: "modelo anual registro arrendamientos"
 
 ### Clúster Larga duración → enlaza a generador.html#contrato-larga
+- [x] Recuperar una vivienda alquilada para uso propio (art. 9.3 LAU) — kw: "recuperar vivienda alquilada uso propio"
 - [x] ¿Se pueden prohibir mascotas en un alquiler? Cláusulas y límites — kw: "prohibir mascotas alquiler"
 - [x] Subarrendar una habitación: permiso, límites y respuesta del propietario — kw: "subarrendar una habitacion"
 - [x] Recibo de alquiler: obligación, contenido y modelo — kw: "recibo de alquiler"
@@ -87,6 +88,7 @@ Cada artículo DEBE cumplir:
 ## Log de publicaciones
 
 (Se va rellenando: fecha — archivo — palabra clave)
+2026-08-25 — blog-recuperar-vivienda-alquilada-uso-propio.html — recuperar vivienda alquilada uso propio
 2026-08-24 — blog-prohibir-mascotas-alquiler.html — prohibir mascotas alquiler
 2026-08-23 — blog-subarrendar-habitacion.html — subarrendar una habitacion
 2026-08-17 — blog-recibo-alquiler.html — recibo de alquiler
