@@ -4,6 +4,7 @@
   "private": true,
   "description": "Asesorfy — documentos legales para propietarios (web estática + funciones Stripe en Vercel)",
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "stripe": "^16.12.0"
   }
 }
