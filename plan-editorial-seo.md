@@ -90,6 +90,7 @@ Cada artículo DEBE cumplir:
 ## Log de publicaciones
 
 (Se va rellenando: fecha — archivo — palabra clave)
+2026-09-02 — blog-fallecimiento-inquilino-subrogacion-alquiler.html — qué pasa si fallece el inquilino
 2026-08-28 — blog-inquilino-obras-sin-permiso.html — inquilino hace obras sin permiso
 2026-08-27 — blog-inquilino-no-paga-suministros.html — inquilino no paga suministros
 2026-08-26 — blog-vender-piso-alquilado.html — vender piso alquilado
