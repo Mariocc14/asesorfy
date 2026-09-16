@@ -12,6 +12,10 @@
 <meta property="og:title" content="Generador de contratos de alquiler | Asesorfy">
 <meta property="og:description" content="Genera contratos de alquiler y escritos para propietarios, actualizados a la normativa española de 2026.">
 <meta property="og:url" content="https://asesorfy.app/generador.html">
+<meta property="og:image" content="https://asesorfy.app/assets/og-asesorfy.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -207,10 +211,11 @@
 
   <div class="previewwrap">
     <div class="toolbar">
-      <div class="price" id="price">39€<small>pago único</small></div>
+      <div class="price" id="price"></div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn ghost" id="demoBtn">Ver completo (demo)</button>
         <button class="btn" id="payBtn">Pagar y descargar</button>
+        <button class="btn ghost" id="dlWordBtn" style="display:none" data-analytics-name="Descargar Word">Descargar Word</button>
+        <button class="btn ghost" id="dlPdfBtn" style="display:none" data-analytics-name="Descargar PDF">Descargar PDF</button>
       </div>
     </div>
     <div class="paper locked" id="paper">
@@ -221,7 +226,8 @@
         <button class="btn" id="unlockBtn">Pagar y descargar</button>
       </div>
     </div>
-    <p class="demo-note">Versión de muestra. La pasarela de pago (Stripe) es un placeholder: al integrarla, el documento se desbloquea tras el cobro.</p>
+    <p class="demo-note" id="payError" style="display:none;color:#b3261e;font-weight:600"></p>
+    <p class="demo-note">Pago seguro con Stripe · Descarga inmediata en Word y PDF · Lo que escribes se guarda en tu navegador, no en nuestros servidores.</p>
   </div>
 </div>
 
@@ -253,7 +259,8 @@
     <span class="badge">Pago seguro · Stripe</span>
     <h3>Comprar documento</h3>
     <p class="lead" id="payDesc">Te llevaremos a la pasarela segura de Stripe para completar el pago. Al volver, tu documento quedará desbloqueado para descargar.</p>
-    <button class="btn" style="width:100%;justify-content:center" id="confirmPay">Pagar <span id="payAmount">39€</span> con tarjeta</button>
+    <label for="payConsent" style="display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--muted);margin:14px 0;line-height:1.45;text-align:left;cursor:pointer"><input type="checkbox" id="payConsent" style="margin-top:3px;flex:0 0 auto;width:16px;height:16px"><span style="flex:1 1 auto;min-width:0">Acepto las <a href="condiciones.html" target="_blank" rel="noopener">condiciones de contratación</a> y solicito la descarga inmediata del documento, por lo que renuncio al derecho de desistimiento una vez iniciada (art. 103.m TRLGDCU).</span></label>
+    <button class="btn" style="width:100%;justify-content:center" id="confirmPay" disabled>Pagar <span id="payAmount"></span></button>
     <p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center">Pago procesado por Stripe. No almacenamos los datos de tu tarjeta.</p>
   </div>
 </div>
@@ -491,8 +498,8 @@ var LIBRARY = {
 
 /* ====================== ESTADO Y RENDER ====================== */
 var ORDER = ["contrato-larga","contrato-habitacion","contrato-temporada","ovc-impago"];
-var current = location.hash ? location.hash.slice(1) : "contrato-habitacion";
-if(!CONFIG[current]) current = "contrato-habitacion";
+var current = location.hash ? location.hash.slice(1) : "contrato-larga";
+if(!CONFIG[current]) current = "contrato-larga";
 var values = {};
 var clauseState = {};
 var clauseEdits = {};   // overrides {id:{ttl,text}} para cláusulas base editadas
@@ -534,8 +541,8 @@ function switchDoc(k){
   if(window.asesorfyTrack) asesorfyTrack('document_selected',{document_type:k,source:'generator_tab'});
   clauseState={}; customClauses=[]; clauseEdits={};
   CONFIG[k].clauses.forEach(function(c){ clauseState[c.id]= (c.ess===true) ? true : (c.on!==false); });
-  unlocked=false; applyLock();
-  buildTabs(); buildForm(); buildClauses(); render();
+  relock(); restoreState();
+  buildTabs(); buildForm(); buildClauses(); render(); checkStoredPayment();
   document.getElementById('price').innerHTML = CONFIG[k].price+'<small>pago único</small>';
   document.getElementById('payAmount').textContent = CONFIG[k].price;
   document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[k].price;
@@ -738,12 +745,25 @@ function render(){
   }
   h+='<div class="legal">'+cfg.legal+'</div>';
   document.getElementById('doc').innerHTML=h;
+  saveState();
 }
 
 /* BLOQUEO / DESBLOQUEO (teaser) */
 var unlocked = false;
 function applyLock(){ document.getElementById('paper').className = 'paper '+(unlocked?'unlocked':'locked'); }
-function unlock(){ unlocked = true; applyLock(); }
+function unlock(){
+  unlocked = true; applyLock();
+  document.getElementById('payBtn').style.display='none';
+  document.getElementById('dlWordBtn').style.display='';
+  document.getElementById('dlPdfBtn').style.display='';
+}
+function relock(){
+  unlocked = false; applyLock();
+  document.getElementById('payBtn').style.display='';
+  document.getElementById('dlWordBtn').style.display='none';
+  document.getElementById('dlPdfBtn').style.display='none';
+  document.getElementById('payError').style.display='none';
+}
 
 /* PAGO (placeholder) */
 function openPay(){
@@ -753,10 +773,29 @@ function openPay(){
 }
 document.getElementById('payBtn').addEventListener('click', openPay);
 document.getElementById('unlockBtn').addEventListener('click', openPay);
-document.getElementById('demoBtn').addEventListener('click', function(){
-  if(window.va) va('event', { name: 'desbloqueo_demo', data: { doc: current } });
-  unlock();
-});
+document.getElementById('payConsent').addEventListener('change', function(){ document.getElementById('confirmPay').disabled=!this.checked; });
+
+/* DESCARGA (solo tras el pago verificado) */
+function docFileName(){ return 'Asesorfy-'+current+'-'+new Date().toISOString().slice(0,10); }
+function downloadWord(){
+  if(!unlocked) return;
+  var body=document.getElementById('doc').innerHTML
+    .replace(/<span class="(?:val|blank)">([\s\S]*?)<\/span>/g,'$1')
+    .replace(/<div class="sign"><div>([\s\S]*?)<\/div><div>([\s\S]*?)<\/div><\/div>/,'<table style="width:100%;margin-top:24pt"><tr><td style="width:50%;vertical-align:top">$1</td><td style="width:50%;vertical-align:top">$2</td></tr></table>');
+  var html='<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="utf-8"><title>'+esc(CONFIG[current].title)+'</title><!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom></w:WordDocument></xml><![endif]--><style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt;line-height:1.45}h1{font-size:16pt;text-align:center}h4{font-size:11.5pt;margin:14pt 0 4pt}p{margin:0 0 8pt}.sub{text-align:center;font-style:italic}.aviso{border:1px solid #888;padding:6pt;font-size:9pt}.legal{font-size:8.5pt;color:#666;margin-top:18pt}</style></head><body>'+body+'</body></html>';
+  var blob=new Blob(['\ufeff',html],{type:'application/msword'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=docFileName()+'.doc';
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1000);
+  if(window.asesorfyTrack) asesorfyTrack('document_downloaded',{document_type:current,format:'word'});
+}
+function downloadPdf(){
+  if(!unlocked) return;
+  if(window.asesorfyTrack) asesorfyTrack('document_downloaded',{document_type:current,format:'pdf'});
+  window.print();
+}
+document.getElementById('dlWordBtn').addEventListener('click', downloadWord);
+document.getElementById('dlPdfBtn').addEventListener('click', downloadPdf);
 function closePay(){ document.getElementById('payModal').classList.remove('open'); }
 document.getElementById('payModal').addEventListener('click', function(e){ if(e.target===this) closePay(); });
 
@@ -766,6 +805,7 @@ function startCheckout(){
   var original=btn.innerHTML;
   btn.disabled=true; btn.textContent='Redirigiendo a Stripe…';
   if(window.asesorfyTrack) asesorfyTrack('checkout_started',{document_type:current,price:CONFIG[current].price,currency:'EUR'});
+  saveState();
   fetch('/api/create-checkout-session',{
     method:'POST', headers:{'Content-Type':'application/json'},
     body: JSON.stringify({doc: current})
@@ -779,9 +819,12 @@ function startCheckout(){
     else { throw new Error((d && d.error) || 'sin_url'); }
   })
   .catch(function(){
-    // Sin backend disponible: desbloqueo de demostración para poder probar en local.
     btn.disabled=false; btn.innerHTML=original;
-    closePay(); unlock(); setTimeout(function(){ window.print(); }, 250);
+    closePay();
+    var err=document.getElementById('payError');
+    err.textContent='No hemos podido iniciar el pago. Inténtalo de nuevo en unos segundos o escríbenos a hola@asesorfy.app.';
+    err.style.display='block';
+    if(window.asesorfyTrack) asesorfyTrack('checkout_error',{document_type:current});
   });
 }
 document.getElementById('confirmPay').addEventListener('click', startCheckout);
@@ -799,21 +842,60 @@ function handlePaidReturn(){
       if(d && d.paid){
         if(window.va) va('event', { name: 'compra_completada', data: { doc: (d.doc||current) } });
         if(window.asesorfyTrack) asesorfyTrack('purchase_completed',{document_type:(d.doc||current),price:CONFIG[d.doc||current]&&CONFIG[d.doc||current].price,currency:'EUR'});
+        try{ localStorage.setItem('asesorfy_paid_'+(d.doc||current), sid); }catch(e){}
+        try{ history.replaceState(null,'',location.pathname+'#'+current); }catch(e){}
         unlock();
       }
     })
     .catch(function(){ /* si no se puede verificar, no se desbloquea */ });
 }
 
+/* PERSISTENCIA: lo que escribes sobrevive al viaje a Stripe y a las recargas (solo en tu navegador) */
+function stateKey(){ return 'asesorfy_gen_'+current; }
+/* Los datos de las partes (nombre, DNI, domicilio, lugar y fecha) son los mismos en todos
+   los documentos: se guardan aparte para no tener que reescribirlos al cambiar de pestaña. */
+var SHARED_FIELDS = COMMON_PARTES.filter(function(f){ return f.id; }).map(function(f){ return f.id; });
+function fresh(t){ return t && Date.now()-t < 30*24*3600*1000; }
+function saveState(){
+  try{
+    localStorage.setItem(stateKey(), JSON.stringify({values:values,clauseState:clauseState,clauseEdits:clauseEdits,customClauses:customClauses,t:Date.now()}));
+    var shared={};
+    SHARED_FIELDS.forEach(function(k){ if(values[k]) shared[k]=values[k]; });
+    localStorage.setItem('asesorfy_gen_partes', JSON.stringify({values:shared,t:Date.now()}));
+  }catch(e){}
+}
+function restoreState(){
+  try{
+    var p=JSON.parse(localStorage.getItem('asesorfy_gen_partes')||'null');
+    if(p && fresh(p.t)) SHARED_FIELDS.forEach(function(k){ if(p.values[k] && !values[k]) values[k]=p.values[k]; });
+    var s=JSON.parse(localStorage.getItem(stateKey())||'null');
+    if(!s || !fresh(s.t)) return;
+    Object.keys(s.values||{}).forEach(function(k){ values[k]=s.values[k]; });
+    clauseEdits=s.clauseEdits||{}; customClauses=s.customClauses||[];
+    var cs=s.clauseState||{};
+    CONFIG[current].clauses.forEach(function(c){ if(c.ess===true) clauseState[c.id]=true; else if(cs[c.id]!=null) clauseState[c.id]=cs[c.id]; });
+  }catch(e){}
+}
+function checkStoredPayment(){
+  var sid=null; try{ sid=localStorage.getItem('asesorfy_paid_'+current); }catch(e){}
+  if(!sid) return;
+  fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
+    .then(function(r){ return r.json(); })
+    .then(function(d){ if(d&&d.paid&&(!d.doc||d.doc===current)) unlock(); else { try{ localStorage.removeItem('asesorfy_paid_'+current); }catch(e){} } })
+    .catch(function(){});
+}
+
 /* INIT */
 CONFIG[current].clauses.forEach(function(c){ clauseState[c.id]=(c.ess===true)?true:(c.on!==false); });
+restoreState();
 buildTabs(); buildForm(); buildClauses(); render(); applyLock();
 document.getElementById('price').innerHTML = CONFIG[current].price+'<small>pago único</small>';
 document.getElementById('payAmount').textContent = CONFIG[current].price;
 document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[current].price;
 handlePaidReturn();
+checkStoredPayment();
 </script>
-<footer data-legalbar style="background:#0e1a2b;color:#9fb0c6;padding:18px;text-align:center;font-size:12.5px"><a href="aviso-legal.html" style="color:#9fb0c6">Aviso legal</a> · <a href="privacidad.html" style="color:#9fb0c6">Privacidad</a> · <a href="condiciones.html" style="color:#9fb0c6">Condiciones</a> · <a href="cookies.html" style="color:#9fb0c6">Cookies</a></footer>
+<footer data-legalbar style="background:#0e1a2b;color:#9fb0c6;padding:18px;text-align:center;font-size:12.5px"><a href="sobre.html" style="color:#9fb0c6">Sobre Asesorfy</a><a href="aviso-legal.html" style="color:#9fb0c6">Aviso legal</a> · <a href="privacidad.html" style="color:#9fb0c6">Privacidad</a> · <a href="condiciones.html" style="color:#9fb0c6">Condiciones</a> · <a href="cookies.html" style="color:#9fb0c6">Cookies</a></footer>
 <div id="ck-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0e1a2b;color:#dbe3ee;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;padding:14px 18px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.25)"><span style="max-width:680px">Usamos cookies propias y de terceros (Stripe, Cal.com) para el funcionamiento del sitio y procesar pagos. <a href="cookies.html" style="color:#9fc1e8">Más información</a>.</span><span style="display:flex;gap:8px"><button onclick="ckSet(0)" style="background:transparent;border:1px solid #3a4a60;color:#cdd8e6;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Rechazar</button><button onclick="ckSet(1)" style="background:#1f5fa6;border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Aceptar</button></span></div><script>function ckSet(v){try{localStorage.setItem('asesorfy_cookies',v?'accepted':'rejected');}catch(e){}var b=document.getElementById('ck-banner');if(b)b.style.display='none';}(function(){try{if(!localStorage.getItem('asesorfy_cookies')){var b=document.getElementById('ck-banner');if(b)b.style.display='flex';}}catch(e){}})();</script>
 </body>
 </html>

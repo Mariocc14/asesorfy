@@ -11,6 +11,7 @@ Productos (pago único, entrega en Word): contrato de larga duración 5,99 €, 
 - [Generador de documentos (pago único)](https://asesorfy.app/generador.html): Crea online un contrato de alquiler de vivienda, habitación o temporada y un escrito MASC por impago. Personaliza las cláusulas y previsualiza el documento.
 - [Calculadora de rentabilidad del alquiler](https://asesorfy.app/calculadora-rentabilidad-alquiler.html): Calcula gratis la rentabilidad bruta y neta de un alquiler, el flujo de caja mensual y los años de recuperación. Incluye gastos y meses sin alquilar.
 - [Asesoría de 30 minutos por videollamada (20 €)](https://asesorfy.app/asesoria.html): ¿Tu caso es complejo? Reserva una asesoría legal de 30 minutos por videollamada por 20€. Elige día (lunes a viernes) y hora, y paga de forma segura.
+- [Quién está detrás de Asesorfy y cómo se revisan los documentos](https://asesorfy.app/sobre.html): Asesorfy lo crea y mantiene Mario Calvo Castillo desde Córdoba. Cómo elaboramos y actualizamos cada contrato y guía con el BOE, qué somos y qué no somos.
 
 ## Modelos por situación
 
@@ -63,10 +64,10 @@ Productos (pago único, entrega en Word): contrato de larga duración 5,99 €, 
 - [Oferta Vinculante Confidencial (OVC): qué es y cómo usarla](https://asesorfy.app/blog-oferta-vinculante-confidencial.html): Qué es la Oferta Vinculante Confidencial (art. 17 LO 1/2025), el MASC más práctico para el casero: requisitos, plazo de un mes, confidencialidad y cómo enviarla. (2026-06-27)
 - [Burofax por impago de alquiler: cómo enviarlo y qué poner](https://asesorfy.app/blog-burofax-impago-alquiler.html): Cómo enviar un burofax por impago de alquiler en 2026: qué poner, plazos, acuse de recibo y cómo te sirve para el MASC y para bloquear la enervación del desahucio. (2026-06-26)
 - [Desahucio por impago 2026: guía paso a paso para el casero](https://asesorfy.app/blog-desahucio-impago-2026.html): Cómo desahuciar a un inquilino que no paga en 2026: MASC previo obligatorio, demanda de juicio verbal, enervación, plazos y lanzamiento. Guía clara paso a paso. (2026-06-25)
-- [¿Es legal alquilar por habitaciones? Qué dice la ley en 2026](https://asesorfy.app/blog-habitacion.html): El alquiler por habitaciones no se rige por la LAU sino por el Código Civil. Qué implica para el casero, cómo redactar el contrato y los errores más comunes en 2026.
-- [Inquilino que no paga: cómo reclamar paso a paso en 2026](https://asesorfy.app/blog-impago.html): Si tu inquilino no paga, en 2026 debes intentar un MASC antes de demandar. Te explicamos la Oferta Vinculante Confidencial, cómo enviarla por burofax y los plazos.
-- [¿Cuánto puedo subir el alquiler en 2026? El IRAV explicado fácil](https://asesorfy.app/blog-irav.html): El IRAV sustituyó al IPC para actualizar el alquiler. A qué contratos se aplica, cuánto es en 2026 y cómo comunicar la subida de la renta correctamente.
-- [Alquiler de temporada en 2026: cómo hacerlo bien y sin sustos](https://asesorfy.app/blog-temporada.html): El alquiler de temporada es uso distinto de vivienda (art. 3 LAU). Causa temporal, fianza, registros aplicables y riesgo de recalificación, actualizados a 2026.
+- [¿Es legal alquilar por habitaciones? Qué dice la ley en 2026](https://asesorfy.app/blog-habitacion.html): El alquiler por habitaciones no se rige por la LAU sino por el Código Civil. Qué implica para el casero, cómo redactar el contrato y los errores más comunes en 2026. (2026-06-24)
+- [Inquilino que no paga: cómo reclamar paso a paso en 2026](https://asesorfy.app/blog-impago.html): Si tu inquilino no paga, en 2026 debes intentar un MASC antes de demandar. Te explicamos la Oferta Vinculante Confidencial, cómo enviarla por burofax y los plazos. (2026-06-24)
+- [¿Cuánto puedo subir el alquiler en 2026? El IRAV explicado fácil](https://asesorfy.app/blog-irav.html): El IRAV sustituyó al IPC para actualizar el alquiler. A qué contratos se aplica, cuánto es en 2026 y cómo comunicar la subida de la renta correctamente. (2026-06-24)
+- [Alquiler de temporada en 2026: cómo hacerlo bien y sin sustos](https://asesorfy.app/blog-temporada.html): El alquiler de temporada es uso distinto de vivienda (art. 3 LAU). Causa temporal, fianza, registros aplicables y riesgo de recalificación, actualizados a 2026. (2026-06-24)
 
 ## Legal
 

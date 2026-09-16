@@ -39,3 +39,28 @@
   .brand { gap: 8px !important; font-size: 19px !important; }
   .brand-mark { width: 29px; height: 29px; flex-basis: 29px; }
 }
+
+/* Cabecera en móvil: los menús antiguos se desbordaban del alto fijo de 64 px.
+   Se conservan el logotipo, el blog y el botón principal; el resto se oculta. */
+@media (max-width: 720px) {
+  header nav,
+  header .bar,
+  header .nav {
+    height: auto !important;
+    min-height: 60px;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+  .navlinks {
+    flex-wrap: nowrap !important;
+    gap: 2px;
+  }
+  .navlinks a:not(.btn):not([href="blog.html"]):not([href="../blog.html"]) {
+    display: none;
+  }
+  .navlinks a {
+    padding: 8px 10px !important;
+    font-size: 14px !important;
+    white-space: nowrap;
+  }
+}

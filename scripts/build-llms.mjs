@@ -23,6 +23,7 @@ const page = (f) => {
 const statics = [
   ["index.html", "Inicio"], ["documentos.html", "Catálogo de documentos"], ["generador.html", "Generador de documentos (pago único)"],
   ["calculadora-rentabilidad-alquiler.html", "Calculadora de rentabilidad del alquiler"], ["asesoria.html", "Asesoría de 30 minutos por videollamada (20 €)"],
+  ["sobre.html", "Quién está detrás de Asesorfy y cómo se revisan los documentos"],
 ].filter(([f]) => fs.existsSync(path.join(root, f))).map(([f, label]) => ({ ...page(f), label }));
 
 const casos = fs.existsSync(path.join(root, "casos")) ? fs.readdirSync(path.join(root, "casos")).filter(f => f.endsWith(".html")).sort().map(f => page(`casos/${f}`)) : [];
