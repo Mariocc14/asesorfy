@@ -30,4 +30,5 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
+# Precios legibles por agentes: https://asesorfy.app/pricing.md
 Sitemap: https://asesorfy.app/sitemap.xml

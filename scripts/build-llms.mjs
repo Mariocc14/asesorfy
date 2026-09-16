@@ -57,6 +57,7 @@ ${legal.map(f => `- [${cleanTitle(meta(read(f), /<title>([^<]+)<\/title>/)) || f
 
 ## Optional
 
+- [Precios en texto plano](${DOMAIN}/pricing.md)
 - [Sitemap](${DOMAIN}/sitemap.xml)
 - [robots.txt](${DOMAIN}/robots.txt)
 `;
