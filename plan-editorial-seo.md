@@ -87,6 +87,31 @@ Cada artículo DEBE cumplir:
 
 ---
 
+---
+
+## Automatización diaria (desde 2026-09-16)
+
+- La cola de temas vive en `editorial/topic-queue.json` (el backlog de arriba queda como histórico: está todo publicado). La tarea programada coge el primer tema con `"status": "pending"`, lo marca `"done"` con `published` y `slug`, y si quedan menos de 5 pendientes añade 5 nuevos.
+- Se trabaja en un árbol de trabajo aislado: `scripts/blog-worktree.sh open | publish | close`. El repositorio principal no se toca.
+- Validación obligatoria antes de publicar: `node scripts/validate-blog.mjs <raíz> blog-<slug>.html` (SEO clásico + estructura AEO/GEO).
+- `llms.txt` se regenera con `node scripts/build-llms.mjs` en cada publicación; no se edita a mano.
+- Plantilla de referencia: el artículo más reciente del log (mismo `<head>`, `<style>`, header, footer y clases).
+
+## Checklist AEO/GEO v2 (citación por ChatGPT, Perplexity, Gemini, Claude y AI Overviews)
+
+1. **Respuesta corta primero**: `.lead` de dos o tres frases que ya resuelva la búsqueda, y un `.note` que empiece por "Respuesta corta:" con la respuesta en 40–60 palabras. Es el bloque que copian los asistentes.
+2. **Cubrir el abanico de subpreguntas** (query fan-out): antes de escribir, listar 5–10 preguntas relacionadas que un buscador con IA generaría y responder cada una en su propia `<h2>` en forma de pregunta real.
+3. **Al menos dos tablas** `.rules` con `<thead>`: comparativas, plazos, quién paga qué, requisitos por caso. Las tablas son lo más citado.
+4. **Datos concretos, fechados y con fuente en el texto**: artículo de ley, plazo, porcentaje, cuantía. "Según el art. X de la LAU…", "el INE publicó el IRAV de <mes> en…". Sin cifras inventadas: si no se puede verificar, no se escribe.
+5. **Fechas visibles**: "Publicado y revisado el <fecha>", `article:published_time`, `article:modified_time` y `dateModified` en JSON-LD. La frescura pesa mucho en ChatGPT y Perplexity.
+6. **FAQ espejo**: 5–8 preguntas `<h3>¿…?` con respuesta directa en 2–3 frases, idénticas en el bloque `FAQPage` del JSON-LD.
+7. **Fuentes oficiales consultadas**: sección propia con 2–6 enlaces a BOE, INE, AEAT, ministerios, CGPJ o portales autonómicos, cada uno con una línea que diga qué aporta y la fecha de consulta.
+8. **Definiciones extractables**: cada término clave (MASC, OVC, IRAV, gran tenedor, tácita reconducción…) se define en una frase autocontenida la primera vez que aparece.
+9. **Enlaces internos con contexto**: 3–6 a guías existentes, 1 al producto o asesoría en el `.cta`, y un enlace nuevo desde 1–2 artículos antiguos relacionados hacia el nuevo (para que la autoridad fluya).
+10. **Tono**: segunda persona, frases cortas, una idea por frase, lenguaje llano y neutro. Sin relleno, sin marketing, sin "no es X, es Y", sin emojis.
+11. **Sin keyword stuffing**: la palabra clave va en title, H1, description, primer párrafo, una H2 y el slug; el resto, lenguaje natural con sinónimos.
+
+
 ## Log de publicaciones
 
 (Se va rellenando: fecha — archivo — palabra clave)
@@ -128,3 +153,6 @@ Cada artículo DEBE cumplir:
 2026-07-28 — blog-certificado-energetico-alquiler.html — certificado energetico alquiler
 2026-08-08 — blog-gastos-deducibles-alquiler-irpf.html — gastos deducibles alquiler irpf
 2026-08-09 — blog-actualizar-fianza-alquiler.html — actualizar fianza alquiler
+2026-06-24 — blog-habitacion.html — habitacion
+2026-06-24 — blog-impago.html — impago
+2026-06-24 — blog-temporada.html — temporada

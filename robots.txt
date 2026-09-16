@@ -1,9 +1,10 @@
 # Asesorfy — robots.txt
-# Permite el rastreo a buscadores y a los bots de los LLM (ChatGPT, Perplexity, Google-Extended, etc.)
+# Permite el rastreo a buscadores y a los bots de búsqueda de los asistentes de IA
+# (ChatGPT, Perplexity, Claude, Gemini, Copilot). Fichero de contexto para IA: /llms.txt
 User-agent: *
 Allow: /
 
-# Bots de IA explícitamente permitidos (indexación en LLMs)
+# Bots de IA explícitamente permitidos (citación en respuestas de LLMs)
 User-agent: GPTBot
 Allow: /
 User-agent: OAI-SearchBot
@@ -12,9 +13,21 @@ User-agent: ChatGPT-User
 Allow: /
 User-agent: PerplexityBot
 Allow: /
+User-agent: Perplexity-User
+Allow: /
 User-agent: Google-Extended
 Allow: /
 User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Applebot
 Allow: /
 
 Sitemap: https://asesorfy.app/sitemap.xml
