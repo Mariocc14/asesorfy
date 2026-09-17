@@ -68,6 +68,18 @@ async function upsertContact(email, attributes, source) {
   } catch (e) {
     // Un contacto ya existente se trata como éxito.
     if (e.status === 400 && /duplicate|already exist/i.test(e.message)) return {};
+    // Brevo rechaza los atributos que no estén definidos en la cuenta. Antes que perder
+    // el alta, se reintenta guardando solo el email y la lista.
+    if (e.status === 400 && /attribute/i.test(e.message)) {
+      const minimal = { email, updateEnabled: true };
+      if (listId) minimal.listIds = [listId];
+      try {
+        return await brevo('/contacts', minimal);
+      } catch (e2) {
+        if (e2.status === 400 && /duplicate|already exist/i.test(e2.message)) return {};
+        throw e2;
+      }
+    }
     throw e;
   }
 }
