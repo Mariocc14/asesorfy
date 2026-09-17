@@ -1,16 +1,16 @@
 # Precios — Asesorfy
 
-Documentos legales para propietarios y pequeños caseros en España. Normativa española. Pago único, sin suscripción. IVA incluido. Entrega inmediata en Word y PDF tras el pago.
+Documentos legales para propietarios y pequeños caseros en España. Normativa española. Pago único, sin suscripción. IVA incluido. Entrega inmediata en Word y PDF. El contrato de vivienda habitual es gratuito a cambio del email.
 
 Última actualización: 2026-09-17
 
 ## Contrato de alquiler de larga duración (vivienda habitual)
 
-- Precio: 5,99 € — pago único
+- Precio: 0 € — gratis a cambio del email, sin tarjeta
 - URL: https://asesorfy.app/generador.html#contrato-larga
 - Base legal: Ley 29/1994 de Arrendamientos Urbanos (Título II); Ley 12/2023 de Vivienda
 - Incluye: duración y prórrogas (arts. 9 y 10 LAU), fianza legal de una mensualidad (art. 36), actualización con el índice IRAV, desistimiento (art. 11), cláusula de MASC, biblioteca de cláusulas opcionales, instrucciones de uso
-- Formato: Word y PDF, campos personalizables antes de pagar
+- Formato: Word y PDF, campos personalizables antes de descargar
 
 ## Contrato de alquiler de habitación
 
@@ -30,16 +30,16 @@ Documentos legales para propietarios y pequeños caseros en España. Normativa e
 
 ## Kit Impago + MASC (Oferta Vinculante Confidencial)
 
-- Precio: 29 € — pago único
+- Precio: 49 € — pago único
 - URL: https://asesorfy.app/generador.html#ovc-impago
 - Base legal: Ley Orgánica 1/2025, de 2 de enero, art. 17 (MASC como requisito de procedibilidad)
-- Incluye: modelo de Oferta Vinculante Confidencial, doble propuesta de pago o entrega del inmueble, plazo de aceptación de un mes, instrucciones de envío por burofax con acuse de recibo, checklist para la posterior demanda de desahucio
+- Incluye: modelo de Oferta Vinculante Confidencial, doble propuesta de pago o entrega del inmueble, plazo de aceptación de un mes, instrucciones de envío por burofax con acuse de recibo, checklist para la posterior demanda de desahucio y revisión del escrito antes de enviarlo
 - Para qué sirve: desde abril de 2025 hay que intentar un medio adecuado de solución de controversias antes de demandar por impago de alquiler; sin ese intento la demanda no se admite
 - Formato: Word y PDF
 
 ## Asesoría de orientación
 
-- Precio: 20 € — 30 minutos por videollamada
+- Precio: 39 € — 30 minutos por videollamada
 - URL: https://asesorfy.app/asesoria.html
 - Disponibilidad: lunes a viernes
 - Reserva y pago: Cal.com con Stripe

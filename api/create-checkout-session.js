@@ -6,12 +6,12 @@ const Stripe = require('stripe');
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 // Catálogo y precios en céntimos de euro (fuente de verdad en el servidor).
+// El contrato de larga duración es gratuito a cambio del email: no se puede pagar.
 const PRODUCTS = {
-  'contrato-larga':      { name: 'Contrato de larga duración',  amount: 599,  description: 'Contrato de alquiler de vivienda habitual (LAU) en Word y PDF, con instrucciones de uso.' },
   'contrato-habitacion': { name: 'Contrato de habitación 2026', amount: 999,  description: 'Contrato de alquiler de habitación (Código Civil) en Word y PDF, con anexos de inventario y convivencia.' },
   'contrato-temporada':  { name: 'Contrato de temporada 2026',  amount: 999,  description: 'Contrato de alquiler de temporada (art. 3 LAU) en Word y PDF, con la causa de temporalidad redactada.' },
-  'ovc-impago':          { name: 'Kit Impago + MASC 2026',      amount: 2900, description: 'Oferta Vinculante Confidencial (LO 1/2025) en Word y PDF, instrucciones de burofax y checklist para la demanda.' },
-  'asesoria':            { name: 'Asesoría legal · 30 min',     amount: 2000, description: 'Orientación de 30 minutos por videollamada sobre tu alquiler.' }
+  'ovc-impago':          { name: 'Kit Impago + MASC 2026',      amount: 4900, description: 'Oferta Vinculante Confidencial (LO 1/2025) en Word y PDF, instrucciones de burofax, checklist para la demanda y revisión del escrito antes de enviarlo.' },
+  'asesoria':            { name: 'Asesoría legal · 30 min',     amount: 3900, description: 'Orientación de 30 minutos por videollamada sobre tu alquiler.' }
 };
 
 // Solo se permite volver a dominios propios: evita que un tercero cree pagos con marca Asesorfy

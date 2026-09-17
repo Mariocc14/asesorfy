@@ -25,7 +25,7 @@
   "operatingSystem": "Web",
   "url": "https://asesorfy.app/generador.html",
   "inLanguage": "es-ES",
-  "offers": {"@type": "AggregateOffer", "lowPrice": "5.99", "highPrice": "29", "priceCurrency": "EUR"}
+  "offers": {"@type": "AggregateOffer", "lowPrice": "0", "highPrice": "49", "priceCurrency": "EUR", "offerCount": "4"}
 }
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -183,7 +183,7 @@
 <script defer src="/posthog-analytics.js"></script>
 <link rel="icon" href="/assets/asesorfy-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/brand.css"></head>
 <body>
-<div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>20€</strong>.</span><a href="asesoria.html" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
+<div data-asesoria-banner style="background:#0e1a2b;color:#fff;text-align:center;font-family:'Inter',system-ui,sans-serif;font-size:14px;padding:9px 16px;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap"><span>¿Tu caso es complejo? Reserva una asesoría de 30 min por <strong>39€</strong>.</span><a href="asesoria.html" style="background:#1f5fa6;color:#fff;text-decoration:none;font-weight:600;padding:6px 14px;border-radius:8px;font-size:13.5px;white-space:nowrap">Reservar asesoría →</a></div>
 
 <header>
   <div class="bar">
@@ -227,7 +227,7 @@
       </div>
     </div>
     <p class="demo-note" id="payError" style="display:none;color:#b3261e;font-weight:600"></p>
-    <p class="demo-note">Pago seguro con Stripe · Descarga inmediata en Word y PDF · Lo que escribes se guarda en tu navegador, no en nuestros servidores.</p>
+    <p class="demo-note">Descarga inmediata en Word y PDF · Pago seguro con Stripe · Lo que escribes se guarda en tu navegador, no en nuestros servidores.</p>
   </div>
 </div>
 
@@ -249,6 +249,20 @@
       </div>
     </div>
     <div class="libscroll" id="fillStep" style="display:none"></div>
+  </div>
+</div>
+
+<!-- MODAL DESCARGA GRATUITA (contrato de larga duración) -->
+<div class="modalbg" id="freeModal">
+  <div class="modal">
+    <button class="x" onclick="closeFree()">×</button>
+    <span class="badge">Gratis · Sin tarjeta</span>
+    <h3>Descarga tu contrato</h3>
+    <p class="lead">Te lo damos completo en Word y PDF. A cambio, te avisamos por email cuando cambie algo de la normativa que afecte a este contrato: IRAV, plazos, fianzas o registros.</p>
+    <div class="fld" style="margin:16px 0 0"><label for="freeEmail">Tu email</label><input id="freeEmail" type="email" placeholder="tucorreo@email.com" autocomplete="email"></div>
+    <label for="freeConsent" style="display:flex;gap:9px;align-items:flex-start;font-size:13px;color:var(--muted);margin:14px 0;line-height:1.45;text-align:left;cursor:pointer"><input type="checkbox" id="freeConsent" style="margin-top:3px;flex:0 0 auto;width:16px;height:16px"><span style="flex:1 1 auto;min-width:0">Acepto recibir las alertas normativas de Asesorfy según la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>. Baja en un clic desde cualquier correo.</span></label>
+    <button class="btn" style="width:100%;justify-content:center" id="confirmFree" disabled>Descargar gratis</button>
+    <p id="freeMsg" style="font-size:12.5px;margin-top:10px;text-align:center;display:none"></p>
   </div>
 </div>
 
@@ -374,7 +388,7 @@ var CONFIG = {
   },
 
   "ovc-impago":{
-    tab:"Kit Impago + MASC", price:"29€",
+    tab:"Kit Impago + MASC", price:"49€",
     title:"OFERTA VINCULANTE CONFIDENCIAL", sub:"MASC — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero",
     aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.",
     fields: COMMON_PARTES.concat([
@@ -401,12 +415,12 @@ var CONFIG = {
       {id:"o_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación producirá efectos obligatorios. Transcurrido el plazo sin aceptación, la parte arrendadora podrá interponer demanda de desahucio por falta de pago y reclamación de rentas, con expresa imposición de costas."},
       {id:"o_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente)."}
     ],
-    legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC). © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC.",
+    legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC). © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC. Incluye revisión del escrito: escríbenos a hola@asesorfy.app antes de enviarlo.",
     signatures:false
   },
 
   "contrato-larga":{
-    tab:"Contrato larga duración", price:"5,99€",
+    tab:"Contrato larga duración", price:"Gratis", free:true,
     title:"CONTRATO DE ARRENDAMIENTO DE VIVIENDA", sub:"Vivienda habitual — Ley 29/1994 (LAU)",
     aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. El arrendamiento de vivienda habitual se rige por la Ley de Arrendamientos Urbanos (Ley 29/1994), en especial su Título II, de carácter en buena parte imperativo en favor del arrendatario.",
     fields: COMMON_PARTES.concat([
@@ -541,11 +555,9 @@ function switchDoc(k){
   if(window.asesorfyTrack) asesorfyTrack('document_selected',{document_type:k,source:'generator_tab'});
   clauseState={}; customClauses=[]; clauseEdits={};
   CONFIG[k].clauses.forEach(function(c){ clauseState[c.id]= (c.ess===true) ? true : (c.on!==false); });
-  relock(); restoreState();
+  relock(); restoreState(); applyLabels();
   buildTabs(); buildForm(); buildClauses(); render(); checkStoredPayment();
-  document.getElementById('price').innerHTML = CONFIG[k].price+'<small>pago único</small>';
-  document.getElementById('payAmount').textContent = CONFIG[k].price;
-  document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[k].price;
+  applyLabels();
 }
 
 function buildForm(){
@@ -757,6 +769,16 @@ function unlock(){
   document.getElementById('dlWordBtn').style.display='';
   document.getElementById('dlPdfBtn').style.display='';
 }
+function applyLabels(){
+  var c=CONFIG[current], gratis=!!c.free;
+  document.getElementById('price').innerHTML = c.price+'<small>'+(gratis?'con tu email':'pago único')+'</small>';
+  document.getElementById('payAmount').textContent = gratis?'':c.price;
+  document.getElementById('payBtn').textContent = gratis?'Descargar gratis':'Pagar y descargar';
+  document.getElementById('unlockBtn').textContent = gratis?'Descargar gratis':'Pagar y descargar';
+  document.getElementById('lockSub').textContent = gratis
+    ? 'Descárgalo completo en Word y PDF a cambio de tu email'
+    : 'Desbloquea el documento completo y editable · '+c.price;
+}
 function relock(){
   unlocked = false; applyLock();
   document.getElementById('payBtn').style.display='';
@@ -767,10 +789,45 @@ function relock(){
 
 /* PAGO (placeholder) */
 function openPay(){
+  if(CONFIG[current].free){ openFree(); return; }
   document.getElementById('payModal').classList.add('open');
   if(window.asesorfyTrack) asesorfyTrack('paywall_viewed',{document_type:current,price:CONFIG[current].price});
   if(window.va) va('event', { name: 'ver_pago', data: { doc: current } });
 }
+
+/* DESCARGA GRATUITA A CAMBIO DEL EMAIL */
+function openFree(){
+  document.getElementById('freeModal').classList.add('open');
+  document.getElementById('freeMsg').style.display='none';
+  if(window.asesorfyTrack) asesorfyTrack('emailgate_viewed',{document_type:current});
+}
+function closeFree(){ document.getElementById('freeModal').classList.remove('open'); }
+document.getElementById('freeModal').addEventListener('click', function(e){ if(e.target===this) closeFree(); });
+document.getElementById('freeConsent').addEventListener('change', function(){ document.getElementById('confirmFree').disabled=!this.checked; });
+document.getElementById('confirmFree').addEventListener('click', function(){
+  var btn=this, email=(document.getElementById('freeEmail').value||'').trim(), msg=document.getElementById('freeMsg');
+  msg.style.display='none';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){
+    msg.textContent='Escribe un email válido.'; msg.style.color='#b3261e'; msg.style.display='block'; return;
+  }
+  btn.disabled=true; var label=btn.textContent; btn.textContent='Un momento…';
+  saveState();
+  fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:email,consent:true,source:'generador:'+current})})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      // Aunque las alertas aún no estén configuradas, el documento se entrega igual.
+      if(!d || (!d.ok && d.error!=='not_configured')) throw new Error('alta');
+      try{ localStorage.setItem('asesorfy_free_'+current, email); }catch(e){}
+      if(window.asesorfyTrack) asesorfyTrack('document_unlocked_free',{document_type:current});
+      closeFree(); unlock();
+    })
+    .catch(function(){
+      msg.textContent='No se pudo completar. Inténtalo de nuevo o escríbenos a hola@asesorfy.app.';
+      msg.style.color='#b3261e'; msg.style.display='block';
+    })
+    .then(function(){ btn.disabled=false; btn.textContent=label; });
+});
 document.getElementById('payBtn').addEventListener('click', openPay);
 document.getElementById('unlockBtn').addEventListener('click', openPay);
 document.getElementById('payConsent').addEventListener('change', function(){ document.getElementById('confirmPay').disabled=!this.checked; });
@@ -877,6 +934,11 @@ function restoreState(){
   }catch(e){}
 }
 function checkStoredPayment(){
+  if(CONFIG[current].free){
+    var mail=null; try{ mail=localStorage.getItem('asesorfy_free_'+current); }catch(e){}
+    if(mail) unlock();
+    return;
+  }
   var sid=null; try{ sid=localStorage.getItem('asesorfy_paid_'+current); }catch(e){}
   if(!sid) return;
   fetch('/api/verify-session?session_id='+encodeURIComponent(sid))
@@ -888,10 +950,8 @@ function checkStoredPayment(){
 /* INIT */
 CONFIG[current].clauses.forEach(function(c){ clauseState[c.id]=(c.ess===true)?true:(c.on!==false); });
 restoreState();
-buildTabs(); buildForm(); buildClauses(); render(); applyLock();
-document.getElementById('price').innerHTML = CONFIG[current].price+'<small>pago único</small>';
-document.getElementById('payAmount').textContent = CONFIG[current].price;
-document.getElementById('lockSub').textContent = 'Desbloquea el documento completo y editable · '+CONFIG[current].price;
+buildTabs(); buildForm(); buildClauses(); render(); applyLock(); applyLabels();
+applyLabels();
 handlePaidReturn();
 checkStoredPayment();
 </script>
