@@ -35,6 +35,7 @@ Documentos y herramientas legales para empresas, autónomos y particulares en Es
 - Base legal: Ley Orgánica 1/2025, de 2 de enero, art. 17 (MASC como requisito de procedibilidad)
 - Incluye: modelo de Oferta Vinculante Confidencial, doble propuesta de pago o entrega del inmueble, plazo de aceptación de un mes, instrucciones de envío por burofax con acuse de recibo, checklist para la posterior demanda de desahucio
 - Para qué sirve: desde abril de 2025 hay que intentar un medio adecuado de solución de controversias antes de demandar por impago de alquiler; sin ese intento la demanda no se admite
+- Abogado: hasta 2.000 € puedes enviarlo tú; por encima, la Ley Orgánica 1/2025 (art. 6.2) exige asistencia de abogado para formular y aceptar la oferta
 - Formato: Word y PDF
 
 
@@ -46,6 +47,8 @@ Documentos y herramientas legales para empresas, autónomos y particulares en Es
 - Base legal: Ley Orgánica 1/2025, art. 17 (MASC); Ley 3/2004 de lucha contra la morosidad (intereses y costes de cobro entre empresas)
 - Incluye: modelo de Oferta Vinculante Confidencial para reclamar facturas impagadas a un cliente, propuesta de pago íntegro o a plazos, plazo de aceptación de un mes, cláusulas opcionales de intereses de demora, 40 € por factura en costes de cobro y suspensión de servicios, instrucciones de envío por burofax
 - Para quién: empresas y autónomos con clientes que no pagan
+- Abogado: hasta 2.000 € puedes enviarlo tú; por encima, la Ley Orgánica 1/2025 (art. 6.2) exige asistencia de abogado para formular y aceptar la oferta
+- Intereses y 40 € por factura: solo si el cliente es una empresa o un profesional (Ley 3/2004)
 - Formato: Word y PDF
 
 ## Gratis, sin registro

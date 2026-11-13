@@ -388,7 +388,7 @@ var CONFIG = {
   "ovc-impago":{
     tab:"Kit Impago alquiler", price:"49€",
     title:"OFERTA VINCULANTE CONFIDENCIAL", sub:"MASC — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero",
-    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Si la cuantía supera los 2.000 €, el art. 6.2 de la Ley Orgánica 1/2025 exige que las partes cuenten con asistencia de abogado para formular y aceptar la oferta vinculante: en ese caso, envíala con un abogado. Hasta 2.000 € puedes enviarla tú.",
     fields: COMMON_PARTES.concat([
       {grp:"Datos del impago", help:"Detallan la deuda que se reclama: el contrato de origen, los periodos impagados y el importe total. Son la base de la oferta y, si no hay acuerdo, lo que sostendrá la posterior demanda de desahucio."},
       {id:"direccion",label:"Dirección del inmueble",ph:"Calle ...",full:true},
@@ -409,7 +409,7 @@ var CONFIG = {
       {id:"o_conf",ttl:"II. Descripción del conflicto",ess:true,text:"La parte arrendataria adeuda las rentas de los periodos <b>{{meses_imp}}</b>, por un principal total de <b>{{total}}</b> €, sin perjuicio de rentas posteriores e intereses legales."},
       {id:"o_nat",ttl:"III. Naturaleza de este escrito",ess:true,text:"El presente escrito constituye una Oferta Vinculante Confidencial formulada al amparo del art. 17 de la Ley Orgánica 1/2025, como MASC y requisito de procedibilidad para la posterior demanda civil. Tiene carácter confidencial: su contenido íntegro no se aportará con la demanda, bastando el justificante de envío y recepción."},
       {id:"o_prop",ttl:"IV. Propuesta",ess:true,text:"<b>Opción A.</b> Abonar la totalidad de la deuda (<b>{{total}}</b> €) en el plazo del apartado siguiente, continuando vigente el contrato.<br/><b>Opción B.</b> Entregar voluntariamente la posesión del inmueble en la fecha indicada y abonar las rentas hasta la entrega, resolviéndose el contrato sin reclamación de costas judiciales."},
-      {id:"o_plazo",ttl:"V. Plazo de aceptación",ess:true,text:"Podrá aceptarse en el plazo de UN (1) MES desde su recepción (plazo mínimo legal). La falta de respuesta se entenderá como rechazo."},
+      {id:"o_plazo",ttl:"V. Plazo de aceptación",ess:true,text:"Podrá aceptarse expresamente en el plazo de UN (1) MES desde su recepción (plazo mínimo legal). Si no se acepta expresamente en ese plazo, la oferta decaerá (art. 17.4 de la Ley Orgánica 1/2025)."},
       {id:"o_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación producirá efectos obligatorios. Transcurrido el plazo sin aceptación, la parte arrendadora podrá interponer demanda de desahucio por falta de pago y reclamación de rentas, con expresa imposición de costas."},
       {id:"o_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente)."}
     ],
@@ -421,7 +421,7 @@ var CONFIG = {
     tab:"Kit Impago facturas", price:"49€",
     title:"OFERTA VINCULANTE CONFIDENCIAL",
     sub:"MASC — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero",
-    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Si la cuantía supera los 2.000 €, el art. 6.2 de la Ley Orgánica 1/2025 exige que las partes cuenten con asistencia de abogado para formular y aceptar la oferta vinculante: en ese caso, envíala con un abogado. Hasta 2.000 € puedes enviarla tú.",
     fields: [
       {grp:"Lugar y fecha", help:"El lugar y la fecha del escrito. La fecha de recepción marca el inicio del plazo de un mes para aceptar la oferta."},
       {id:"localidad",label:"Localidad",ph:"Córdoba"},
@@ -434,12 +434,12 @@ var CONFIG = {
       {id:"deu_nombre",label:"Nombre o razón social",ph:"Cliente Ejemplo, S.L."},
       {id:"deu_nif",label:"NIF / CIF",ph:"B00000000"},
       {id:"deu_dom",label:"Domicilio",ph:"Calle ...",full:true},
-      {grp:"Datos de la deuda", help:"Qué se debe y por qué: el encargo o contrato de origen, las facturas, su vencimiento y el importe total. Es la base de la oferta y de una posible reclamación posterior."},
+      {grp:"Datos de la deuda", help:"Qué se debe y por qué: el encargo o contrato de origen, las facturas, su vencimiento y el importe total. Si la deuda supera 2.000 €, la ley exige que envíes la oferta con asistencia de abogado (art. 6.2 de la Ley Orgánica 1/2025)."},
       {id:"origen",label:"Origen de la relación",ph:"el presupuesto aceptado el 3 de febrero de 2026",full:true},
       {id:"concepto",label:"Qué prestaste o vendiste",ph:"servicios de diseño y desarrollo de su página web",full:true},
       {id:"facturas",label:"Facturas impagadas",ph:"n.º 2026-014 y 2026-019",full:true},
       {id:"vencimiento",label:"Fecha de vencimiento",ph:"15 de abril de 2026"},
-      {id:"total",label:"Importe total adeudado (€)",ph:"3.200"},
+      {id:"total",label:"Importe total adeudado (€)",ph:"1.800"},
       {id:"plazos",label:"Cuotas si paga a plazos",ph:"3"},
       {id:"iban",label:"IBAN para el pago",ph:"ES00 ..."}
     ],
@@ -453,9 +453,9 @@ var CONFIG = {
       {id:"d_deuda",ttl:"II. Deuda reclamada",ess:true,text:"La parte deudora no ha abonado las facturas <b>{{facturas}}</b>, vencidas el <b>{{vencimiento}}</b>, por un principal total de <b>{{total}}</b> €, sin perjuicio de los intereses de demora que procedan."},
       {id:"d_nat",ttl:"III. Naturaleza de este escrito",ess:true,text:"El presente escrito constituye una Oferta Vinculante Confidencial formulada al amparo del art. 17 de la Ley Orgánica 1/2025, como medio adecuado de solución de controversias (MASC) previo a la vía judicial. Tiene carácter confidencial: su contenido íntegro no se aportará en un eventual procedimiento, bastando el justificante de envío y recepción."},
       {id:"d_prop",ttl:"IV. Propuesta",ess:true,text:"<b>Opción A.</b> Abonar la totalidad de la deuda (<b>{{total}}</b> €) dentro del plazo de aceptación, en cuyo caso la parte acreedora renuncia a reclamar intereses de demora y costes de cobro.<br/><b>Opción B.</b> Abonar la deuda en <b>{{plazos}}</b> cuotas mensuales iguales, la primera dentro del plazo de aceptación. El impago de cualquier cuota hará exigible de inmediato la totalidad pendiente.<br/>Los pagos se realizarán mediante transferencia a la cuenta <b>{{iban}}</b>."},
-      {id:"d_plazo",ttl:"V. Plazo de aceptación",ess:true,text:"Podrá aceptarse en el plazo de UN (1) MES desde su recepción (plazo mínimo legal). La falta de respuesta se entenderá como rechazo."},
-      {id:"d_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación producirá efectos obligatorios. Transcurrido el plazo sin aceptación, la parte acreedora podrá ejercitar las acciones judiciales que correspondan para reclamar la deuda, junto con los intereses de demora y, en las operaciones comerciales entre empresas o con autónomos, la indemnización por costes de cobro prevista en la Ley 3/2004, de lucha contra la morosidad, así como las costas que procedan."},
-      {id:"d_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente)."}
+      {id:"d_plazo",ttl:"V. Plazo de aceptación",ess:true,text:"La parte deudora podrá aceptar expresamente esta oferta en el plazo de UN (1) MES desde su recepción (plazo mínimo legal). Si no la acepta expresamente en ese plazo, la oferta decaerá (art. 17.4 de la Ley Orgánica 1/2025)."},
+      {id:"d_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación expresa será irrevocable y obligará a ambas partes a cumplir lo acordado (art. 17.1 de la Ley Orgánica 1/2025). Si la oferta decae sin ser aceptada, la parte acreedora podrá ejercitar las acciones judiciales que correspondan para reclamar la deuda, junto con los intereses de demora y, si la parte deudora es una empresa o un profesional, la indemnización por costes de cobro prevista en la Ley 3/2004, de lucha contra la morosidad, así como las costas que procedan."},
+      {id:"d_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente), conforme al art. 17.2 de la Ley Orgánica 1/2025.<br/><br/>Firmado: <b>{{acr_nombre}}</b>"}
     ],
     legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC) y, en operaciones comerciales, Ley 3/2004 de lucha contra la morosidad. © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC.",
     signatures:false
@@ -541,8 +541,8 @@ var LIBRARY = {
   ],
   "ovc-deuda":[
     {ttl:"Descuento por pronto pago", text:"Si la deuda se abona íntegramente en los [X] días siguientes a la recepción de este escrito, se aplicará un descuento del [X]% sobre el principal."},
-    {ttl:"Intereses de demora (Ley 3/2004)", text:"En defecto de pago, la deuda devengará el interés de demora previsto en el art. 7 de la Ley 3/2004 (tipo del Banco Central Europeo más ocho puntos) desde la fecha de vencimiento de cada factura."},
-    {ttl:"Indemnización por costes de cobro", text:"Conforme al art. 8 de la Ley 3/2004, la parte acreedora tiene derecho a una cantidad fija de 40 € por cada factura impagada en concepto de costes de cobro, que se reclamará si no se acepta la oferta."},
+    {ttl:"Intereses de demora (Ley 3/2004)", text:"Al tratarse de una operación comercial entre empresas o profesionales, la deuda devenga desde el vencimiento de cada factura el interés de demora del art. 7 de la Ley 3/2004 (tipo del Banco Central Europeo más ocho puntos porcentuales), que se reclamará si no se acepta esta oferta."},
+    {ttl:"Indemnización por costes de cobro", text:"Al tratarse de una operación comercial entre empresas o profesionales, la parte acreedora tiene derecho a una cantidad fija de 40 € por cada factura pagada fuera de plazo en concepto de costes de cobro (art. 8 de la Ley 3/2004), que se reclamará si no se acepta esta oferta."},
     {ttl:"Suspensión de nuevos servicios", text:"Hasta la regularización de la deuda, la parte acreedora suspenderá la prestación de nuevos servicios o entregas a la parte deudora."},
     {ttl:"Advertencia de costas y honorarios", text:"Se advierte de que la vía judicial incrementará la deuda con las costas procesales y los honorarios profesionales que correspondan."},
     {ttl:"Ofrecimiento de mediación", text:"Con carácter alternativo, se ofrece acudir a una sesión de mediación ante un tercero neutral para intentar alcanzar un acuerdo."}

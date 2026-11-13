@@ -502,14 +502,14 @@ const pages = [
       { t: "No dejar constancia de la recepción", d: "Sin acuse de recibo no puedes acreditar cuándo empezó a correr el plazo ni que el escrito llegó." },
       { t: "Demandar antes de que venza el mes", d: "El plazo mínimo de aceptación forma parte del requisito. Adelantarse puede costarte la admisión." },
       { t: "Aportar el escrito íntegro con la demanda", d: "Es confidencial. Basta el justificante de envío y de recepción." },
-      { t: "Aceptar un acuerdo alto sin abogado", d: "La Ley Orgánica 1/2025 exige firma de abogado para aceptar acuerdos que superen los 2.000 euros." }
+      { t: "Hacer la oferta sin abogado por encima de 2.000 €", d: "Si la deuda supera los 2.000 euros, la Ley Orgánica 1/2025 (art. 6.2) exige asistencia de abogado para formular la oferta vinculante y para aceptarla." }
     ],
     faqs: [
       { q: "¿Es obligatorio intentar un acuerdo antes de demandar por impago?", a: "Sí. La Ley Orgánica 1/2025 configura el intento de un medio adecuado de solución de controversias como requisito de procedibilidad para la demanda civil desde abril de 2025." },
       { q: "¿Qué plazo tiene el inquilino para aceptar la oferta?", a: "Un mes desde la recepción, que es el plazo mínimo legal. Si no responde dentro de ese plazo, se entiende que la rechaza." },
       { q: "¿Cómo debo enviar la oferta vinculante confidencial?", a: "Por un medio que deje constancia de la identidad del remitente, del contenido íntegro, de la recepción y de la fecha. El burofax con certificación de texto y acuse de recibo es la vía habitual." },
       { q: "¿Tengo que aportar el escrito con la demanda?", a: "No. Por su carácter confidencial, el contenido íntegro no se aporta: basta acreditar el envío y la recepción mediante el justificante." },
-      { q: "¿Necesito abogado para este escrito?", a: "Para redactar y enviar la oferta, no. Para aceptar un acuerdo de cuantía superior a 2.000 euros, la Ley Orgánica 1/2025 exige firma de abogado." }
+      { q: "¿Necesito abogado para este escrito?", a: "Si la deuda no supera los 2.000 euros, no: puedes redactarla y enviarla tú. Por encima de esa cifra, la Ley Orgánica 1/2025 (art. 6.2) exige asistencia de abogado tanto para formular la oferta como para aceptarla." }
     ],
     guides: [
       ["blog-oferta-vinculante-confidencial.html", "Qué es la oferta vinculante confidencial"],
@@ -580,7 +580,7 @@ const pages = [
       { q: "¿Qué pasa si demando sin haber intentado el MASC?", a: "La demanda puede no admitirse a trámite por faltar un requisito de procedibilidad, lo que supone perder tiempo y tener que empezar el intento desde cero." },
       { q: "¿Sirve un burofax reclamando el pago?", a: "Un requerimiento de pago sin propuesta concreta ni plazo de aceptación no equivale a un intento de MASC. Conviene formularlo como oferta vinculante confidencial." },
       { q: "¿Cuánto tiempo añade el MASC al procedimiento?", a: "En la práctica alrededor de un mes desde la recepción, que es el plazo mínimo de aceptación. A cambio, en bastantes casos el inquilino responde y se evita el pleito." },
-      { q: "¿Necesito abogado para el MASC?", a: "Para preparar y enviar el intento, no es imprescindible. Para aceptar un acuerdo superior a 2.000 euros la ley exige firma de abogado, y para la demanda posterior necesitarás abogado y procurador." }
+      { q: "¿Necesito abogado para el MASC?", a: "Depende del medio. Si usas una oferta vinculante confidencial y la deuda supera los 2.000 euros, la ley exige asistencia de abogado para formularla y para aceptarla (art. 6.2 de la Ley Orgánica 1/2025); una negociación directa entre las partes no lo exige, y para la demanda posterior necesitarás abogado y procurador." }
     ],
     guides: [
       ["blog-impago.html", "Tu inquilino no paga: qué hacer paso a paso"],
