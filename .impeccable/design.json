@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-13T12:00:00Z",
+  "title": "Design System: Asesorfy",
+  "extensions": {
+    "colorMeta": {
+      "accent": { "role": "primary", "displayName": "Asesorfy Blue", "canonical": "#1f5fa6", "tonalRamp": ["#dbe7f6", "#b8cce5", "#1f5fa6", "#163f6e"] },
+      "accent-dark": { "role": "primary", "displayName": "Deep Harbour Blue", "canonical": "#163f6e" },
+      "accent-soft": { "role": "primary", "displayName": "Mist Blue", "canonical": "#dbe7f6" },
+      "ink": { "role": "neutral", "displayName": "Sea Ink", "canonical": "#0e1a2b", "tonalRamp": ["#0e1a2b", "#1d2a3d", "#56627a", "#9fb0c6"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#1d2a3d" },
+      "muted": { "role": "neutral", "displayName": "Slate", "canonical": "#56627a" },
+      "line": { "role": "neutral", "displayName": "Hairline", "canonical": "#e3e8ef" },
+      "line-2": { "role": "neutral", "displayName": "Firm Hairline", "canonical": "#d3dbe6" },
+      "bg": { "role": "neutral", "displayName": "Paper White", "canonical": "#ffffff" },
+      "bg-soft": { "role": "neutral", "displayName": "Cool Wash", "canonical": "#f6f8fb" },
+      "bg-tint": { "role": "neutral", "displayName": "Blue Wash", "canonical": "#eef3fb" },
+      "ok": { "role": "semantic", "displayName": "Ok Green", "canonical": "#1d7a52", "tonalRamp": ["#e8f3ee", "#1d7a52"] },
+      "warn": { "role": "semantic", "displayName": "Warn Amber", "canonical": "#b54708", "tonalRamp": ["#fff4e5", "#b54708"] },
+      "bad": { "role": "semantic", "displayName": "Bad Red", "canonical": "#b42318", "tonalRamp": ["#fdecea", "#b42318"] },
+      "mark": { "role": "tertiary", "displayName": "Highlighter", "canonical": "#fff2b8" },
+      "foot-text": { "role": "neutral", "displayName": "Footer Slate", "canonical": "#9fb0c6" },
+      "on-ink-accent": { "role": "primary", "displayName": "Lit Blue", "canonical": "#8fb6e6" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Home question-desk headline only; centred." },
+      "headline": { "displayName": "Headline", "purpose": "H1 of tool and inner pages." },
+      "section": { "displayName": "Section", "purpose": "Section H2s." },
+      "title": { "displayName": "Title", "purpose": "Fraunces card, list, shelf and guide titles (17-19px)." },
+      "lede": { "displayName": "Lede", "purpose": "Muted intro paragraph under page headlines." },
+      "body": { "displayName": "Body", "purpose": "Running text, 15-17px; 14px inside the document sheet." },
+      "label": { "displayName": "Label", "purpose": "Form field labels." },
+      "wordmark": { "displayName": "Wordmark", "purpose": "Asesorfy brand name next to the mark; brand.css only." }
+    },
+    "shadows": [
+      { "name": "card", "value": "0 1px 2px rgba(14,26,43,.05),0 12px 30px -12px rgba(14,26,43,.18)", "purpose": "Form panels, search dropdown, mobile nav sheet." },
+      { "name": "paper", "value": "0 1px 0 rgba(14,26,43,.04),0 28px 60px -30px rgba(14,26,43,.35)", "purpose": "Generated-document sheet." },
+      { "name": "search-lift", "value": "0 2px 0 rgba(14,26,43,.03),0 26px 50px -28px rgba(14,26,43,.4)", "purpose": "Home search field; on focus add 0 0 0 4px rgba(31,95,166,.14)." },
+      { "name": "feature-fall", "value": "0 30px 60px -34px rgba(14,26,43,.6)", "purpose": "Dark feature tool card." },
+      { "name": "action-glow", "value": "0 6px 16px -6px rgba(31,95,166,.55)", "purpose": "Primary buttons only." },
+      { "name": "focus-ring", "value": "outline: 3px solid rgba(31,95,166,.35); outline-offset: 2px", "purpose": "Global :focus-visible." },
+      { "name": "field-focus", "value": "0 0 0 3px rgba(31,95,166,.15)", "purpose": "Input focus ring with accent border." }
+    ],
+    "motion": [
+      { "name": "state", "value": "150ms ease", "purpose": "Background, border, color and 1-2px lift transitions on buttons, cards, rows." },
+      { "name": "drop", "value": "180ms cubic-bezier(.16,1,.3,1)", "purpose": "Search answers dropdown entrance." },
+      { "name": "flash", "value": "background 1.2s", "purpose": "Highlighter flash on changed text in the document sheet." },
+      { "name": "shimmer", "value": "1.4s infinite", "purpose": "Loading lines while AI tools work." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: none", "purpose": "All animation and transition disabled." }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "480px" },
+      { "name": "sm", "value": "560px" },
+      { "name": "md", "value": "820px" },
+      { "name": "nav", "value": "860px" },
+      { "name": "lg", "value": "900px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button", "kind": "button", "refersTo": "button-primary",
+      "description": "The single action colour; one per group.",
+      "html": "<button class=\"ds-btn\">Revisar un contrato</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:14px 22px;border-radius:10px;background:#1f5fa6;color:#fff;box-shadow:0 6px 16px -6px rgba(31,95,166,.55);transition:background .15s,transform .15s}.ds-btn:hover{background:#163f6e;transform:translateY(-1px)}.ds-btn:focus-visible{outline:3px solid rgba(31,95,166,.35);outline-offset:2px}"
+    },
+    {
+      "name": "Ghost Button", "kind": "button", "refersTo": "button-ghost",
+      "description": "Secondary actions: downloads, 'ver todas'.",
+      "html": "<button class=\"ds-btn-ghost\">Descargar Word</button>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;gap:8px;border:0;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:14px 22px;border-radius:10px;background:#fff;color:#1f5fa6;box-shadow:inset 0 0 0 1px #d3dbe6;transition:background .15s}.ds-btn-ghost:hover{background:#f6f8fb}.ds-btn-ghost:focus-visible{outline:3px solid rgba(31,95,166,.35);outline-offset:2px}"
+    },
+    {
+      "name": "Field", "kind": "input", "refersTo": "input-field",
+      "description": "Labelled text field used in every tool form.",
+      "html": "<label class=\"ds-field\"><span>Nombre o razón social</span><input placeholder=\"Ej.: Talleres Martín, S.L.\"></label>",
+      "css": ".ds-field{display:block;font-family:Inter,system-ui,sans-serif}.ds-field>span{display:block;font-size:13.5px;font-weight:600;color:#1d2a3d;margin-bottom:6px}.ds-field input{width:100%;box-sizing:border-box;font:16px/1.45 Inter,system-ui,sans-serif;color:#0e1a2b;background:#fff;border:1px solid #d3dbe6;border-radius:10px;padding:11px 13px;transition:border-color .15s,box-shadow .15s}.ds-field input:focus{outline:none;border-color:#1f5fa6;box-shadow:0 0 0 3px rgba(31,95,166,.15)}"
+    },
+    {
+      "name": "Question Desk Search", "kind": "input", "refersTo": "search-ask",
+      "description": "Signature home search bar with embedded primary button.",
+      "html": "<form class=\"ds-ask\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg><input placeholder=\"Ej.: cookies de mi web\"><button>Buscar</button></form>",
+      "css": ".ds-ask{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #d3dbe6;border-radius:16px;padding:8px 8px 8px 18px;color:#56627a;box-shadow:0 2px 0 rgba(14,26,43,.03),0 26px 50px -28px rgba(14,26,43,.4);transition:border-color .15s,box-shadow .15s}.ds-ask:focus-within{border-color:#1f5fa6;box-shadow:0 0 0 4px rgba(31,95,166,.14),0 26px 50px -28px rgba(14,26,43,.4)}.ds-ask input{flex:1;min-width:0;border:0;outline:0;font:500 19px/1.3 Inter,system-ui,sans-serif;color:#0e1a2b;background:transparent;padding:14px 4px}.ds-ask button{border:0;cursor:pointer;font:600 15px/1 Inter,system-ui,sans-serif;padding:15px 22px;border-radius:11px;background:#1f5fa6;color:#fff}.ds-ask button:hover{background:#163f6e}"
+    },
+    {
+      "name": "Suggestion Chip", "kind": "chip", "refersTo": "chip",
+      "description": "Pill suggestions under the search field.",
+      "html": "<button class=\"ds-chip\">Política de privacidad</button>",
+      "css": ".ds-chip{font:500 14px Inter,system-ui,sans-serif;color:#1d2a3d;background:#fff;border:1px solid #e3e8ef;border-radius:999px;padding:8px 14px;cursor:pointer;transition:border-color .15s,color .15s}.ds-chip:hover{border-color:#1f5fa6;color:#1f5fa6}.ds-chip:focus-visible{outline:3px solid rgba(31,95,166,.35);outline-offset:2px}"
+    },
+    {
+      "name": "Risk Badge", "kind": "chip", "refersTo": "badge",
+      "description": "Verdict / risk level pill in reviewer results.",
+      "html": "<span class=\"ds-badge ds-alto\">Riesgo alto</span> <span class=\"ds-badge\">Contrato</span>",
+      "css": ".ds-badge{display:inline-flex;font:700 12.5px Inter,system-ui,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:#eef3fb;color:#1f5fa6}.ds-alto{background:#fdecea;color:#b42318}"
+    },
+    {
+      "name": "Linked Tool Card", "kind": "card", "refersTo": "panel",
+      "description": "Related-tool and shelf cards; lift on hover.",
+      "html": "<a class=\"ds-card\" href=\"#\"><b>Traductor legal</b><span>Condiciones, cláusulas o cartas oficiales explicadas parte por parte.</span></a>",
+      "css": ".ds-card{display:block;background:#fff;border:1px solid #e3e8ef;border-radius:14px;padding:18px 20px;text-decoration:none;color:#0e1a2b;transition:border-color .15s,transform .15s}.ds-card:hover{border-color:#b8cce5;transform:translateY(-2px)}.ds-card b{display:block;font:600 17px/1.2 Fraunces,Georgia,serif;margin-bottom:4px}.ds-card span{color:#56627a;font:14px/1.6 Inter,system-ui,sans-serif}"
+    },
+    {
+      "name": "Document Sheet", "kind": "custom", "refersTo": "document-sheet",
+      "description": "Paper surface for generated legal text, with highlighter on filled values.",
+      "html": "<article class=\"ds-sheet\"><h1>Aviso legal</h1><p>Titular: <mark>Talleres Martín, S.L.</mark>, con domicilio en Córdoba.</p></article>",
+      "css": ".ds-sheet{background:#fff;border:1px solid #e3e8ef;border-radius:6px;box-shadow:0 1px 0 rgba(14,26,43,.04),0 28px 60px -30px rgba(14,26,43,.35);padding:34px 36px;font:14px/1.6 Inter,system-ui,sans-serif;color:#1d2a3d}.ds-sheet h1{font:600 24px/1.12 Fraunces,Georgia,serif;color:#0e1a2b;margin:0 0 6px}.ds-sheet mark{background:#fff2b8;color:inherit;border-radius:3px;padding:0 2px}"
+    },
+    {
+      "name": "Top Navigation", "kind": "nav", "refersTo": "nav",
+      "description": "Sticky translucent bar, wordmark left, links + one primary button right.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-brand\" href=\"#\">Asesor<span>fy</span></a><div><a href=\"#\" aria-current=\"page\">Herramientas</a><a href=\"#\">Guías</a><a class=\"ds-nav-cta\" href=\"#\">Revisar un contrato</a></div></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;height:66px;padding:0 24px;background:rgba(255,255,255,.9);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid #e3e8ef;font-family:Inter,system-ui,sans-serif}.ds-brand{font-size:21px;font-weight:750;letter-spacing:-.045em;color:#0e1a2b;text-decoration:none}.ds-brand span{color:#1f5fa6}.ds-nav div{display:flex;gap:4px;align-items:center}.ds-nav div a{padding:9px 13px;border-radius:9px;color:#1d2a3d;font-weight:500;font-size:15px;text-decoration:none}.ds-nav div a:hover,.ds-nav div a[aria-current=page]{background:#f6f8fb;color:#0e1a2b}.ds-nav div a.ds-nav-cta{background:#1f5fa6;color:#fff;font-weight:600;border-radius:10px;margin-left:6px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Clear Desk",
+    "overview": "A tidy, well-lit desk where the paper you need is already laid out: white and cool blue-grey ground, sea-ink navy text, a single Asesorfy blue for action, Fraunces headings with Inter interface. Two materials: interface (white cards, fields, tinted bands) and paper (the generated document sheet and clause cards, on a longer, lower shadow). A yellow highlighter is the only warmth and marks what matters.",
+    "keyCharacteristics": [
+      "White and cool-tint ground, navy ink, one blue for action.",
+      "Fraunces for every heading, Inter for every control and body line.",
+      "Soft, cool, ink-tinted shadows; no hard edges.",
+      "Paper sheet for legal output; highlighter for emphasis.",
+      "At most one navy block per page above the footer."
+    ],
+    "rules": [
+      { "name": "The One Blue Rule", "body": "Asesorfy Blue is the only chromatic action colour; no second accent for buttons or links.", "section": "colors" },
+      { "name": "The Highlighter Rule", "body": "Yellow only as mark over meaningful words; never a block, button or border.", "section": "colors" },
+      { "name": "The One Dark Block Rule", "body": "At most one navy surface per page above the footer, marking the key tool.", "section": "colors" },
+      { "name": "The Serif Speaks, The Sans Works Rule", "body": "Fraunces for what is said (headings, titles, legends, clauses); Inter for what is operated or read in bulk.", "section": "typography" },
+      { "name": "The Balanced Heading Rule", "body": "Headings balance-wrap at line-height 1.12; paragraphs wrap pretty.", "section": "typography" },
+      { "name": "The Stack-Don't-Shrink Rule", "body": "Narrow screens stack columns; inputs stay at 16px or larger.", "section": "layout" },
+      { "name": "The Paper Floats Rule", "body": "Legal output sits on the deepest, longest shadow with the smallest radius.", "section": "elevation" },
+      { "name": "The Lift-On-Hover Rule", "body": "Linked cards lift 2-3px with a #b8cce5 border; buttons lift 1px; nothing else moves on hover.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do take values from the :root tokens in assets/site.css and brand.css, not drifted inline values on older pages.",
+      "Do set headings, card titles and legends in Fraunces 600; controls in Inter.",
+      "Do show legal output on the paper sheet and highlight the words that matter.",
+      "Do close every tool page with the Blue Wash 'información orientativa' disclaimer.",
+      "Do use stroke line icons (16-22px) in rounded-square tint tiles.",
+      "Do honour prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't add a second action colour or use semantic green/amber/red outside verdicts and checks.",
+      "Don't use more than one navy block per page above the footer.",
+      "Don't use hard offset shadows, pure-black shadows, or glows beyond the primary button's underglow.",
+      "Don't put small uppercase tracked eyebrows or kickers above headings.",
+      "Don't use initials or letter glyphs in place of icons.",
+      "Don't shrink form inputs below 16px on mobile."
+    ]
+  }
+}
