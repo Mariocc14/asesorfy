@@ -6,3 +6,5 @@ node_modules/
 *.log
 .vercel
 .claude/
+.impeccable/review/
+.impeccable/questions/
