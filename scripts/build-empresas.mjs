@@ -444,7 +444,7 @@ function home() {
   });
   const chips = [["Política de privacidad", "política de privacidad"], ["Revisar contrato", "revisar contrato"], ["Aviso legal", "aviso legal"], ["Entender una cláusula", "entender clausula"], ["Cookies", "cookies"], ["Inquilino moroso", "inquilino no paga"]];
   const [lead, ...rest] = TOOLS;
-  const SNIP = {"traductor-legal": "«Sin perjuicio de lo anterior…» → <mark>Aunque se aplique lo de antes…</mark>", "generador-politica-privacidad": "Responsable: <mark>Talleres Martín, S.L.</mark> · CIF B14000000", "generador-aviso-legal": "Titular: <mark>tu empresa</mark>, con NIF, domicilio y registro", "generador-politica-cookies": "_ga · Google Analytics · Analítica · <mark>2 años</mark>"};
+  const SNIP = {"traductor-legal": "«Sin perjuicio de lo anterior» → <mark>Aun así</mark>", "generador-politica-privacidad": "Responsable: <mark>Talleres Martín, S.L.</mark> · CIF B14000000", "generador-aviso-legal": "Titular: <mark>tu empresa</mark>, con NIF, domicilio y registro", "generador-politica-cookies": "_ga · Google Analytics · Analítica · <mark>2 años</mark>"};
   const body = `${header("home")}
 <main id="main">
   <section class="desk">

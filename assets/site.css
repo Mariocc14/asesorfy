@@ -316,3 +316,5 @@ legend{font:600 18px/1.2 var(--serif);color:var(--ink);padding:0 0 12px}
 .tool-list .tl-ic svg{width:20px;height:20px;margin:0}
 .tool-list .snip{display:block;margin-top:8px;font:13px/1.45 var(--serif);font-style:normal;color:var(--ink-soft)}
 @media(min-width:1000px){.desk .chips{margin-left:-100px;margin-right:-100px}}
+.tool-list .snip mark{white-space:nowrap}
+@media(max-width:560px){.tool-list .tl-ic,.tool-list a>svg{display:none}.tool-list a{padding:18px}}
