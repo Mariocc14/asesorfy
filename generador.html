@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generador de contratos de alquiler 2026 | Asesorfy</title>
-<meta name="description" content="Crea online un contrato de alquiler de vivienda, habitación o temporada y un escrito MASC por impago. Personaliza las cláusulas y previsualiza el documento.">
+<title>Generador de contratos de alquiler y escritos de impago 2026 | Asesorfy</title>
+<meta name="description" content="Crea online un contrato de alquiler de vivienda, habitación o temporada, o el escrito MASC para reclamar un impago de alquiler o de facturas. Personaliza las cláusulas y previsualiza el documento.">
 <link rel="canonical" href="https://asesorfy.app/generador.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -386,7 +386,7 @@ var CONFIG = {
   },
 
   "ovc-impago":{
-    tab:"Kit Impago + MASC", price:"49€",
+    tab:"Kit Impago alquiler", price:"49€",
     title:"OFERTA VINCULANTE CONFIDENCIAL", sub:"MASC — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero",
     aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.",
     fields: COMMON_PARTES.concat([
@@ -413,10 +413,53 @@ var CONFIG = {
       {id:"o_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación producirá efectos obligatorios. Transcurrido el plazo sin aceptación, la parte arrendadora podrá interponer demanda de desahucio por falta de pago y reclamación de rentas, con expresa imposición de costas."},
       {id:"o_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente)."}
     ],
-    legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC). © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC. Incluye revisión del escrito: escríbenos a hola@asesorfy.app antes de enviarlo.",
+    legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC). © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC.",
     signatures:false
   },
 
+  "ovc-deuda":{
+    tab:"Kit Impago facturas", price:"49€",
+    title:"OFERTA VINCULANTE CONFIDENCIAL",
+    sub:"MASC — Art. 17 de la Ley Orgánica 1/2025, de 2 de enero",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. No constituye asesoramiento jurídico personalizado. Para aceptar acuerdos de cuantía superior a 2.000 €, la Ley Orgánica 1/2025 exige firma de abogado.",
+    fields: [
+      {grp:"Lugar y fecha", help:"El lugar y la fecha del escrito. La fecha de recepción marca el inicio del plazo de un mes para aceptar la oferta."},
+      {id:"localidad",label:"Localidad",ph:"Córdoba"},
+      {id:"fecha",label:"Fecha",ph:"13 de noviembre de 2026"},
+      {grp:"Quien reclama (acreedor)", help:"Tu empresa o tu nombre como autónomo: quien prestó el servicio o vendió el producto y no ha cobrado."},
+      {id:"acr_nombre",label:"Nombre o razón social",ph:"Estudio Ejemplo, S.L."},
+      {id:"acr_nif",label:"NIF / CIF",ph:"B00000000"},
+      {id:"acr_dom",label:"Domicilio",ph:"Calle ..., Córdoba",full:true},
+      {grp:"Quien debe (deudor)", help:"El cliente que no ha pagado. Sus datos deben ser exactos para que la notificación sea válida y, si hace falta, para dirigir la demanda contra la persona correcta."},
+      {id:"deu_nombre",label:"Nombre o razón social",ph:"Cliente Ejemplo, S.L."},
+      {id:"deu_nif",label:"NIF / CIF",ph:"B00000000"},
+      {id:"deu_dom",label:"Domicilio",ph:"Calle ...",full:true},
+      {grp:"Datos de la deuda", help:"Qué se debe y por qué: el encargo o contrato de origen, las facturas, su vencimiento y el importe total. Es la base de la oferta y de una posible reclamación posterior."},
+      {id:"origen",label:"Origen de la relación",ph:"el presupuesto aceptado el 3 de febrero de 2026",full:true},
+      {id:"concepto",label:"Qué prestaste o vendiste",ph:"servicios de diseño y desarrollo de su página web",full:true},
+      {id:"facturas",label:"Facturas impagadas",ph:"n.º 2026-014 y 2026-019",full:true},
+      {id:"vencimiento",label:"Fecha de vencimiento",ph:"15 de abril de 2026"},
+      {id:"total",label:"Importe total adeudado (€)",ph:"3.200"},
+      {id:"plazos",label:"Cuotas si paga a plazos",ph:"3"},
+      {id:"iban",label:"IBAN para el pago",ph:"ES00 ..."}
+    ],
+    intro: [
+      "<b>REMITENTE (parte acreedora):</b> <b>{{acr_nombre}}</b>, NIF <b>{{acr_nif}}</b>, con domicilio a efectos de notificaciones en <b>{{acr_dom}}</b>.",
+      "<b>DESTINATARIO (parte deudora):</b> <b>{{deu_nombre}}</b>, NIF <b>{{deu_nif}}</b>, con domicilio en <b>{{deu_dom}}</b>.",
+      "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>."
+    ],
+    clauses: [
+      {id:"d_rel",ttl:"I. Relación entre las partes",ess:true,text:"Entre las partes existe una relación comercial derivada de <b>{{origen}}</b>, en virtud de la cual la parte acreedora prestó o entregó a la parte deudora <b>{{concepto}}</b>."},
+      {id:"d_deuda",ttl:"II. Deuda reclamada",ess:true,text:"La parte deudora no ha abonado las facturas <b>{{facturas}}</b>, vencidas el <b>{{vencimiento}}</b>, por un principal total de <b>{{total}}</b> €, sin perjuicio de los intereses de demora que procedan."},
+      {id:"d_nat",ttl:"III. Naturaleza de este escrito",ess:true,text:"El presente escrito constituye una Oferta Vinculante Confidencial formulada al amparo del art. 17 de la Ley Orgánica 1/2025, como medio adecuado de solución de controversias (MASC) previo a la vía judicial. Tiene carácter confidencial: su contenido íntegro no se aportará en un eventual procedimiento, bastando el justificante de envío y recepción."},
+      {id:"d_prop",ttl:"IV. Propuesta",ess:true,text:"<b>Opción A.</b> Abonar la totalidad de la deuda (<b>{{total}}</b> €) dentro del plazo de aceptación, en cuyo caso la parte acreedora renuncia a reclamar intereses de demora y costes de cobro.<br/><b>Opción B.</b> Abonar la deuda en <b>{{plazos}}</b> cuotas mensuales iguales, la primera dentro del plazo de aceptación. El impago de cualquier cuota hará exigible de inmediato la totalidad pendiente.<br/>Los pagos se realizarán mediante transferencia a la cuenta <b>{{iban}}</b>."},
+      {id:"d_plazo",ttl:"V. Plazo de aceptación",ess:true,text:"Podrá aceptarse en el plazo de UN (1) MES desde su recepción (plazo mínimo legal). La falta de respuesta se entenderá como rechazo."},
+      {id:"d_efec",ttl:"VI. Efectos",ess:true,text:"La aceptación producirá efectos obligatorios. Transcurrido el plazo sin aceptación, la parte acreedora podrá ejercitar las acciones judiciales que correspondan para reclamar la deuda, junto con los intereses de demora y, en las operaciones comerciales entre empresas o con autónomos, la indemnización por costes de cobro prevista en la Ley 3/2004, de lucha contra la morosidad, así como las costas que procedan."},
+      {id:"d_forma",ttl:"VII. Forma y constancia",ess:true,text:"Se remite por medio que deja constancia de identidad, contenido íntegro, recepción y fecha (burofax con certificación de texto y acuse de recibo, o medio electrónico equivalente)."}
+    ],
+    legal:"Base legal: Ley Orgánica 1/2025, de 2 de enero (art. 17, MASC) y, en operaciones comerciales, Ley 3/2004 de lucha contra la morosidad. © Asesorfy · Normativa española. — Recuerda: envíalo por burofax con acuse de recibo y guarda el justificante; es la prueba del MASC.",
+    signatures:false
+  },
   "contrato-larga":{
     tab:"Contrato larga duración", price:"Gratis", free:true,
     title:"CONTRATO DE ARRENDAMIENTO DE VIVIENDA", sub:"Vivienda habitual — Ley 29/1994 (LAU)",
@@ -496,6 +539,14 @@ var LIBRARY = {
     {ttl:"Advertencia de costas y honorarios", text:"Se advierte de que la interposición de la demanda incrementará la deuda con las costas procesales y los honorarios profesionales que correspondan."},
     {ttl:"Ofrecimiento de mediación", text:"Con carácter alternativo, se ofrece acudir a una sesión de mediación ante un tercero neutral para intentar alcanzar un acuerdo."}
   ],
+  "ovc-deuda":[
+    {ttl:"Descuento por pronto pago", text:"Si la deuda se abona íntegramente en los [X] días siguientes a la recepción de este escrito, se aplicará un descuento del [X]% sobre el principal."},
+    {ttl:"Intereses de demora (Ley 3/2004)", text:"En defecto de pago, la deuda devengará el interés de demora previsto en el art. 7 de la Ley 3/2004 (tipo del Banco Central Europeo más ocho puntos) desde la fecha de vencimiento de cada factura."},
+    {ttl:"Indemnización por costes de cobro", text:"Conforme al art. 8 de la Ley 3/2004, la parte acreedora tiene derecho a una cantidad fija de 40 € por cada factura impagada en concepto de costes de cobro, que se reclamará si no se acepta la oferta."},
+    {ttl:"Suspensión de nuevos servicios", text:"Hasta la regularización de la deuda, la parte acreedora suspenderá la prestación de nuevos servicios o entregas a la parte deudora."},
+    {ttl:"Advertencia de costas y honorarios", text:"Se advierte de que la vía judicial incrementará la deuda con las costas procesales y los honorarios profesionales que correspondan."},
+    {ttl:"Ofrecimiento de mediación", text:"Con carácter alternativo, se ofrece acudir a una sesión de mediación ante un tercero neutral para intentar alcanzar un acuerdo."}
+  ],
   "contrato-larga":[
     {ttl:"Mascotas", text:"Se permite / no se permite la tenencia de animales de compañía en la vivienda; de permitirse, el arrendatario responderá de los daños que ocasionen."},
     {ttl:"Gastos de comunidad", text:"Los gastos ordinarios de la comunidad de propietarios correrán a cargo de [arrendador/arrendatario], por un importe aproximado de [X] € al mes."},
@@ -509,7 +560,7 @@ var LIBRARY = {
 };
 
 /* ====================== ESTADO Y RENDER ====================== */
-var ORDER = ["contrato-larga","contrato-habitacion","contrato-temporada","ovc-impago"];
+var ORDER = ["contrato-larga","contrato-habitacion","contrato-temporada","ovc-impago","ovc-deuda"];
 var current = location.hash ? location.hash.slice(1) : "contrato-larga";
 if(!CONFIG[current]) current = "contrato-larga";
 var values = {};

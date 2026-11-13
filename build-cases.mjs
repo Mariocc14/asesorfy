@@ -648,7 +648,7 @@ function render(p) {
 
 <p class="note"><strong>Aviso legal.</strong> Contenido informativo y orientativo sobre normativa española, revisado el ${TODAY_TXT}. No constituye asesoramiento jurídico personalizado. La calificación del contrato y las obligaciones aplicables dependen de las circunstancias reales de cada caso, de la fecha de firma y, cuando corresponda, de la normativa autonómica o local. Para asuntos que requieran procedimiento judicial, consulta con un abogado colegiado.</p>
 
-</main><footer><div class="wrap">© 2026 Asesorfy · Documentos legales para propietarios · Normativa española</div><div class="wrap" data-legalbar style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px"><a href="../sobre.html">Sobre Asesorfy</a><a href="../aviso-legal.html">Aviso legal</a><a href="../privacidad.html">Privacidad</a><a href="../condiciones.html">Condiciones</a><a href="../cookies.html">Cookies</a></div></footer></body></html>`;
+</main><footer><div class="wrap">© 2026 Asesorfy · Documentos y herramientas legales · Normativa española</div><div class="wrap" data-legalbar style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px"><a href="../sobre.html">Sobre Asesorfy</a><a href="../aviso-legal.html">Aviso legal</a><a href="../privacidad.html">Privacidad</a><a href="../condiciones.html">Condiciones</a><a href="../cookies.html">Cookies</a></div></footer></body></html>`;
 }
 
 fs.mkdirSync("casos", { recursive: true });
