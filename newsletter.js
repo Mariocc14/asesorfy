@@ -23,7 +23,7 @@
         .then(function (r) { return r.json().then(function (d) { return { status: r.status, d: d }; }); })
         .then(function (x) {
           if (x.d && x.d.ok) {
-            setMsg(form, 'Listo. Te avisaremos cuando cambie algo que afecte a tu alquiler.', true);
+            setMsg(form, 'Listo. Te avisaremos cuando cambie algo que te afecte.', true);
             form.reset();
             if (window.asesorfyTrack) asesorfyTrack('newsletter_subscribed', { source: form.getAttribute('data-newsletter') || location.pathname });
           } else if (x.d && x.d.error === 'not_configured') {

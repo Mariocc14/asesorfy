@@ -1,12 +1,16 @@
 # Asesorfy
 
-Documentos legales para propietarios en España, actualizados a la normativa de 2026.
+Herramientas y documentos legales para empresas, autónomos y propietarios en España. Información orientativa, no asesoramiento jurídico (no hay abogado detrás).
 Web estática + generador interactivo de documentos + pago con Stripe (funciones serverless en Vercel).
 
 ## Estructura
 
 ```
-index.html                 Web principal (carrusel de documentos)
+index.html                 Home de empresas (buscador + herramientas). GENERADA por scripts/build-empresas.mjs
+alquiler.html              Antigua home de propietarios (línea de alquiler)
+herramientas/              Herramientas gratis (generadas por scripts/build-empresas.mjs):
+                           revisar-contrato, traductor-legal (IA) y generadores de privacidad, aviso legal y cookies
+assets/site.css            Estilos de la home de empresas y las herramientas
 documentos.html            Catálogo con buscador
 generador.html             Generador interactivo + pago Stripe
 blog.html, blog-*.html     Blog y artículos (SEO)
@@ -14,7 +18,9 @@ documentos/                PDFs de muestra
 package.json               Dependencia de Stripe
 api/
   ├─ create-checkout-session.js   Crea el pago (precio fijado en el servidor)
-  └─ verify-session.js            Verifica el pago antes de desbloquear
+  ├─ verify-session.js            Verifica el pago antes de desbloquear
+  ├─ herramienta-ia.js            Revisor de contratos y traductor legal (Claude): resumen gratis + informe cifrado
+  └─ herramienta-informe.js       Desbloquea el informe con el email y lo envía por Brevo
 ```
 
 ## Despliegue (resumen)
@@ -55,5 +61,11 @@ Cada push a `main` despliega en Vercel. Para probar a mano: `node scripts/valida
 | `BREVO_SENDER_EMAIL` | Remitente verificado en Brevo (p. ej. `hola@asesorfy.app`). |
 | `BREVO_LIST_ID` | Id de la lista de Brevo donde entran las altas de alertas normativas. |
 | `CONTACT_TO` | Buzón que recibe las consultas (por defecto `hola@asesorfy.app`). |
+| `ANTHROPIC_API_KEY` | Revisor de contratos y traductor legal. Sin ella, las dos herramientas devuelven 503 con un mensaje claro. |
+| `TOOLS_SECRET` | Opcional. Secreto para cifrar el informe entre el resumen y el email; si falta, se deriva de `ANTHROPIC_API_KEY`. |
 
 `vercel.json` fija las cabeceras de seguridad y caché y las redirecciones limpias (`/blog`, `/documentos`, `/asesoria`, `/calculadora`, `/sobre`).
+
+## Home de empresas y herramientas
+
+`node scripts/build-empresas.mjs` regenera `index.html` y `herramientas/*.html` (textos, FAQ, buscador con el índice de guías). No edites esos HTML a mano. Después, `node scripts/build-llms.mjs`.

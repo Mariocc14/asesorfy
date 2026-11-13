@@ -21,7 +21,7 @@ const page = (f) => {
 };
 
 const statics = [
-  ["index.html", "Inicio"], ["documentos.html", "Catálogo de documentos"], ["generador.html", "Generador de documentos (pago único)"],
+  ["index.html", "Inicio: herramientas y documentos legales para empresas"], ["herramientas/index.html", "Herramientas legales gratis"], ["herramientas/revisar-contrato.html", "Revisor de contratos con IA (gratis)"], ["herramientas/traductor-legal.html", "Traductor de textos legales a lenguaje claro (gratis)"], ["herramientas/generador-politica-privacidad.html", "Generador de política de privacidad (gratis)"], ["herramientas/generador-aviso-legal.html", "Generador de aviso legal (gratis)"], ["herramientas/generador-politica-cookies.html", "Generador de política de cookies (gratis)"], ["alquiler.html", "Documentos legales para propietarios (alquiler)"], ["documentos.html", "Catálogo de documentos"], ["generador.html", "Generador de documentos (pago único)"],
   ["calculadora-rentabilidad-alquiler.html", "Calculadora de rentabilidad del alquiler"], ["asesoria.html", "Asesoría de 30 minutos por videollamada (20 €)"],
   ["sobre.html", "Quién está detrás de Asesorfy y cómo se revisan los documentos"],
 ].filter(([f]) => fs.existsSync(path.join(root, f))).map(([f, label]) => ({ ...page(f), label }));
