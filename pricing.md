@@ -37,14 +37,6 @@ Documentos legales para propietarios y pequeños caseros en España. Normativa e
 - Para qué sirve: desde abril de 2025 hay que intentar un medio adecuado de solución de controversias antes de demandar por impago de alquiler; sin ese intento la demanda no se admite
 - Formato: Word y PDF
 
-## Asesoría de orientación
-
-- Precio: 39 € — 30 minutos por videollamada
-- URL: https://asesorfy.app/asesoria.html
-- Disponibilidad: lunes a viernes
-- Reserva y pago: Cal.com con Stripe
-- Qué es: orientación sobre tu caso concreto (impago, contrato, fianza, subida de renta, fin de contrato) e indicación de qué documento encaja y cuáles son los siguientes pasos
-- Qué no es: no sustituye la representación letrada ni el asesoramiento jurídico personalizado
 
 ## Gratis, sin registro
 

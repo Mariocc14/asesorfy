@@ -37,7 +37,6 @@ if (!html.includes('<meta name="author" content="Asesorfy">')) errors.push("falt
 if (!html.includes("/posthog-analytics.js")) errors.push("falta el script de PostHog");
 if (!html.includes("/_vercel/insights/script.js")) errors.push("falta Vercel insights");
 if (!html.includes('href="/brand.css"')) errors.push("falta brand.css");
-if (!html.includes('data-asesoria-banner')) errors.push("falta el banner de asesoría");
 if (!html.includes('<p class="lead">')) errors.push("falta el párrafo .lead");
 if (!/<div class="note"><strong>Respuesta corta:<\/strong>/.test(html)) errors.push('falta el bloque <div class="note"><strong>Respuesta corta:</strong> …');
 if (!/<div class="meta">Publicado y revisado el /.test(html)) errors.push('falta <div class="meta">Publicado y revisado el …');
@@ -104,9 +103,9 @@ for (const h of new Set(internalHrefs)) {
 }
 const blogLinks = new Set(internalHrefs.filter(h => /^blog-.*\.html$/.test(h) && h !== rel));
 if (blogLinks.size < 3) errors.push(`solo ${blogLinks.size} enlaces a otros artículos (mínimo 3 distintos)`);
-if (!internalHrefs.some(h => /^(generador\.html|documentos\.html|casos\/.*\.html|asesoria\.html)$/.test(h))) errors.push("no enlaza a ningún producto (generador.html, documentos.html, casos/ o asesoria.html)");
+if (!internalHrefs.some(h => /^(generador\.html|documentos\.html|casos\/.*\.html|\/?herramientas\/[a-z-]+)$/.test(h))) errors.push("no enlaza a ningún producto (generador.html, documentos.html, casos/ o herramientas/)");
 const bodyCta = html.split('<div class="cta">')[1] || "";
-if (!/href="(generador\.html(#[a-z-]+)?|documentos\.html|casos\/[a-z0-9-]+\.html|asesoria\.html)"/.test(bodyCta)) errors.push("el .cta debe enlazar a un producto o a la asesoría");
+if (!/href="(generador\.html(#[a-z-]+)?|documentos\.html|casos\/[a-z0-9-]+\.html|\/?herramientas\/[a-z-]+)"/.test(bodyCta)) errors.push("el .cta debe enlazar a un producto o a la asesoría");
 
 const OFFICIAL = /(boe\.es|ine\.es|agenciatributaria\.gob\.es|sede\.agenciatributaria\.gob\.es|mivau\.gob\.es|mjusticia\.gob\.es|poderjudicial\.es|aepd\.es|registradores\.org|notariado\.org|seg-social\.es|europa\.eu|catastro\.|lamoncloa\.gob\.es|\.gob\.es|\.gencat\.cat|comunidad\.madrid|juntadeandalucia\.es|gva\.es|euskadi\.eus|xunta\.gal|navarra\.es|aragon\.es|castillalamancha\.es|jcyl\.es|carm\.es|caib\.es|gobiernodecanarias\.org|asturias\.es|cantabria\.es|larioja\.org|juntaex\.es|ceuta\.es|melilla\.es)/;
 // Solo cuentan los enlaces <a> (no <link> de fuentes ni scripts).
