@@ -6,16 +6,16 @@ Productos (pago único, entrega en Word): contrato de larga duración 5,99 €, 
 
 ## Páginas principales
 
-- [Inicio: herramientas y documentos legales para empresas](https://asesorfy.app/index.html): Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Herramientas gratis y documentos para empresas, autónomos y propietarios en España.
+- [Inicio: herramientas y documentos legales para empresas](https://asesorfy.app/index.html): Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Herramientas gratis y documentos para empresas, autónomos y particulares en España.
 - [Herramientas legales gratis](https://asesorfy.app/herramientas/index.html): Revisor de contratos con IA, traductor de textos legales y generadores de política de privacidad, aviso legal y cookies. Gratis y sin registro.
 - [Revisor de contratos con IA (gratis)](https://asesorfy.app/herramientas/revisar-contrato.html): Pega tu contrato y descubre gratis, en lenguaje claro, qué cláusulas te pueden perjudicar, qué falta y qué preguntar antes de firmar.
 - [Traductor de textos legales a lenguaje claro (gratis)](https://asesorfy.app/herramientas/traductor-legal.html): Pega un contrato, unas condiciones o una carta oficial y te lo explicamos gratis parte por parte, en lenguaje claro: qué te obliga y qué te permite.
 - [Generador de política de privacidad (gratis)](https://asesorfy.app/herramientas/generador-politica-privacidad.html): Crea gratis la política de privacidad de tu web, adaptada al RGPD y a la LOPDGDD. Rellena el formulario y cópiala al momento. Sin registro.
 - [Generador de aviso legal (gratis)](https://asesorfy.app/herramientas/generador-aviso-legal.html): Crea gratis el aviso legal de tu web según el artículo 10 de la LSSI, para empresas y autónomos. Rellena tus datos y cópialo al momento.
 - [Generador de política de cookies (gratis)](https://asesorfy.app/herramientas/generador-politica-cookies.html): Crea gratis la política de cookies de tu web con la tabla de cookies de Google Analytics, Meta, Hotjar y más, según la guía de la AEPD.
-- [Documentos legales para propietarios (alquiler)](https://asesorfy.app/alquiler.html): Documentos legales fiables para caseros y propietarios en España, actualizados a la normativa 2026. Basados en el Código Civil, la LAU y el BOE.
-- [Catálogo de documentos](https://asesorfy.app/documentos.html): Todos los documentos legales para propietarios de Asesorfy, con buscador. Contratos de alquiler, habitación, temporada e impago, al día con la ley de 2026.
-- [Generador de documentos (pago único)](https://asesorfy.app/generador.html): Crea online un contrato de alquiler de vivienda, habitación o temporada y un escrito MASC por impago. Personaliza las cláusulas y previsualiza el documento.
+- [Documentos legales para propietarios (alquiler)](https://asesorfy.app/alquiler.html): Contratos de alquiler y escritos para reclamar impagos en España, actualizados a la normativa de 2026. Basados en el Código Civil, la LAU y el BOE.
+- [Catálogo de documentos](https://asesorfy.app/documentos.html): Todos los documentos legales de Asesorfy, con buscador: contratos de alquiler y escritos para reclamar impagos de alquiler o de facturas, al día con la ley de 2026.
+- [Generador de documentos (pago único)](https://asesorfy.app/generador.html): Crea online un contrato de alquiler de vivienda, habitación o temporada, o el escrito MASC para reclamar un impago de alquiler o de facturas. Personaliza las cláusulas y previsualiza el documento.
 - [Calculadora de rentabilidad del alquiler](https://asesorfy.app/calculadora-rentabilidad-alquiler.html): Calcula gratis la rentabilidad bruta y neta de un alquiler, el flujo de caja mensual y los años de recuperación. Incluye gastos y meses sin alquilar.
 - [Quién está detrás de Asesorfy y cómo se revisan los documentos](https://asesorfy.app/sobre.html): Asesorfy lo crea y mantiene Mario Calvo Castillo desde Córdoba. Cómo elaboramos y actualizamos cada contrato y guía con el BOE, qué somos y qué no somos.
 

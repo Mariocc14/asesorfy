@@ -1,6 +1,6 @@
 /* Genera la home de empresas (index.html) y las herramientas gratis (herramientas/*.html).
    Uso: node scripts/build-empresas.mjs
-   La home anterior de propietarios vive ahora en alquiler.html (no la genera este script).
+   La home anterior de alquiler vive ahora en alquiler.html (no la genera este script).
    Edita los textos aquí y vuelve a ejecutarlo; no edites a mano los HTML generados. */
 import fs from "node:fs";
 import path from "node:path";
@@ -54,7 +54,8 @@ function searchIndex() {
   const items = TOOLS.map((t) => ({ t: t.name, d: t.line, u: toolUrl(t), k: t.kw, g: "tool", i: t.ic }));
   const docs = [
     ["Contrato de alquiler de vivienda (gratis)", "Contrato de larga duración conforme a la LAU, actualizado a 2026.", "/generador.html#contrato-larga", "contrato alquiler vivienda habitual larga duracion lau modelo"],
-    ["Kit Impago + MASC", "El escrito previo obligatorio antes de demandar a un inquilino que no paga.", "/generador.html#ovc-impago", "impago inquilino no paga desahucio masc oferta vinculante burofax"],
+    ["Kit Impago facturas + MASC", "El escrito obligatorio antes de reclamar en el juzgado a un cliente que no paga sus facturas.", "/generador.html#ovc-deuda", "impago factura facturas cliente no paga deuda cobrar reclamar moroso masc oferta vinculante burofax morosidad"],
+    ["Kit Impago alquiler + MASC", "El escrito obligatorio antes de reclamar un impago de alquiler en el juzgado.", "/generador.html#ovc-impago", "impago inquilino no paga desahucio masc oferta vinculante burofax alquiler renta"],
     ["Contrato de alquiler de habitación", "Para alquilar por habitaciones con el régimen legal correcto.", "/generador.html#contrato-habitacion", "habitacion piso compartido contrato alquiler"],
     ["Contrato de alquiler de temporada", "Alquiler por temporada con su causa bien justificada.", "/generador.html#contrato-temporada", "temporada estudiantes trabajo contrato alquiler"],
     ["Calculadora de rentabilidad del alquiler", "Calcula la rentabilidad bruta y neta de un piso alquilado.", "/calculadora-rentabilidad-alquiler.html", "rentabilidad calculadora alquiler inversion piso"],
@@ -125,10 +126,10 @@ function footer() {
     <div class="cols">
       <div>
         <a href="/" class="brand"><img class="brand-mark" src="/assets/asesorfy-mark.svg" alt="" width="32" height="32"><span class="brand-name">Asesor<span class="brand-accent">fy</span></span></a>
-        <p>Herramientas y documentos legales para empresas, autónomos y propietarios en España. Información clara, no asesoramiento jurídico.</p>
+        <p>Herramientas y documentos legales para empresas, autónomos y particulares en España. Información clara, no asesoramiento jurídico.</p>
       </div>
       <div><h4>Herramientas</h4><ul>${TOOLS.map((t) => `<li><a href="${toolUrl(t)}">${t.short}</a></li>`).join("")}</ul></div>
-      <div><h4>Alquiler</h4><ul><li><a href="/alquiler.html">Documentos para propietarios</a></li><li><a href="/generador.html#contrato-larga">Contrato de alquiler gratis</a></li><li><a href="/generador.html#ovc-impago">Kit Impago</a></li><li><a href="/calculadora-rentabilidad-alquiler.html">Calculadora de rentabilidad</a></li></ul></div>
+      <div><h4>Documentos</h4><ul><li><a href="/generador.html#ovc-deuda">Kit Impago facturas</a></li><li><a href="/generador.html#ovc-impago">Kit Impago alquiler</a></li><li><a href="/generador.html#contrato-larga">Contrato de alquiler gratis</a></li><li><a href="/documentos.html">Todos los documentos</a></li></ul></div>
       <div><h4>Asesorfy</h4><ul><li><a href="/blog.html">Guías</a></li><li><a href="/sobre.html">Quién está detrás</a></li><li><a href="/#contacto">Contacto</a></li><li><a href="mailto:hola@asesorfy.app">hola@asesorfy.app</a></li></ul></div>
     </div>
     <div class="legal"><span>© ${new Date().getFullYear()} Asesorfy · Información orientativa, no asesoramiento jurídico</span><a href="/aviso-legal.html">Aviso legal</a><a href="/privacidad.html">Privacidad</a><a href="/condiciones.html">Condiciones</a><a href="/cookies.html">Cookies</a></div>
@@ -435,7 +436,7 @@ function home() {
   const guides = idx.filter((x) => x.g === "guide").slice(0, 6);
   const h = head({
     title: "Asesorfy · Herramientas y documentos legales para empresas",
-    desc: "Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Herramientas gratis y documentos para empresas, autónomos y propietarios en España.",
+    desc: "Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Herramientas gratis y documentos para empresas, autónomos y particulares en España.",
     url,
     jsonld: [{ "@context": "https://schema.org", "@graph": [
       { "@type": "Organization", "@id": `${DOMAIN}/#organization`, name: "Asesorfy", url: DOMAIN + "/", logo: `${DOMAIN}/assets/asesorfy-mark.svg`, email: "hola@asesorfy.app", areaServed: "ES", founder: { "@type": "Person", name: "Mario Calvo Castillo", url: `${DOMAIN}/sobre.html` }, address: { "@type": "PostalAddress", addressLocality: "Córdoba", addressCountry: "ES" } },
@@ -450,7 +451,7 @@ function home() {
   <section class="desk">
     <div class="wrap">
       <h1>¿Qué necesitas resolver hoy?</h1>
-      <p class="lede">Herramientas gratis y documentos legales para empresas, autónomos y propietarios en España. Escríbelo con tus palabras.</p>
+      <p class="lede">Herramientas gratis y documentos legales para empresas, autónomos y particulares en España. Escríbelo con tus palabras.</p>
       <form class="ask" role="search" action="/herramientas" data-search>
         <label for="q" class="hp">Busca lo que necesitas</label>
         <span class="ask-ic">${ICON.search}</span>
@@ -500,23 +501,23 @@ function home() {
   <section id="recursos" class="rent">
     <div class="wrap rent-in">
       <div>
-        <h2>¿Alquilas un piso o un local?</h2>
-        <p>Contratos al día con la LAU de 2026, el escrito obligatorio antes de demandar por impago y una calculadora de rentabilidad. La línea con la que empezó Asesorfy.</p>
-        <a class="btn ghost" href="/alquiler.html" data-cta="home-alquiler">Ver documentos de alquiler ${ICON.arrow}</a>
+        <h2>Contratos y escritos, listos para usar</h2>
+        <p>Para reclamar un impago antes de ir al juzgado, como exige la ley desde 2025, o para alquilar un piso, una habitación o un local con un contrato al día.</p>
+        <a class="btn ghost" href="/documentos.html" data-cta="home-documentos">Ver todos los documentos ${ICON.arrow}</a>
       </div>
       <ul class="rent-list">
+        <li><a href="/generador.html#ovc-deuda">Kit Impago facturas <span>Clientes que no pagan</span></a></li>
+        <li><a href="/generador.html#ovc-impago">Kit Impago alquiler <span>Inquilinos que no pagan</span></a></li>
         <li><a href="/generador.html#contrato-larga">Contrato de alquiler de vivienda <span>Gratis con tu email</span></a></li>
-        <li><a href="/generador.html#ovc-impago">Kit Impago + MASC <span>Antes de demandar</span></a></li>
         <li><a href="/generador.html#contrato-habitacion">Contrato de habitación <span>Piso compartido</span></a></li>
         <li><a href="/generador.html#contrato-temporada">Contrato de temporada <span>Estudiantes o trabajo</span></a></li>
-        <li><a href="/calculadora-rentabilidad-alquiler.html">Calculadora de rentabilidad <span>Gratis</span></a></li>
       </ul>
     </div>
   </section>
 
   <section id="casos" class="soft">
     <div class="wrap">
-      <div class="sec-head"><h2>Guías para propietarios</h2><p>Explicaciones paso a paso sobre alquiler, con la norma citada y actualizadas.</p></div>
+      <div class="sec-head"><h2>Guías prácticas</h2><p>Explicaciones paso a paso, con la norma citada y actualizadas.</p></div>
       <ul class="guide-list">${guides.map((g) => `<li><a href="${g.u}"><b>${esc(g.t)}</b><span>${esc(g.d)}</span></a></li>`).join("")}</ul>
       <p style="margin-top:22px"><a class="btn ghost" href="/blog.html">Ver todas las guías ${ICON.arrow}</a></p>
     </div>
