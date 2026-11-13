@@ -64,7 +64,7 @@ Cada push a `main` despliega en Vercel. Para probar a mano: `node scripts/valida
 | `ANTHROPIC_API_KEY` | Revisor de contratos y traductor legal. Sin ella, las dos herramientas devuelven 503 con un mensaje claro. |
 | `TOOLS_SECRET` | Opcional. Secreto para cifrar el informe entre el resumen y el email; si falta, se deriva de `ANTHROPIC_API_KEY`. |
 
-`vercel.json` fija las cabeceras de seguridad y caché y las redirecciones limpias (`/blog`, `/documentos`, `/asesoria`, `/calculadora`, `/sobre`).
+`vercel.json` fija las cabeceras de seguridad y caché y las redirecciones limpias (`/blog`, `/documentos`, `/asesoria` (→ revisor de contratos), `/calculadora`, `/sobre`).
 
 ## Home de empresas y herramientas
 

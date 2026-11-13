@@ -107,7 +107,7 @@ Cada artículo DEBE cumplir:
 6. **FAQ espejo**: 5–8 preguntas `<h3>¿…?` con respuesta directa en 2–3 frases, idénticas en el bloque `FAQPage` del JSON-LD.
 7. **Fuentes oficiales consultadas**: sección propia con 2–6 enlaces a BOE, INE, AEAT, ministerios, CGPJ o portales autonómicos, cada uno con una línea que diga qué aporta y la fecha de consulta.
 8. **Definiciones extractables**: cada término clave (MASC, OVC, IRAV, gran tenedor, tácita reconducción…) se define en una frase autocontenida la primera vez que aparece.
-9. **Enlaces internos con contexto**: 3–6 a guías existentes, 1 al producto o asesoría en el `.cta`, y un enlace nuevo desde 1–2 artículos antiguos relacionados hacia el nuevo (para que la autoridad fluya).
+9. **Enlaces internos con contexto**: 3–6 a guías existentes, 1 al producto o a una herramienta gratis (p. ej. /herramientas/revisar-contrato) en el `.cta`, y un enlace nuevo desde 1–2 artículos antiguos relacionados hacia el nuevo (para que la autoridad fluya).
 10. **Tono**: segunda persona, frases cortas, una idea por frase, lenguaje llano y neutro. Sin relleno, sin marketing, sin "no es X, es Y", sin emojis.
 11. **Sin keyword stuffing**: la palabra clave va en title, H1, description, primer párrafo, una H2 y el slug; el resto, lenguaje natural con sinónimos.
 

@@ -8,6 +8,11 @@
       "permanent": true
     },
     {
+      "source": "/asesoria.html",
+      "destination": "/herramientas/revisar-contrato",
+      "permanent": true
+    },
+    {
       "source": "/blog",
       "destination": "/blog.html",
       "permanent": true
@@ -19,7 +24,7 @@
     },
     {
       "source": "/asesoria",
-      "destination": "/asesoria.html",
+      "destination": "/herramientas/revisar-contrato",
       "permanent": true
     },
     {
