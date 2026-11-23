@@ -214,7 +214,7 @@ const GEN = {
   },
   "generador-aviso-legal": {
     gen: "avisoLegal", file: "aviso-legal",
-    title: "Generador de aviso legal gratis para tu web (LSSI) | Asesorfy",
+    title: "Generador de aviso legal gratis para tu web (LSSI)",
     desc: "Crea gratis el aviso legal de tu web según el artículo 10 de la LSSI, para empresas y autónomos. Rellena tus datos y cópialo al momento.",
     h1: "Generador de aviso legal",
     lede: "Toda web de empresa o autónomo debe identificar a su titular (artículo 10 de la LSSI). Rellena tus datos y el aviso legal se escribe solo, listo para copiar.",
@@ -235,7 +235,7 @@ const GEN = {
   },
   "generador-politica-cookies": {
     gen: "cookies", file: "politica-de-cookies",
-    title: "Generador de política de cookies gratis (guía AEPD) | Asesorfy",
+    title: "Generador de política de cookies gratis (guía AEPD)",
     desc: "Crea gratis la política de cookies de tu web con la tabla de cookies de Google Analytics, Meta, Hotjar y más, según la guía de la AEPD.",
     h1: "Generador de política de cookies",
     lede: "Marca las herramientas que usa tu web y obtén la política de cookies con su tabla de cookies, según el artículo 22.2 de la LSSI y la guía de la AEPD.",
@@ -317,7 +317,7 @@ ${footer()}`;
 const AI = {
   "revisar-contrato": {
     tool: "revisar",
-    title: "Revisar contrato gratis con IA: cláusulas abusivas y riesgos | Asesorfy",
+    title: "Revisar contrato gratis con IA: cláusulas abusivas y riesgos",
     desc: "Pega tu contrato y descubre gratis, en lenguaje claro, qué cláusulas te pueden perjudicar, qué falta y qué preguntar antes de firmar.",
     h1: "Revisa tu contrato antes de firmarlo",
     lede: "Pega el contrato o sube el PDF. En menos de un minuto te decimos qué cláusulas te pueden perjudicar, qué falta y qué conviene preguntar antes de firmar.",
@@ -335,7 +335,7 @@ const AI = {
   },
   "traductor-legal": {
     tool: "traducir",
-    title: "Traductor de textos legales a lenguaje claro (gratis) | Asesorfy",
+    title: "Traductor de textos legales a lenguaje claro (gratis)",
     desc: "Pega un contrato, unas condiciones o una carta oficial y te lo explicamos gratis parte por parte, en lenguaje claro: qué te obliga y qué te permite.",
     h1: "Traduce cualquier texto legal a lenguaje claro",
     lede: "Condiciones generales, una cláusula que no entiendes o una carta de Hacienda: pégalo y te lo explicamos parte por parte, con lo que te obliga y lo que te permite.",
@@ -407,7 +407,7 @@ ${footer()}`;
 function toolsIndex() {
   const url = "/herramientas";
   const h = head({
-    title: "Herramientas legales gratis para empresas y autónomos | Asesorfy",
+    title: "Herramientas legales gratis para empresas y autónomos",
     desc: "Revisor de contratos con IA, traductor de textos legales y generadores de política de privacidad, aviso legal y cookies. Gratis y sin registro.",
     url, jsonld: [crumbLd("Herramientas"), { "@context": "https://schema.org", "@type": "ItemList", itemListElement: TOOLS.map((t, i) => ({ "@type": "ListItem", position: i + 1, url: DOMAIN + toolUrl(t), name: t.name })) }],
   });
@@ -436,7 +436,7 @@ function home() {
   const guides = idx.filter((x) => x.g === "guide").slice(0, 6);
   const h = head({
     title: "Asesorfy · Herramientas y documentos legales para empresas",
-    desc: "Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Herramientas gratis y documentos para empresas, autónomos y particulares en España.",
+    desc: "Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Gratis, para empresas y autónomos.",
     url,
     jsonld: [{ "@context": "https://schema.org", "@graph": [
       { "@type": "Organization", "@id": `${DOMAIN}/#organization`, name: "Asesorfy", url: DOMAIN + "/", logo: `${DOMAIN}/assets/asesorfy-mark.svg`, email: "hola@asesorfy.app", areaServed: "ES", founder: { "@type": "Person", name: "Mario Calvo Castillo", url: `${DOMAIN}/sobre.html` }, address: { "@type": "PostalAddress", addressLocality: "Córdoba", addressCountry: "ES" } },

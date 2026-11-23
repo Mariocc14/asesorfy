@@ -57,8 +57,8 @@ Vercel detecta solo la carpeta `api/` como funciones e instala Stripe gracias al
 
 ## Paso 5 — Conecta tu dominio
 
-1. Compra `asesorfy.es` (en cualquier registrador: Namecheap, Dinahosting, IONOS...).
-2. En Vercel → **Settings → Domains → Add**, escribe `asesorfy.es`.
+1. El dominio en uso es `asesorfy.app`. Si cambias o añades uno, cómpralo en cualquier registrador (Namecheap, Dinahosting, IONOS...).
+2. En Vercel → **Settings → Domains → Add**, escribe el dominio (y añade `www` con redirección 308 al dominio principal).
 3. Vercel te dirá qué apuntar (un registro A o CNAME) en el panel de tu registrador. Lo copias y listo (tarda unos minutos en propagar).
 
 ## Paso 6 — Pasar a cobrar de verdad
@@ -72,7 +72,8 @@ Vercel detecta solo la carpeta `api/` como funciones e instala Stripe gracias al
 
 ## Notas importantes
 
-- **Precios:** se fijan en el servidor (`api/create-checkout-session.js`), no en el navegador, para que nadie los manipule. Si cambias un precio, edítalo ahí (en céntimos: 5,99€ = `599`) **y** en la web.
+- **Precios:** se fijan en el servidor (`api/create-checkout-session.js`), no en el navegador, para que nadie los manipule. Si cambias un precio, edítalo ahí (en céntimos: 9,99 € = `999`) **y** en la web (`pricing.md`, `generador.html`, `documentos.html` y `llms.txt` con `node scripts/build-llms.mjs`).
+- **Precios actuales (noviembre de 2026, IVA incluido, pago único):** contrato de vivienda habitual gratis a cambio del email (no pasa por Stripe); contrato de habitación 9,99 € (`999`); contrato de temporada 9,99 € (`999`); Kit Impago alquiler + MASC 49 € (`4900`); Kit Impago facturas + MASC 49 € (`4900`). La asesoría de 30 minutos se retiró el 13 de noviembre de 2026. La referencia es `pricing.md`.
 - **Entrega del documento:** ahora, tras pagar, el documento se desbloquea y se descarga vía "imprimir a PDF". Más adelante conviene enviarlo también por email automático (con un webhook de Stripe) y, si quieres, generar el PDF en el servidor. Es el siguiente paso natural.
 - **Endurecer seguridad:** el desbloqueo verifica la sesión de pago con `verify-session`. Para mayor robustez, lo ideal es añadir un **webhook** de Stripe que confirme el pago de forma definitiva. No es imprescindible para arrancar.
 - **Aviso legal y RGPD:** antes de vender de verdad, añade páginas de Aviso legal, Política de privacidad, Términos de compra y Política de cookies. Son obligatorias para un ecommerce en España.
