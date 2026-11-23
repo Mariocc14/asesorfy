@@ -56,7 +56,7 @@ Cada push a `main` despliega en Vercel. Para probar a mano: `node scripts/valida
 
 | Variable | Para qué |
 |---|---|
-| `STRIPE_SECRET_KEY` | Cobro de documentos y asesoría. Sin ella, el pago devuelve 503. |
+| `STRIPE_SECRET_KEY` | Cobro de documentos. Sin ella, el pago devuelve 503. |
 | `BREVO_API_KEY` | Formulario de contacto y alertas por email. Sin ella, ambos devuelven `not_configured` y la web ofrece el email directo. |
 | `BREVO_SENDER_EMAIL` | Remitente verificado en Brevo (p. ej. `hola@asesorfy.app`). |
 | `BREVO_LIST_ID` | Id de la lista de Brevo donde entran las altas de alertas normativas. |

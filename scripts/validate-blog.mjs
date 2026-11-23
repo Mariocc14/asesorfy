@@ -111,7 +111,7 @@ const blogLinks = new Set(internalHrefs.filter(h => /^blog-.*\.html$/.test(h) &&
 if (blogLinks.size < 3) errors.push(`solo ${blogLinks.size} enlaces a otros artículos (mínimo 3 distintos)`);
 if (!internalHrefs.some(h => /^(generador\.html|documentos\.html|casos\/.*\.html|\/?herramientas\/[a-z-]+)$/.test(h))) errors.push("no enlaza a ningún producto (generador.html, documentos.html, casos/ o herramientas/)");
 const bodyCta = html.split('<div class="cta">')[1] || "";
-if (!/href="(generador\.html(#[a-z-]+)?|documentos\.html|casos\/[a-z0-9-]+\.html|\/?herramientas\/[a-z-]+)"/.test(bodyCta)) errors.push("el .cta debe enlazar a un producto o a la asesoría");
+if (!/href="(generador\.html(#[a-z-]+)?|documentos\.html|casos\/[a-z0-9-]+\.html|\/?herramientas\/[a-z-]+)"/.test(bodyCta)) errors.push("el .cta debe enlazar a un producto o a una herramienta gratis");
 
 const OFFICIAL = /(boe\.es|ine\.es|agenciatributaria\.gob\.es|sede\.agenciatributaria\.gob\.es|mivau\.gob\.es|mjusticia\.gob\.es|poderjudicial\.es|aepd\.es|registradores\.org|notariado\.org|seg-social\.es|europa\.eu|catastro\.|lamoncloa\.gob\.es|\.gob\.es|\.gencat\.cat|comunidad\.madrid|juntadeandalucia\.es|gva\.es|euskadi\.eus|xunta\.gal|navarra\.es|aragon\.es|castillalamancha\.es|jcyl\.es|carm\.es|caib\.es|gobiernodecanarias\.org|asturias\.es|cantabria\.es|larioja\.org|juntaex\.es|ceuta\.es|melilla\.es)/;
 // Solo cuentan los enlaces <a> (no <link> de fuentes ni scripts).
