@@ -69,7 +69,7 @@ Cada artículo DEBE cumplir:
 7. **Enlaces externos** a 1–2 fuentes oficiales (BOE, INE…) con `rel="noopener"`.
 8. **Meta:** `<title>` (~60 caracteres) y `<meta name="description">` (~155 caracteres) únicos.
 9. **Open Graph:** og:title, og:description, og:type=article.
-10. **Datos estructurados JSON-LD:** `Article` (con headline, datePublished, author Asesorfy, publisher) y, si hay preguntas, `FAQPage`. En un segundo bloque `<script type="application/ld+json">`, después del primero, `BreadcrumbList` (Inicio › Blog › título del artículo).
+10. **Datos estructurados JSON-LD:** `Article` (con headline, datePublished, author Person `{"@type":"Person","@id":"https://asesorfy.app/sobre.html#mario","name":"Mario Calvo Castillo","url":"https://asesorfy.app/sobre.html"}` y publisher Organization Asesorfy) y, si hay preguntas, `FAQPage`. En un segundo bloque `<script type="application/ld+json">`, después del primero, `BreadcrumbList` (Inicio › Blog › título del artículo).
 11. **Imágenes:** si se usan, con `alt` descriptivo (puede omitirse si no hay imágenes).
 12. **Canonical:** `<link rel="canonical">` a la URL del artículo.
 13. **Disclaimer legal** al final (informativo, no asesoramiento; normativa España).
@@ -103,7 +103,7 @@ Cada artículo DEBE cumplir:
 2. **Cubrir el abanico de subpreguntas** (query fan-out): antes de escribir, listar 5–10 preguntas relacionadas que un buscador con IA generaría y responder cada una en su propia `<h2>` en forma de pregunta real.
 3. **Al menos dos tablas** `.rules` con `<thead>`: comparativas, plazos, quién paga qué, requisitos por caso. Las tablas son lo más citado.
 4. **Datos concretos, fechados y con fuente en el texto**: artículo de ley, plazo, porcentaje, cuantía. "Según el art. X de la LAU…", "el INE publicó el IRAV de <mes> en…". Sin cifras inventadas: si no se puede verificar, no se escribe.
-5. **Fechas visibles**: "Publicado y revisado el <fecha>", `article:published_time`, `article:modified_time` y `dateModified` en JSON-LD. La frescura pesa mucho en ChatGPT y Perplexity.
+5. **Fechas y firma visibles**: `<div class="meta">Publicado y revisado el <time datetime="AAAA-MM-DD">…</time> · Por <a href="sobre.html" rel="author">Mario Calvo Castillo</a> · N min de lectura</div>`, `<meta name="author" content="Mario Calvo Castillo">`, el `<article class="article">` dentro de `<main id="contenido">`, `article:published_time`, `article:modified_time` y `dateModified` en JSON-LD. La frescura pesa mucho en ChatGPT y Perplexity.
 6. **FAQ espejo**: 5–8 preguntas `<h3>¿…?` con respuesta directa en 2–3 frases, idénticas en el bloque `FAQPage` del JSON-LD.
 7. **Fuentes oficiales consultadas**: sección propia con 2–6 enlaces a BOE, INE, AEAT, ministerios, CGPJ o portales autonómicos, cada uno con una línea que diga qué aporta y la fecha de consulta.
 8. **Definiciones extractables**: cada término clave (MASC, OVC, IRAV, gran tenedor, tácita reconducción…) se define en una frase autocontenida la primera vez que aparece.

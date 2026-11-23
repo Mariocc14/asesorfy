@@ -33,13 +33,17 @@ if (ogUrl !== canonical) errors.push("og:url no coincide con canonical");
 if (!/^\d{4}-\d{2}-\d{2}$/.test(published || "")) errors.push("falta article:published_time con formato AAAA-MM-DD");
 if (!/^\d{4}-\d{2}-\d{2}$/.test(modified || "")) errors.push("falta article:modified_time con formato AAAA-MM-DD");
 if (!html.includes('<html lang="es">')) errors.push("falta lang=es");
-if (!html.includes('<meta name="author" content="Asesorfy">')) errors.push("falta meta author");
+// Autor: persona real (Mario Calvo Castillo, ver sobre.html) con firma visible; la editorial es la Organization Asesorfy.
+const AUTHOR = { name: "Mario Calvo Castillo", url: `${DOMAIN}/sobre.html`, id: `${DOMAIN}/sobre.html#mario` };
+if (!html.includes(`<meta name="author" content="${AUTHOR.name}">`)) errors.push(`falta <meta name="author" content="${AUTHOR.name}">`);
+if (!html.includes(`Por <a href="sobre.html" rel="author">${AUTHOR.name}</a>`)) errors.push(`falta la firma visible en .meta: Por <a href="sobre.html" rel="author">${AUTHOR.name}</a>`);
+if (!/<main\b[^>]*>\s*<article class="article">/.test(html) || !/<\/article>\s*<\/main>/.test(html)) errors.push('el <article class="article"> debe ir dentro de <main>');
 if (!html.includes("/posthog-analytics.js")) errors.push("falta el script de PostHog");
 if (!html.includes("/_vercel/insights/script.js")) errors.push("falta Vercel insights");
 if (!html.includes('href="/brand.css"')) errors.push("falta brand.css");
 if (!html.includes('<p class="lead">')) errors.push("falta el párrafo .lead");
 if (!/<div class="note"><strong>Respuesta corta:<\/strong>/.test(html)) errors.push('falta el bloque <div class="note"><strong>Respuesta corta:</strong> …');
-if (!/<div class="meta">Publicado y revisado el /.test(html)) errors.push('falta <div class="meta">Publicado y revisado el …');
+if (!/<div class="meta">Publicado (y revisado )?el <time datetime="\d{4}-\d{2}-\d{2}">/.test(html)) errors.push('falta <div class="meta">Publicado y revisado el <time datetime="AAAA-MM-DD">… (o «Publicado el … · Revisado el …»)');
 if (!html.includes('<div class="cta">')) errors.push("falta el bloque .cta");
 if (!html.includes('<h2>Preguntas frecuentes</h2>')) errors.push("falta la sección Preguntas frecuentes");
 if (!html.includes('<h2>Fuentes oficiales consultadas</h2>')) errors.push("falta la sección Fuentes oficiales consultadas");
@@ -85,7 +89,9 @@ try {
     if (article.datePublished !== published) errors.push("JSON-LD datePublished no coincide con article:published_time");
     if (article.dateModified !== modified) errors.push("JSON-LD dateModified no coincide con article:modified_time");
     if (article.inLanguage !== "es-ES") errors.push("JSON-LD Article.inLanguage debe ser es-ES");
-    if (article.author?.name !== "Asesorfy" || article.publisher?.name !== "Asesorfy") errors.push("JSON-LD author/publisher deben ser Asesorfy");
+    const a = article.author;
+    if (a?.["@type"] !== "Person" || a?.name !== AUTHOR.name || a?.url !== AUTHOR.url || a?.["@id"] !== AUTHOR.id) errors.push(`JSON-LD author debe ser {"@type":"Person","@id":"${AUTHOR.id}","name":"${AUTHOR.name}","url":"${AUTHOR.url}"}`);
+    if (article.publisher?.["@type"] !== "Organization" || article.publisher?.name !== "Asesorfy") errors.push("JSON-LD publisher debe ser la Organization Asesorfy");
   }
   if (!faq) errors.push("JSON-LD sin FAQPage");
   else {
