@@ -69,7 +69,7 @@ Cada artículo DEBE cumplir:
 7. **Enlaces externos** a 1–2 fuentes oficiales (BOE, INE…) con `rel="noopener"`.
 8. **Meta:** `<title>` (~60 caracteres) y `<meta name="description">` (~155 caracteres) únicos.
 9. **Open Graph:** og:title, og:description, og:type=article.
-10. **Datos estructurados JSON-LD:** `Article` (con headline, datePublished, author Asesorfy, publisher) y, si hay preguntas, `FAQPage`.
+10. **Datos estructurados JSON-LD:** `Article` (con headline, datePublished, author Asesorfy, publisher) y, si hay preguntas, `FAQPage`. En un segundo bloque `<script type="application/ld+json">`, después del primero, `BreadcrumbList` (Inicio › Blog › título del artículo).
 11. **Imágenes:** si se usan, con `alt` descriptivo (puede omitirse si no hay imágenes).
 12. **Canonical:** `<link rel="canonical">` a la URL del artículo.
 13. **Disclaimer legal** al final (informativo, no asesoramiento; normativa España).
