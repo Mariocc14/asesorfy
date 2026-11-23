@@ -502,7 +502,7 @@ function home() {
     <div class="wrap rent-in">
       <div>
         <h2>Contratos y escritos, listos para usar</h2>
-        <p>Para reclamar un impago antes de ir al juzgado, como exige la ley desde 2025, o para alquilar un piso, una habitación o un local con un contrato al día.</p>
+        <p>Para reclamar un impago antes de ir al juzgado, como exige la ley desde 2025, o para alquilar un piso, una habitación o un local con un contrato al día. Los contratos de alquiler están actualizados al Real Decreto-ley 29/2026 (BOE del 7 de octubre de 2026).</p>
         <a class="btn ghost" href="/documentos.html" data-cta="home-documentos">Ver todos los documentos ${ICON.arrow}</a>
       </div>
       <ul class="rent-list">
