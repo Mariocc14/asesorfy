@@ -43,6 +43,11 @@
       "permanent": true
     },
     {
+      "source": "/herramientas/index.html",
+      "destination": "/herramientas",
+      "permanent": true
+    },
+    {
       "source": "/herramientas/:slug.html",
       "destination": "/herramientas/:slug",
       "permanent": true

@@ -4,13 +4,14 @@
 import fs from "node:fs";
 
 const DOMAIN = "https://asesorfy.app";
-const TODAY = "2026-09-17";
-const TODAY_TXT = "17 de septiembre de 2026";
+const TODAY = "2026-11-23";
+const TODAY_TXT = "23 de noviembre de 2026";
 const LAU = "https://www.boe.es/buscar/act.php?id=BOE-A-1994-26003";
 const CC = "https://www.boe.es/buscar/act.php?id=BOE-A-1889-4763";
 const MASC = "https://www.boe.es/eli/es/lo/2025/01/02/1/con";
 const NRUA = "https://www.boe.es/buscar/act.php?id=BOE-A-2024-26931";
 const VIVIENDA = "https://www.boe.es/buscar/act.php?id=BOE-A-2023-12203";
+const RDL = "https://www.boe.es/buscar/act.php?id=BOE-A-2026-20823";
 const INE_IRAV = "https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736169807";
 
 const pages = [
@@ -21,7 +22,7 @@ const pages = [
     meta: "Modelo de contrato de alquiler de vivienda habitual conforme a la LAU: duración mínima, prórrogas, fianza, desistimiento e IRAV, explicado cláusula a cláusula.",
     intro: "Un contrato de vivienda habitual se rige por reglas que no puedes cambiar aunque ambas partes firmen lo contrario. Este modelo las respeta, cita su base legal y te deja decidir solo lo que de verdad es negociable.",
     key: "contrato-larga", product: "Contrato de larga duración", price: "Gratis", free: true,
-    law: "Ley 29/1994 de Arrendamientos Urbanos, especialmente arts. 9, 10, 11, 18, 20 y 36.", lawUrl: LAU,
+    law: "Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026, especialmente arts. 9, 10, 11, 18, 20 y 36.", lawUrl: LAU,
     context: [
       "El arrendamiento de vivienda habitual es el único que la Ley de Arrendamientos Urbanos protege con reglas imperativas en favor del inquilino. El artículo 6 de la LAU dice que cualquier pacto que perjudique al arrendatario frente a lo previsto en el Título II es nulo. En la práctica significa que una cláusula puede estar firmada por las dos partes y no valer nada delante de un juez.",
       "Eso cambia la forma de redactar el contrato. No se trata de proteger al propietario apretando cláusulas, porque las que aprietan de más se caen; se trata de dejar bien atados los puntos donde la ley sí admite pacto: la renta y su forma de pago, la duración inicial, el reparto de gastos, las garantías adicionales, el inventario y la necesidad de recuperar la vivienda.",
@@ -38,11 +39,11 @@ const pages = [
     ],
     clauses: [
       { t: "Destino como vivienda habitual", d: "Debe constar expresamente. Es lo que activa el régimen del Título II de la LAU y lo que evita discusiones posteriores sobre si el contrato era de temporada." },
-      { t: "Duración y prórrogas", d: "Aunque pactes un año, el contrato se prorroga por anualidades hasta cinco años, o siete si el arrendador es persona jurídica (art. 9.1 LAU). Superado ese plazo entra la prórroga tácita de hasta tres años más del art. 10.1." },
-      { t: "Renta y actualización", d: "La actualización anual solo procede si está pactada. En contratos firmados desde el 26 de mayo de 2023 la referencia es el IRAV que publica el INE, no el IPC." },
-      { t: "Fianza y garantía adicional", d: "La fianza legal es de una mensualidad (art. 36 LAU) y debe depositarse en el organismo de tu comunidad autónoma. La garantía adicional es otra cosa y tiene límites propios." },
-      { t: "Desistimiento del inquilino", d: "Puede irse pasados seis meses avisando con treinta días (art. 11 LAU). La indemnización de una mensualidad por año restante solo se puede exigir si figura en el contrato." },
-      { t: "Gastos y suministros", d: "Los suministros van a nombre del inquilino. Los gastos generales, comunidad e IBI incluidos, solo son repercutibles si se pactan por escrito y constan cuantificados (art. 20 LAU)." },
+      { t: "Duración y prórrogas", d: "Aunque pactes un año, el contrato se prorroga por anualidades hasta cinco años, o siete si el arrendador es persona jurídica (art. 9.1 LAU). Superado ese plazo entra la prórroga tácita de hasta tres años más del art. 10.1. Para contratos vigentes el 8 de octubre de 2026 cuya prórroga obligatoria termine antes del 31 de diciembre de 2028, la DF 5.ª del RDL 29/2026 permite al inquilino al corriente de pago pedir hasta dos años más." },
+      { t: "Renta y actualización", d: "La actualización anual solo procede si está pactada y nunca puede superar la variación del IRAV (art. 18.1 LAU tras el RDL 29/2026). Hasta el 31 de diciembre de 2027, sin un nuevo pacto, la subida no puede pasar del 2 % y no hay subida si la renta supera el índice de referencia (DF 6.ª)." },
+      { t: "Fianza y garantía adicional", d: "La fianza legal es de una mensualidad (art. 36 LAU) y debe depositarse en el organismo de tu comunidad autónoma. La garantía adicional no puede pasar de dos mensualidades en contratos de hasta cinco o siete años, y no se puede exigir al inquilino un seguro de impago (art. 36.5)." },
+      { t: "Desistimiento del inquilino", d: "Puede irse pasados seis meses avisando con treinta días (art. 11 LAU). Desde el RDL 29/2026 ese desistimiento no genera indemnización a favor del arrendador (art. 11.3)." },
+      { t: "Gastos y suministros", d: "Los suministros por contador son del inquilino. Los gastos generales solo son repercutibles si se pactan por escrito con su importe anual; los tributos de la vivienda, como el IBI, no se pueden imponer al inquilino salvo que sea el obligado tributario, y los gastos de gestión no se repercuten (art. 20 LAU)." },
       { t: "Conservación, obras y subarriendo", d: "El propietario conserva la habitabilidad; las pequeñas reparaciones del uso ordinario son del inquilino. El subarriendo y la cesión necesitan tu consentimiento escrito (art. 8 LAU)." },
       { t: "Necesidad de recuperar la vivienda", d: "Si prevés necesitarla para ti o un familiar de primer grado antes de los cinco años, tiene que estar pactado expresamente en el contrato. Si no se pactó, no puedes invocarlo después." }
     ],
@@ -70,15 +71,15 @@ const pages = [
       { t: "Usar un contrato de temporada para una necesidad permanente", d: "Si el juez aprecia que el destino real era vivienda habitual, aplica los plazos del Título II y el contrato que firmaste no te sirve de nada." },
       { t: "Acortar por contrato las prórrogas legales", d: "Una cláusula que fije dos años improrrogables es nula frente al inquilino. Solo consigue darte una falsa seguridad." },
       { t: "Mezclar fianza y garantía adicional", d: "Son figuras distintas con reglas distintas. Llamar fianza a tres mensualidades es un error frecuente que complica la devolución." },
-      { t: "No pactar la actualización de la renta", d: "Sin cláusula, la renta se queda congelada toda la vida del contrato aunque el IRAV suba." },
+      { t: "No pactar la actualización de la renta", d: "Sin cláusula, la renta se queda congelada toda la vida del contrato (art. 18.1 LAU)." },
       { t: "Entregar sin inventario ni fotos", d: "Al final del contrato no podrás justificar qué desperfecto es nuevo y cuál era desgaste ordinario." }
     ],
     faqs: [
       { q: "¿Cuánto dura como mínimo un contrato de vivienda habitual?", a: "Aunque pactes un plazo menor, se prorroga por anualidades hasta cinco años si el arrendador es persona física y siete si es persona jurídica, según el artículo 9.1 de la LAU." },
       { q: "¿La fianza es obligatoria y de cuánto?", a: "Sí. En vivienda habitual la LAU exige una mensualidad de renta en metálico (art. 36) y debe depositarse en el organismo que designe tu comunidad autónoma." },
-      { q: "¿Puedo subir la renta cada año?", a: "Solo si la actualización está pactada en el contrato. Para contratos firmados desde el 26 de mayo de 2023 la referencia aplicable es el IRAV publicado por el INE." },
+      { q: "¿Puedo subir la renta cada año?", a: "Solo si la actualización está pactada en el contrato, y nunca por encima de la variación del IRAV (art. 18.1 LAU). Si el aniversario cae entre el 8 de octubre de 2026 y el 31 de diciembre de 2027, sin un nuevo pacto la subida máxima es del 2 % (DF 6.ª del RDL 29/2026)." },
       { q: "¿Puedo recuperar la vivienda antes de los cinco años?", a: "Únicamente si pactaste expresamente la necesidad de ocuparla para ti o un familiar de primer grado, conforme al artículo 9.3 de la LAU, y respetando el preaviso previsto." },
-      { q: "¿Qué pasa si el inquilino se quiere ir antes de tiempo?", a: "Puede desistir pasados seis meses avisando con treinta días de antelación. La indemnización de una mensualidad por año que reste solo es exigible si figura en el contrato." }
+      { q: "¿Qué pasa si el inquilino se quiere ir antes de tiempo?", a: "Puede desistir pasados seis meses avisando con treinta días de antelación. Desde el Real Decreto-ley 29/2026, ese desistimiento no genera indemnización a favor del arrendador (art. 11.3 LAU)." }
     ],
     guides: [
       ["blog-duracion-contrato-alquiler-2026.html", "Duración y prórrogas del contrato explicadas"],
@@ -92,7 +93,7 @@ const pages = [
   {
     slug: "contrato-alquiler-vivienda-con-mascotas", category: "Vivienda habitual",
     title: "Contrato de alquiler con mascotas: modelo y cláusulas",
-    meta: "Cómo regular las mascotas en un contrato de alquiler: autorización expresa, responsabilidad por daños, convivencia, inventario y límites de lo que puedes exigir.",
+    meta: "Cómo regular las mascotas en un contrato de alquiler: autorización expresa, responsabilidad por daños, convivencia, inventario y lo que puedes exigir.",
     intro: "Permitir animales no exige un contrato distinto, pero sí una cláusula precisa. La diferencia entre un acuerdo que aguanta y uno que no está en describir qué se autoriza, quién responde de los daños y qué ocurre si aparece otro animal.",
     key: "contrato-larga", product: "Contrato de larga duración", price: "Gratis", free: true,
     law: "LAU para el contrato de vivienda y autonomía de la voluntad del art. 1255 del Código Civil dentro de sus límites.", lawUrl: LAU,
@@ -160,71 +161,72 @@ const pages = [
   {
     slug: "contrato-alquiler-habitacion-estudiantes", category: "Alquiler de habitación",
     title: "Contrato de alquiler de habitación para estudiantes 2026",
-    meta: "Modelo de contrato de habitación para estudiantes: curso académico, zonas comunes, reparto de gastos, inventario, convivencia y devolución de la fianza.",
-    intro: "Alquilar una habitación a un estudiante no se rige por la LAU sino por el Código Civil, y eso cambia todo: la duración, la fianza y las reglas de convivencia las fijas tú en el contrato. Si no las escribes, no existen.",
-    key: "contrato-habitacion", product: "Contrato de habitación", price: "9,99 €",
-    law: "Código Civil, arts. 1255 y 1542 y siguientes. La LAU no se aplica al alquiler de habitación.", lawUrl: CC,
+    meta: "Contrato de habitación para estudiantes tras el RDL 29/2026: vivienda temporal por estudios, causa acreditada, de 32 días a 12 meses, fianza de un mes y gastos.",
+    intro: "Desde el 8 de octubre de 2026 alquilar una habitación a un estudiante que tiene su casa en otra ciudad es un arrendamiento de vivienda temporal de la LAU. La matrícula es la causa del contrato y tienes que poder probarla; la duración, la fianza y las reparaciones tienen reglas propias.",
+    key: "contrato-temporada", product: "Contrato de vivienda temporal (habitación)", price: "9,99 €",
+    law: "Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026: arts. 2.3, 7.2, 9 bis, 11.2, 17.9, 21 bis y 36.", lawUrl: LAU,
     context: [
-      "El arrendamiento de una habitación con uso compartido de zonas comunes no es un arrendamiento de vivienda. La jurisprudencia viene entendiendo que, al no cederse el uso de la vivienda completa, queda fuera del ámbito de la Ley de Arrendamientos Urbanos y se rige por la libertad de pactos del artículo 1255 del Código Civil y, en lo no pactado, por los artículos 1542 y siguientes.",
-      "La consecuencia práctica es doble. Por un lado tienes mucha más libertad: puedes fijar la duración que quieras, la fianza que acuerdes y las normas de convivencia que consideres. Por otro, pierdes la red de seguridad de la ley: lo que no esté escrito en el contrato no se presume, y ante un conflicto solo cuenta el papel.",
-      "En el alquiler a estudiantes esto se nota sobre todo en la duración. Un contrato por curso académico, de septiembre a junio, es perfectamente válido, pero hay que decidir y escribir qué ocurre con los meses de verano, si el estudiante puede dejar sus cosas y si la habitación queda reservada para el curso siguiente."
+      "El Real Decreto-ley 29/2026 incluyó la habitación en la Ley de Arrendamientos Urbanos. El artículo 2.3 define el arrendamiento de vivienda temporal como el que recae sobre una vivienda, «incluido el arrendamiento parcial de una habitación o estancia», cuando el inquilino está temporalmente desplazado de su domicilio habitual «por causa justificada y acreditable». Un estudiante que mantiene su domicilio familiar en otro lugar y viene a hacer un curso encaja en esa definición.",
+      "El artículo 7.2 obliga a escribir la causa en el contrato, exige que sea real y acreditable y pone la prueba a cargo del arrendador. Si falta, el contrato se trata como vivienda habitual desde la firma, con la duración mínima y las prórrogas de los artículos 9 y 10. La duración debe superar los 31 días y, como regla general, no pasar de 12 meses (art. 9 bis), algo que encaja con un curso académico.",
+      "Si el estudiante vive en la habitación de forma estable y no tiene otro domicilio, el contrato es de vivienda habitual (art. 2.1) y conviene usar el contrato de habitación. Para contratos de habitación firmados antes del 8 de octubre de 2026 el real decreto-ley no trae una transitoria específica: revísalos antes de renovar. Y comprueba si tu comunidad autónoma tiene normas propias, que se aplican según la disposición adicional duodécima de la LAU."
     ],
     checklist: [
-      "Identificación de la habitación concreta y de las zonas de uso compartido",
-      "Fechas exactas de inicio y fin, ajustadas al curso académico",
-      "Renta mensual, día de pago y forma de cobro",
-      "Fórmula de reparto de suministros e internet",
-      "Fianza acordada y condiciones de devolución",
-      "Inventario del mobiliario de la habitación y de las zonas comunes",
-      "Normas de convivencia firmadas como anexo"
+      "Identidad del estudiante y de quien vaya a avalar, si lo hay",
+      "Matrícula, carta de admisión o convenio de prácticas que acredite la causa",
+      "Domicilio habitual del estudiante fuera de la vivienda",
+      "Fechas de inicio y fin ligadas al curso, entre 32 días y 12 meses",
+      "Habitación concreta y zonas comunes que podrá usar",
+      "Renta de la habitación y renta de referencia de la vivienda completa (art. 17.9)",
+      "Inventario con fotos y criterio de reparto de suministros"
     ],
     clauses: [
-      { t: "Objeto: habitación y zonas comunes", d: "Identifica la habitación por número o descripción y enumera las zonas compartidas. Es lo que deja claro que no se arrienda la vivienda completa." },
-      { t: "Duración por curso académico", d: "Fechas concretas de inicio y fin, sin prórroga tácita. Si quieres renovar para el curso siguiente, que sea por acuerdo escrito." },
-      { t: "Renta y gastos", d: "Deja escrito si la renta incluye suministros o si se reparten, y con qué criterio: partes iguales, por consumo o cuota fija mensual." },
-      { t: "Fianza y devolución", d: "Aquí no rige el art. 36 de la LAU. Fija el importe, el plazo de devolución y qué se puede descontar, con referencia al inventario." },
-      { t: "Convivencia", d: "Horarios de descanso, limpieza por turnos, visitas y pernoctas. Va como anexo firmado para que sea exigible." },
-      { t: "Prohibición de subarriendo y cesión", d: "Sin tu consentimiento escrito, el estudiante no puede ceder la habitación a un compañero durante un cuatrimestre fuera." },
-      { t: "Desistimiento y preaviso", d: "Si permites salir antes de terminar el curso, fija los días de preaviso y las consecuencias. Sin cláusula, la situación queda abierta." }
+      { t: "Causa de temporalidad", d: "Describe el curso, el centro y las fechas, y anota el documento que lo acredita. Sin causa escrita, el contrato pierde su carácter temporal (art. 7.2 LAU)." },
+      { t: "Duración ligada al curso", d: "Más de 31 días y hasta 12 meses. Si el estudiante sigue el curso siguiente, la prórroga debe pactarse por escrito; encadenar más de dos contratos temporales con la misma persona convierte el primero en vivienda habitual (art. 9 bis)." },
+      { t: "Renta y límite de la suma", d: "La suma de las rentas de las habitaciones alquiladas a la vez no puede superar la renta del contrato de la vivienda completa (art. 17.9 LAU)." },
+      { t: "Fianza y aval", d: "Una mensualidad de fianza (art. 36.1). La garantía adicional, incluido un depósito extra, no puede superar una mensualidad en arrendamientos temporales y no se puede exigir seguro de impago (art. 36.5). Un aval personal de los padres debe constar por escrito." },
+      { t: "Desistimiento", d: "El estudiante puede irse pasado un mes desde la firma avisando con diez días, sin indemnización (art. 11.2 y 11.3). Pacta solo la forma del aviso." },
+      { t: "Reparaciones", d: "En vivienda temporal el arrendador asume la conservación y las pequeñas reparaciones por uso ordinario, y debe responder a los avisos en cinco días hábiles (art. 21 bis)." },
+      { t: "Convivencia y zonas comunes", d: "Horarios, visitas, limpieza y uso de cocina y baño se pueden pactar dentro del marco del título II. Un anexo de normas evita la mayoría de los conflictos." }
     ],
     steps: [
-      { t: "Decide el régimen antes de redactar", d: "Si alquilas la vivienda completa a un grupo de estudiantes, es otro contrato distinto. Este modelo es para habitaciones individuales con zonas comunes." },
-      { t: "Fija el calendario del curso", d: "Inicio, fin y qué ocurre en verano. Es la fuente número uno de malentendidos con estudiantes." },
-      { t: "Define el reparto de gastos", d: "Cuota fija mensual o reparto por consumo. La cuota fija evita discusiones, pero calcúlala con margen." },
-      { t: "Prepara inventario y normas", d: "Fotografía la habitación y las zonas comunes. Redacta las normas de convivencia y hazlas firmar como anexo." },
-      { t: "Comprueba las obligaciones autonómicas", d: "Algunas comunidades y ayuntamientos tienen requisitos sobre alquiler por habitaciones. Revísalos antes de anunciar." },
-      { t: "Entrega llaves con recibo", d: "Anota cuántos juegos entregas y prohíbe las copias sin autorización." }
+      { t: "Comprueba la causa", d: "Pide la matrícula o la carta de admisión y confirma que el estudiante mantiene su domicilio habitual en otro lugar." },
+      { t: "Fija las fechas", d: "Ajusta el contrato al curso, por encima de 31 días y sin pasar de 12 meses." },
+      { t: "Calcula las rentas", d: "Suma las rentas de todas las habitaciones alquiladas a la vez y compáralas con la renta de la vivienda completa." },
+      { t: "Redacta normas y reparto de gastos", d: "Incluye en anexos las normas de convivencia y el criterio de reparto de suministros; los tributos y los gastos de gestión no se repercuten (art. 20)." },
+      { t: "Firma con inventario", d: "Inventario de la habitación y de las zonas comunes con fotos fechadas, firmado por ambas partes." },
+      { t: "Cierra con el documento de finalización", d: "Al salir, deja constancia escrita del estado de la habitación (art. 36.7). Sin él, se presume que se devolvió bien." }
     ],
     table: {
-      title: "Habitación o vivienda completa: qué cambia", caption: "Diferencias que más importan entre alquilar una habitación y alquilar la vivienda completa.",
-      head: ["Aspecto", "Habitación (Código Civil)", "Vivienda habitual (LAU)"],
+      title: "Habitación para un estudiante: temporal o habitual", caption: "Régimen de la LAU desde el 8 de octubre de 2026 según la situación del estudiante.",
+      head: ["Aspecto", "Estudiante desplazado (vivienda temporal)", "Estudiante sin otro domicilio (vivienda habitual)"],
       rows: [
-        ["Norma aplicable", "Arts. 1255 y 1542 y ss. CC", "Título II de la LAU"],
-        ["Duración mínima", "La que pactes", "5 o 7 años por prórrogas"],
-        ["Fianza", "La que acuerdes", "1 mensualidad obligatoria (art. 36)"],
-        ["Actualización de la renta", "Libertad de pactos", "IRAV si el contrato es posterior al 26/05/2023"],
-        ["Prórroga tácita", "Solo si se pacta", "Hasta 3 años (art. 10.1)"]
+        ["Norma", "Arts. 2.3, 7.2 y 9 bis LAU", "Arts. 2.1 y título II LAU"],
+        ["Duración", "Más de 31 días y hasta 12 meses", "Prórroga obligatoria hasta 5 años (7 si el arrendador es persona jurídica)"],
+        ["Fianza", "1 mensualidad", "1 mensualidad"],
+        ["Garantía adicional máxima", "1 mensualidad", "2 mensualidades"],
+        ["Desistimiento del inquilino", "Tras 1 mes, avisando con 10 días", "Tras 6 meses, avisando con 30 días"],
+        ["Pequeñas reparaciones", "Del arrendador (art. 21 bis)", "Del inquilino (art. 21.4)"]
       ]
     },
     mistakes: [
-      { t: "Usar una plantilla de la LAU", d: "Citar artículos de la LAU en un contrato de habitación confunde el régimen y puede volverse en tu contra si alguien alega que cediste la vivienda completa." },
-      { t: "No concretar las zonas comunes", d: "Si no dices qué se comparte, el estudiante puede entender que tiene derecho a usar toda la vivienda, trastero incluido." },
-      { t: "Dejar el verano sin regular", d: "Es el conflicto clásico: el estudiante deja sus cosas y entiende que la habitación sigue siendo suya sin pagar." },
-      { t: "Fianza sin criterio de devolución", d: "Sin inventario ni plazo escrito, la devolución se convierte en una negociación incómoda cada junio." },
-      { t: "Olvidar la fiscalidad", d: "El alquiler por habitaciones tributa como rendimiento del capital inmobiliario y, por lo general, no da derecho a la reducción del artículo 23 de la Ley del IRPF." }
+      { t: "Seguir usando el modelo del Código Civil", d: "Desde el RDL 29/2026 la habitación está en la LAU. Una cláusula que diga que no se aplica la ley no cambia el régimen." },
+      { t: "Poner una causa genérica", d: "«Por estudios» sin centro, curso ni fechas es difícil de probar, y la prueba es tuya." },
+      { t: "Pedir dos meses de fianza o un seguro de impago", d: "En vivienda temporal la fianza es de un mes, la garantía adicional de máximo otro y el seguro de impago no se puede exigir." },
+      { t: "Encadenar contratos curso tras curso", d: "Más de dos contratos temporales consecutivos con la misma persona convierten el primero en vivienda habitual." },
+      { t: "Cobrar por habitaciones más que por el piso", d: "La suma de rentas simultáneas no puede superar la renta del contrato de la vivienda completa." }
     ],
     faqs: [
-      { q: "¿El alquiler de una habitación se rige por la LAU?", a: "No. Al no cederse la vivienda completa, la jurisprudencia lo sitúa fuera de la LAU: se rige por lo pactado y, supletoriamente, por los artículos 1542 y siguientes del Código Civil." },
-      { q: "¿Cuánta fianza puedo pedir por una habitación?", a: "La que acuerden las partes, porque no se aplica el artículo 36 de la LAU. Lo importante es dejar escrito el importe, el plazo de devolución y qué se puede descontar." },
-      { q: "¿Puedo firmar solo por el curso académico?", a: "Sí. Es uno de los motivos por los que este régimen resulta útil: puedes fijar fechas concretas de inicio y fin sin prórroga tácita, siempre que lo escribas." },
-      { q: "¿Puede el estudiante empadronarse en la habitación?", a: "El empadronamiento depende del ayuntamiento y de la residencia efectiva, no de tu autorización. Conviene dejar la posición de cada parte reflejada en el contrato para evitar sorpresas." },
-      { q: "¿Necesito un contrato por cada habitación?", a: "Es lo más ordenado, porque separa la responsabilidad de cada ocupante. Un contrato conjunto también es posible, pero entonces conviene aclarar si la responsabilidad por la renta es solidaria." }
+      { q: "¿El alquiler de una habitación a un estudiante se rige por la LAU?", a: "Sí, desde el 8 de octubre de 2026. Si el estudiante está desplazado de su domicilio habitual por sus estudios, es un arrendamiento de vivienda temporal (art. 2.3 LAU); si vive ahí de forma habitual, es vivienda habitual (art. 2.1)." },
+      { q: "¿Puedo firmar solo por el curso académico?", a: "Sí, si es vivienda temporal: la duración debe superar los 31 días y, como regla general, no pasar de 12 meses (art. 9 bis LAU). La causa del desplazamiento debe constar en el contrato y poder acreditarse." },
+      { q: "¿Cuánta fianza puedo pedir por la habitación?", a: "Una mensualidad de fianza en metálico (art. 36.1 LAU) y, como mucho, otra mensualidad de garantía adicional en arrendamientos temporales (art. 36.5). No puedes exigir un seguro de impago." },
+      { q: "¿Qué pasa si el estudiante se va a mitad de curso?", a: "Puede desistir pasado un mes desde la firma avisando con diez días de antelación, y ese desistimiento no genera indemnización a tu favor (art. 11.2 y 11.3 LAU)." },
+      { q: "¿Cuánto puedo cobrar por cada habitación?", a: "La suma de las rentas de todas las habitaciones alquiladas a la vez no puede superar la renta del contrato de la vivienda completa (art. 17.9 LAU); en zona tensionada se aplican además los límites del artículo 17." }
     ],
     guides: [
-      ["blog-habitacion.html", "¿Es legal alquilar por habitaciones?"],
-      ["blog-fianza-alquiler-habitacion.html", "La fianza en el alquiler de habitación"],
-      ["blog-normas-convivencia-piso-compartido.html", "Normas de convivencia, con modelo"],
-      ["blog-alquiler-habitaciones-declaracion-renta.html", "Cómo tributa el alquiler por habitaciones"]
+      ["blog-habitacion.html", "Alquilar por habitaciones tras el RDL 29/2026"],
+      ["blog-temporada.html", "Alquiler de temporada: vivienda temporal en la LAU"],
+      ["blog-fianza-alquiler-habitacion.html", "Fianza en el alquiler de habitación"],
+      ["blog-normas-convivencia-piso-compartido.html", "Normas de convivencia en piso compartido"]
     ],
     related: ["contrato-alquiler-habitacion-piso-compartido", "contrato-alquiler-temporada-estudiantes"]
   },
@@ -232,72 +234,71 @@ const pages = [
   {
     slug: "contrato-alquiler-habitacion-piso-compartido", category: "Alquiler de habitación",
     title: "Contrato de habitación en piso compartido: modelo 2026",
-    meta: "Contrato de habitación para piso compartido: uso exclusivo, zonas comunes, reparto de suministros, visitas, limpieza, sustitución de ocupantes e inventario.",
-    intro: "En un piso compartido los conflictos casi nunca son por la renta. Son por la limpieza, las visitas, el recibo de la luz y quién responde de lo que se rompe en el salón. Un contrato genérico no resuelve nada de eso; este modelo lo pone por delante.",
+    meta: "Contrato de habitación en piso compartido tras el RDL 29/2026: régimen de la LAU, suma de rentas con tope, fianza de un mes, convivencia, suministros y subarriendo.",
+    intro: "Desde el 8 de octubre de 2026 la habitación que es la vivienda habitual de su inquilino es un arrendamiento de vivienda de la LAU. El piso compartido sigue necesitando buenas normas de convivencia, pero ahora con el marco del título II y un tope nuevo: las rentas de las habitaciones no pueden sumar más que la del piso entero.",
     key: "contrato-habitacion", product: "Contrato de habitación", price: "9,99 €",
-    law: "Código Civil, arts. 1255 y 1542 y siguientes; autonomía de la voluntad dentro de sus límites.", lawUrl: CC,
+    law: "Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026: arts. 2.1, 4.2, 8, 9, 10, 11, 17.9, 18, 20 y 36; Código Civil con carácter supletorio.", lawUrl: LAU,
     context: [
-      "El piso compartido funciona sobre una base jurídica sencilla y una realidad complicada. La base es que cada ocupante tiene el uso exclusivo de su habitación y el uso compartido de las zonas comunes, en las condiciones que fije el contrato. La realidad es que la convivencia genera fricciones que ningún artículo del Código Civil resuelve por ti.",
-      "Por eso el contrato tiene que bajar al detalle. No basta con decir que el inquilino usará las zonas comunes: hay que decir cuáles, con qué límites de horario si los hay, cómo se reparte la limpieza y qué ocurre cuando alguien deja de cumplir. Cuanto más concreto sea el anexo de convivencia, menos veces tendrás que mediar tú.",
-      "El segundo punto crítico es la responsabilidad. Si firmas un único contrato con todos los ocupantes y la obligación de pagar la renta es solidaria, puedes reclamar el total a cualquiera de ellos. Si firmas contratos separados por habitación, cada uno responde de lo suyo y tú asumes el riesgo de las habitaciones vacías. No hay una opción mejor: hay que elegir a conciencia y escribirlo."
+      "El nuevo artículo 2.1 de la LAU considera arrendamiento de vivienda habitual el que satisface la necesidad de vivienda del arrendatario, «incluido el arrendamiento parcial de una habitación o estancia de la vivienda». El artículo 4.2 añade que se rige por lo pactado «en el marco de lo establecido en el título II» y solo de forma supletoria por el Código Civil. Hasta octubre de 2026 la opinión mayoritaria situaba la habitación fuera de la LAU; para los contratos nuevos eso ha cambiado.",
+      "En la práctica, al compañero de piso que vive en su habitación le alcanzan las reglas de cualquier inquilino de vivienda: duración y prórrogas de los artículos 9 y 10, fianza de una mensualidad, actualización solo si se pacta y con el IRAV como tope, desistimiento sin indemnización y los límites del artículo 20 en gastos. La convivencia, las visitas, la limpieza o el uso de las zonas comunes se siguen pactando, siempre dentro de ese marco.",
+      "El artículo 17.9 fija un límite nuevo: la suma de las rentas de los contratos de habitación vigentes a la vez no puede superar la renta del contrato de la vivienda completa, y en zona tensionada hay que respetar además los apartados 6, 7 y 8. El real decreto-ley no trae una transitoria específica para los contratos de habitación firmados antes del 8 de octubre de 2026, así que conviene revisarlos; y las comunidades autónomas pueden tener normas propias (DA 12.ª LAU)."
     ],
     checklist: [
-      "Descripción de cada habitación y de los espacios de uso compartido",
-      "Cuota fija o fórmula para repartir suministros e internet",
-      "Sistema de limpieza acordado, por turnos o contratado",
-      "Quién responde de los daños en zonas comunes",
-      "Régimen de visitas y pernoctas",
-      "Procedimiento para sustituir a un ocupante que se marcha",
-      "Inventario del mobiliario común y del de cada habitación"
+      "Habitación concreta, espacios de uso exclusivo y zonas comunes",
+      "Renta de cada habitación y renta de referencia de la vivienda completa",
+      "Criterio de reparto de suministros entre ocupantes",
+      "Normas de convivencia en un anexo firmado",
+      "Inventario de la habitación y de las zonas comunes con fotos",
+      "Fianza de una mensualidad y, si la hay, garantía adicional dentro de su límite"
     ],
     clauses: [
-      { t: "Uso exclusivo de la habitación asignada", d: "Identifica la habitación y deja claro que ningún otro ocupante puede entrar sin permiso, ni siquiera para guardar cosas." },
-      { t: "Zonas comunes y límites", d: "Cocina, baño, salón, terraza, trastero. Enumera las que se comparten y las que quedan excluidas." },
-      { t: "Reparto de suministros", d: "Cuota fija mensual o reparto por consumo. La cuota fija evita discusiones mensuales; el reparto por consumo es más justo pero exige llevar cuentas." },
-      { t: "Limpieza y mantenimiento", d: "Turnos con calendario o servicio de limpieza contratado y repercutido. Sin sistema escrito, la limpieza acaba siendo el conflicto número uno." },
-      { t: "Visitas y pernoctas", d: "Fija un límite razonable de noches al mes para invitados. Es lo que evita que una pareja se instale de hecho sin figurar en el contrato." },
-      { t: "Daños en zonas comunes", d: "Responde quien lo causa. Cuando no se pueda determinar, conviene haber pactado un criterio de reparto para no dejarlo al aire." },
-      { t: "Salida anticipada y sustitución", d: "Preaviso exigible y procedimiento para que entre otro ocupante, siempre con tu consentimiento escrito." },
-      { t: "Prohibición de subarriendo", d: "Impide que el inquilino realquile su habitación por temporadas o en plataformas mientras esté fuera." }
+      { t: "Objeto y destino", d: "Identifica la habitación, las zonas comunes y que se destina a vivienda habitual del inquilino. Si está desplazado temporalmente, usa el contrato de vivienda temporal." },
+      { t: "Duración y prórrogas", d: "Pacta la duración inicial sabiendo que se prorroga por años hasta cinco (siete si el arrendador es persona jurídica) y después opera la tácita del art. 10." },
+      { t: "Límite de la suma de rentas", d: "Deja constancia de la renta de referencia de la vivienda completa y de que la suma de las rentas simultáneas no la supera (art. 17.9)." },
+      { t: "Suministros y gastos", d: "Reparte los suministros con un criterio objetivo. Los tributos de la vivienda no se imponen al inquilino y los gastos de gestión no se repercuten (art. 20)." },
+      { t: "Convivencia", d: "Horarios de descanso, visitas, pernoctaciones, limpieza y uso de cocina y baño, en un anexo que todos conozcan." },
+      { t: "Subarriendo y sustitución", d: "El subarriendo necesita tu consentimiento escrito (art. 8 LAU). Si un ocupante se va, firma un contrato nuevo con quien entre." },
+      { t: "Salida y documento de finalización", d: "El inquilino puede desistir tras seis meses con treinta días de aviso y sin indemnización (art. 11). Al salir, firmad el documento de finalización del art. 36.7." }
     ],
     steps: [
-      { t: "Elige el esquema de contratos", d: "Uno por habitación o uno conjunto con responsabilidad solidaria. Decide antes de redactar, porque cambia todo el documento." },
-      { t: "Calcula la cuota de suministros", d: "Mira el consumo real de los últimos doce meses y añade margen. Si te quedas corto, la revisión será conflictiva." },
-      { t: "Escribe el anexo de convivencia", d: "Limpieza, ruidos, visitas, uso de la cocina, basura. Que lo firmen todos los ocupantes, no solo el que entra." },
-      { t: "Levanta inventario doble", d: "Uno de la habitación y otro de las zonas comunes, con fotos fechadas. El de zonas comunes es el que te salva en las salidas." },
-      { t: "Entrega llaves con registro", d: "Anota los juegos entregados y prohíbe copias sin autorización, sobre todo del portal." },
-      { t: "Revisa las obligaciones locales", d: "Algunos ayuntamientos regulan el alquiler por habitaciones y la ocupación máxima. Compruébalo antes de anunciar." }
+      { t: "Define qué alquilas", d: "Habitación, espacios exclusivos y zonas comunes. Cuanto más concreto, menos discusión." },
+      { t: "Calcula las rentas", d: "Suma las rentas de todas las habitaciones y compárala con la del piso entero antes de anunciar." },
+      { t: "Calcula la cuota de suministros", d: "Mira el consumo real de los últimos doce meses y fija un criterio de reparto claro." },
+      { t: "Redacta las normas de convivencia", d: "Pocas, claras y aplicables a todos. Adjúntalas como anexo firmado." },
+      { t: "Firma con inventario", d: "Fotos fechadas de la habitación y de las zonas comunes, y lecturas de contadores." },
+      { t: "Deposita la fianza", d: "Es una mensualidad. Consulta el organismo y el plazo de depósito de tu comunidad autónoma." }
     ],
     table: {
-      title: "Un contrato por habitación o uno conjunto", caption: "Dos formas de organizar el piso compartido y lo que implica cada una.",
-      head: ["Criterio", "Un contrato por habitación", "Un contrato conjunto"],
+      title: "Antes y después del RDL 29/2026", caption: "Cambios principales para un contrato de habitación nuevo en piso compartido.",
+      head: ["Aspecto", "Modelo antiguo (Código Civil)", "Contrato nuevo (LAU tras el RDL 29/2026)"],
       rows: [
-        ["Responsabilidad por la renta", "Cada uno responde de la suya", "Solidaria si se pacta: puedes reclamar el total a cualquiera"],
-        ["Habitación vacía", "El riesgo es tuyo", "El riesgo es del grupo"],
-        ["Sustitución de ocupante", "Firmas un contrato nuevo", "Requiere modificar el contrato existente"],
-        ["Gestión", "Más contratos que controlar", "Un solo interlocutor"],
-        ["Conflictos internos", "Acaban en tu mesa", "Los resuelve el grupo"]
+        ["Norma aplicable", "Arts. 1255 y 1542 y ss. CC", "Título II de la LAU (arts. 2.1 y 4.2)"],
+        ["Duración", "La pactada", "Prórrogas de los arts. 9 y 10 LAU"],
+        ["Fianza", "La pactada", "1 mensualidad (art. 36.1)"],
+        ["Actualización de la renta", "Libertad de pactos", "Solo si se pacta y con el IRAV como tope (art. 18.1)"],
+        ["Suma de rentas", "Sin límite legal", "No puede superar la renta del piso completo (art. 17.9)"],
+        ["Salida anticipada", "Lo pactado", "Tras 6 meses con 30 días de aviso, sin indemnización (art. 11)"]
       ]
     },
     mistakes: [
-      { t: "Un único contrato sin aclarar la responsabilidad", d: "Si no dices si la obligación es solidaria, cuando uno deje de pagar no sabrás a quién reclamar el total." },
-      { t: "No documentar el estado de las zonas comunes", d: "Es donde se producen la mayoría de los daños y donde menos pruebas suele haber." },
-      { t: "Permitir sustituciones sin consentimiento escrito", d: "Acabas con una persona viviendo en tu piso con la que no tienes ningún contrato." },
-      { t: "Dejar las visitas sin regular", d: "Una pareja que se queda cinco noches por semana es un ocupante más que no paga ni figura." },
-      { t: "Cuota de suministros calculada a la baja", d: "Genera revisiones constantes y la sensación de que cambias las reglas a mitad de contrato." }
+      { t: "Mantener la cláusula «no se aplica la LAU»", d: "El régimen lo fija la ley según el uso real de la habitación, no la etiqueta del contrato." },
+      { t: "Sumar rentas por encima del piso entero", d: "Es el límite nuevo del art. 17.9 y el más fácil de comprobar." },
+      { t: "Cuota de suministros calculada a la baja", d: "Genera revisiones constantes y la sensación de que cambias las reglas a mitad de contrato." },
+      { t: "Penalizar la salida anticipada", d: "El desistimiento del art. 11 no genera indemnización a favor del arrendador." },
+      { t: "Normas que solo conoce el casero", d: "Si no están en un anexo firmado, cuesta exigirlas." }
     ],
     faqs: [
-      { q: "¿Cada inquilino debe tener su propio contrato?", a: "Puede formalizarse por habitaciones o mediante un contrato conjunto. Lo decisivo es que quede claro el espacio asignado a cada uno y si la responsabilidad por la renta es solidaria." },
-      { q: "¿Quién paga un daño en una zona común?", a: "Responde quien lo causó. Cuando no puede determinarse, se aplica el criterio de reparto que hayáis pactado; sin pacto, la discusión queda abierta." },
-      { q: "¿Puedo limitar las visitas y las pernoctas?", a: "Sí, siempre que el límite sea razonable y esté escrito. Prohibir cualquier visita sería desproporcionado; fijar un máximo de noches al mes es habitual y admisible." },
-      { q: "¿Qué hago si un inquilino se va a mitad de curso?", a: "Aplica el preaviso pactado y el procedimiento de sustitución. Si permites que entre otra persona, firma un contrato nuevo con ella en lugar de dejarla entrar de hecho." },
-      { q: "¿Puede un inquilino realquilar su habitación mientras está fuera?", a: "Solo si el contrato lo permite. Lo habitual y recomendable es prohibir expresamente el subarriendo y la cesión sin consentimiento escrito del propietario." }
+      { q: "¿Un contrato de habitación en piso compartido se rige por la LAU?", a: "Sí, desde el 8 de octubre de 2026, cuando la habitación es la vivienda habitual del inquilino (art. 2.1 LAU). Se rige por lo pactado dentro del título II y, de forma supletoria, por el Código Civil." },
+      { q: "¿Puedo cobrar por las habitaciones más que por el piso entero?", a: "No. La suma de las rentas de los contratos de habitación vigentes a la vez no puede superar la renta del contrato de la vivienda completa (art. 17.9 LAU)." },
+      { q: "¿Siguen valiendo las normas de convivencia?", a: "Sí. Se pueden pactar horarios, visitas, limpieza y uso de zonas comunes, siempre que no contradigan las reglas imperativas del título II de la LAU." },
+      { q: "¿Qué hago si un inquilino se va a mitad de contrato?", a: "Puede desistir pasados seis meses avisando con treinta días y sin indemnización (art. 11 LAU). Para quien entre, firma un contrato nuevo en lugar de ceder el anterior." },
+      { q: "¿Qué pasa con los contratos de habitación que firmé antes del 8 de octubre de 2026?", a: "El Real Decreto-ley 29/2026 no trae una transitoria específica para ellos. Conviene revisarlos, comprobar la suma de rentas y firmar las renovaciones ya con el régimen de la LAU." }
     ],
     guides: [
+      ["blog-habitacion.html", "Alquilar por habitaciones tras el RDL 29/2026"],
       ["blog-normas-convivencia-piso-compartido.html", "Normas de convivencia en piso compartido"],
       ["blog-subarrendar-habitacion.html", "Subarrendar una habitación: permiso y límites"],
-      ["blog-fianza-alquiler-habitacion.html", "Fianza en el alquiler de habitación"],
-      ["blog-empadronarse-habitacion-alquilada.html", "Empadronarse en una habitación alquilada"]
+      ["blog-fianza-alquiler-habitacion.html", "Fianza en el alquiler de habitación"]
     ],
     related: ["contrato-alquiler-habitacion-estudiantes", "modelo-contrato-alquiler-vivienda-habitual"]
   },
@@ -306,72 +307,71 @@ const pages = [
   {
     slug: "contrato-alquiler-temporada-por-trabajo", category: "Alquiler de temporada",
     title: "Contrato de alquiler de temporada por trabajo 2026",
-    meta: "Contrato de temporada por desplazamiento laboral: causa temporal acreditable, domicilio habitual del inquilino, duración determinada, fianza de dos mensualidades.",
-    intro: "El alquiler de temporada por motivos de trabajo es válido y útil, pero se sostiene sobre una sola pieza: la causa de temporalidad. Si esa causa no está bien acreditada en el contrato, lo que tienes es un contrato de vivienda habitual con otro nombre.",
+    meta: "Contrato de temporada por desplazamiento laboral tras el RDL 29/2026: vivienda temporal, causa acreditada, de 32 días a 12 meses, fianza de un mes y desistimiento.",
+    intro: "Desde el 8 de octubre de 2026 el alquiler de temporada para alguien que se desplaza por trabajo es un arrendamiento de vivienda temporal de la LAU. La causa laboral tiene que figurar en el contrato y poder probarse, y la duración tiene un margen de más de 31 días y, como regla, hasta 12 meses.",
     key: "contrato-temporada", product: "Contrato de temporada", price: "9,99 €",
-    law: "Ley 29/1994 LAU, arts. 3 y 36: arrendamiento para uso distinto del de vivienda.", lawUrl: LAU,
+    law: "Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026: arts. 2.3, 3.2, 7.2, 9 bis, 11.2, 17.8, 20, 21 bis y 36, y disposición transitoria octava.", lawUrl: LAU,
     context: [
-      "El artículo 3 de la LAU define el arrendamiento para uso distinto del de vivienda como aquel que, recayendo sobre una edificación, tiene como destino primordial uno distinto del de satisfacer la necesidad permanente de vivienda del arrendatario. Ahí encajan los alquileres de temporada, incluidos los que responden a un desplazamiento laboral.",
-      "Ese régimen es notablemente más favorable para el propietario: se rige por la voluntad de las partes, no hay prórrogas obligatorias de cinco o siete años, la fianza es de dos mensualidades y el plazo es el que se pacte. Por eso mismo los tribunales examinan con lupa si la temporalidad es real o es una etiqueta para esquivar el Título II.",
-      "La prueba de esa temporalidad no está en el título del documento. Está en que el inquilino conserve su domicilio habitual en otro sitio, en que exista una causa concreta y verificable, y en que la duración del contrato guarde relación con esa causa. Un contrato de temporada de tres años para un desplazamiento laboral indefinido tiene muy poca defensa."
+      "Hasta octubre de 2026 el alquiler de temporada se encajaba en el artículo 3 de la LAU como uso distinto del de vivienda. El Real Decreto-ley 29/2026 cambió ese esquema: el nuevo artículo 3.2 excluye del uso distinto «en todo caso» los contratos que tengan por objeto «el alojamiento u hospedaje de personas», y el artículo 2.3 crea el arrendamiento de vivienda temporal para quien está «temporalmente desplazado de su domicilio habitual, por causa justificada y acreditable».",
+      "Un destino laboral temporal es el ejemplo típico. El artículo 7.2 exige que la causa conste de forma expresa, que sea real y acreditable y pone la prueba a cargo del arrendador; sin ella, el contrato se rige como vivienda habitual desde la firma. La duración debe superar los 31 días y, como regla general, no pasar de 12 meses (art. 9 bis). Superar ese plazo sin justificación o encadenar más de dos contratos temporales con la misma persona convierte el primero en vivienda habitual.",
+      "Los contratos de temporada firmados antes del 8 de octubre de 2026 siguen siendo de uso distinto hasta su vencimiento y entonces se extinguen sin prórroga; si se renuevan, el nuevo contrato ya es de vivienda temporal (disposición transitoria octava de la LAU). Las comunidades autónomas pueden tener normas propias sobre vivienda temporal, que se aplican en su territorio (DA 12.ª)."
     ],
     checklist: [
-      "Documento que acredite el desplazamiento: contrato, carta de la empresa, proyecto u obra",
-      "Domicilio habitual y permanente del inquilino, distinto del inmueble arrendado",
-      "Fechas de inicio y fin coherentes con la duración del desplazamiento",
-      "Renta y periodo al que corresponde: mensual, quincenal o por estancia",
-      "Fianza de dos mensualidades conforme al art. 36 LAU",
-      "Inventario del mobiliario y estado de entrega",
-      "Registro o comunicación que exija tu comunidad autónoma o tu ayuntamiento"
+      "Carta de la empresa, contrato temporal o comisión de servicio con fechas",
+      "Domicilio habitual del trabajador, que se mantiene durante el contrato",
+      "Fechas de inicio y fin coherentes con el destino, de 32 días a 12 meses",
+      "Fianza de una mensualidad y, si se pacta, garantía adicional de máximo otra",
+      "Inventario detallado con fotos fechadas",
+      "Registros o comunicaciones autonómicos o locales si lo anuncias en plataformas"
     ],
     clauses: [
-      { t: "Causa de temporalidad acreditada", d: "Describe el motivo concreto del desplazamiento y anexa el documento que lo respalda. Es la cláusula que sostiene todo el contrato." },
-      { t: "Domicilio habitual del arrendatario", d: "Debe constar que el inquilino mantiene su residencia habitual en otra dirección. Sin este dato, la temporalidad se debilita." },
-      { t: "Duración determinada sin prórroga tácita", d: "Fechas concretas de inicio y fin. La permanencia posterior exige un acuerdo escrito nuevo, nunca un silencio." },
-      { t: "Renta y periodo", d: "Deja claro si la renta es mensual, quincenal o por la estancia completa, y cómo se prorratean los periodos incompletos." },
-      { t: "Fianza de dos mensualidades", d: "En uso distinto del de vivienda el artículo 36 de la LAU fija dos mensualidades, no una." },
-      { t: "Obligaciones del arrendatario", d: "Conservar el inmueble, destinarlo solo al uso pactado, no hacer obras, no subarrendar y devolverlo en el mismo estado." },
-      { t: "Registros y autorizaciones", d: "Si el inmueble se comercializa en plataformas, comprueba los registros autonómicos y locales aplicables." },
-      { t: "Resolución y MASC", d: "Antes de acudir al juzgado por vía civil hay que intentar un medio adecuado de solución de controversias, conforme a la Ley Orgánica 1/2025." }
+      { t: "Causa de temporalidad", d: "Quién se desplaza, desde qué domicilio, por qué destino laboral y hasta cuándo. Anota el documento que lo acredita: la prueba es tuya (art. 7.2)." },
+      { t: "Duración", d: "Más de 31 días y hasta 12 meses. Si el destino se alarga, la prórroga debe pactarse expresamente y la causa debe seguir existiendo (art. 9 bis)." },
+      { t: "Fianza y garantías", d: "Una mensualidad de fianza (art. 36.1). La garantía adicional no puede superar una mensualidad en arrendamientos temporales y no se puede exigir seguro de impago (art. 36.5)." },
+      { t: "Desistimiento", d: "El inquilino puede irse pasado un mes desde la firma avisando con diez días, sin indemnización (art. 11.2 y 11.3)." },
+      { t: "Conservación y reparaciones", d: "El arrendador asume la conservación y las pequeñas reparaciones por uso ordinario y debe responder en cinco días hábiles (art. 21 bis)." },
+      { t: "Gastos", d: "Suministros por contador a cargo del inquilino; gastos generales solo si se pactan por escrito con su importe; nunca tributos de la vivienda ni gastos de gestión (art. 20)." },
+      { t: "Contratos sucesivos", d: "Si vuelves a alquilar a otro trabajador desplazado, la renta del nuevo contrato temporal no puede subir más que el IRAV vigente (art. 17.8)." }
     ],
     steps: [
-      { t: "Verifica que la causa es real", d: "Pide el documento que acredite el desplazamiento. Si el inquilino no puede aportarlo, replantea el tipo de contrato." },
-      { t: "Ajusta la duración a la causa", d: "Si el desplazamiento es de nueve meses, el contrato debe ser de nueve meses. La coherencia entre causa y plazo es lo que se examina." },
-      { t: "Haz constar el domicilio habitual", d: "Que figure la dirección donde el inquilino mantiene su residencia permanente, con su documentación de respaldo." },
-      { t: "Calcula la fianza correcta", d: "Dos mensualidades. Es uno de los errores más repetidos al copiar plantillas de vivienda habitual." },
-      { t: "Comprueba los registros aplicables", d: "El procedimiento estatal del RD 1312/2024 fue anulado por el Tribunal Supremo en 2026, pero los registros autonómicos y municipales siguen vigentes." },
-      { t: "Levanta inventario y lecturas", d: "Fotos fechadas y lecturas de contadores a la entrada y a la salida." }
+      { t: "Comprueba la causa", d: "Pide el documento del destino laboral y confirma que el inquilino conserva su domicilio habitual." },
+      { t: "Ajusta las fechas", d: "Haz coincidir el contrato con el destino, por encima de 31 días y sin pasar de 12 meses." },
+      { t: "Redacta la causa en el contrato", d: "Concreta y con referencia al documento que la acredita." },
+      { t: "Fija garantías dentro del límite", d: "Una mensualidad de fianza y, como mucho, otra de garantía adicional." },
+      { t: "Firma con inventario", d: "Estado de la vivienda y del mobiliario con fotos, firmado por ambas partes." },
+      { t: "Cierra con el documento de finalización", d: "Al terminar, deja constancia escrita del estado de la vivienda (art. 36.7)." }
     ],
     table: {
-      title: "Temporada frente a vivienda habitual", caption: "Temporada frente a vivienda habitual: las diferencias que cambian el contrato.",
-      head: ["Aspecto", "Temporada (art. 3 LAU)", "Vivienda habitual (Título II LAU)"],
+      title: "Temporada antes y después del 8 de octubre de 2026", caption: "Régimen de un contrato de temporada según su fecha de firma.",
+      head: ["Aspecto", "Firmado antes del 8-10-2026", "Firmado desde el 8-10-2026"],
       rows: [
-        ["Prórroga obligatoria", "No existe", "Hasta 5 o 7 años"],
-        ["Fianza legal", "2 mensualidades (art. 36)", "1 mensualidad (art. 36)"],
-        ["Duración", "La pactada, ligada a la causa", "Mínimo legal con prórrogas"],
-        ["Actualización de la renta", "Libertad de pactos", "IRAV en contratos posteriores al 26/05/2023"],
-        ["Qué lo define", "La causa temporal y el domicilio habitual del inquilino", "El destino de vivienda permanente"]
+        ["Calificación", "Uso distinto del de vivienda (DT 8.ª)", "Vivienda temporal (art. 2.3 LAU)"],
+        ["Causa", "La pactada", "Expresa, real y acreditable; prueba del arrendador (art. 7.2)"],
+        ["Duración", "La pactada, sin prórroga al vencer", "Más de 31 días y hasta 12 meses (art. 9 bis)"],
+        ["Fianza legal", "2 mensualidades", "1 mensualidad (art. 36.1)"],
+        ["Garantía adicional", "La pactada", "Máximo 1 mensualidad (art. 36.5)"],
+        ["Desistimiento", "Lo pactado", "Tras 1 mes con 10 días de aviso, sin indemnización (art. 11.2)"]
       ]
     },
     mistakes: [
-      { t: "Etiquetar como temporada una necesidad permanente", d: "Es el fraude que más se detecta. Si el inquilino vive ahí y no tiene otro domicilio, el juez aplicará el Título II de la LAU." },
-      { t: "Duración incoherente con la causa", d: "Un contrato de temporada renovado año tras año delata que la temporalidad era ficticia." },
-      { t: "Fianza de una sola mensualidad", d: "En uso distinto del de vivienda son dos. Copiar la plantilla equivocada te deja con menos garantía de la que la ley te reconoce." },
-      { t: "No anexar la prueba del desplazamiento", d: "Sin documento que respalde la causa, la cláusula es una declaración de intenciones." },
-      { t: "Dejar que el inquilino se quede sin nuevo contrato", d: "La permanencia consentida después del vencimiento puede derivar en tácita reconducción, ya fuera del plazo que habías previsto." }
+      { t: "Seguir citando el artículo 3 LAU", d: "Para contratos nuevos, el alojamiento de personas quedó fuera del uso distinto. El modelo debe ser de vivienda temporal." },
+      { t: "Causa genérica o sin prueba", d: "«Motivos laborales» sin más es difícil de sostener, y la carga de la prueba es tuya." },
+      { t: "Pedir dos mensualidades de fianza", d: "En vivienda temporal la fianza es de una mensualidad." },
+      { t: "Encadenar contratos con el mismo inquilino", d: "Más de dos contratos temporales consecutivos convierten el primero en vivienda habitual." },
+      { t: "Cargar al inquilino las pequeñas reparaciones", d: "En vivienda temporal son del arrendador (art. 21 bis)." }
     ],
     faqs: [
-      { q: "¿Qué hace válido un contrato de temporada?", a: "Que exista una causa temporal real y acreditada, que el inquilino conserve su domicilio habitual en otro lugar y que la duración pactada sea coherente con esa causa." },
-      { q: "¿Cuánta fianza corresponde en un alquiler de temporada?", a: "Dos mensualidades de renta, conforme al artículo 36 de la LAU para los arrendamientos de uso distinto del de vivienda, sin perjuicio de las garantías adicionales que se pacten." },
-      { q: "¿Puede prorrogarse un contrato de temporada?", a: "No de forma tácita. Si ambas partes quieren continuar, lo correcto es firmar un acuerdo escrito nuevo que vuelva a justificar la causa temporal." },
-      { q: "¿Necesito registrar el inmueble?", a: "El procedimiento estatal del RD 1312/2024 fue anulado por el Tribunal Supremo en 2026, pero siguen vigentes los registros y licencias de las comunidades autónomas y los ayuntamientos. Comprueba los de tu zona." },
-      { q: "¿Qué pasa si el inquilino se queda al terminar el contrato?", a: "Si permanece con tu consentimiento y no reclamas el inmueble, puede nacer un nuevo arrendamiento por tácita reconducción del artículo 1566 del Código Civil. Conviene requerir la devolución por escrito." }
+      { q: "¿El alquiler de temporada por trabajo sigue siendo uso distinto del de vivienda?", a: "Para contratos firmados desde el 8 de octubre de 2026, no: es arrendamiento de vivienda temporal (art. 2.3 LAU) y el artículo 3.2 excluye el alojamiento de personas del uso distinto. Los anteriores conservan esa consideración hasta su vencimiento." },
+      { q: "¿Cuánto puede durar el contrato?", a: "Más de 31 días y, como regla general, hasta 12 meses (art. 9 bis LAU). Si el destino se alarga y la causa sigue, se puede prorrogar por acuerdo expreso." },
+      { q: "¿Cuánta fianza corresponde en un alquiler de temporada nuevo?", a: "Una mensualidad de fianza, como en cualquier arrendamiento de vivienda (art. 36.1 LAU), y como máximo otra de garantía adicional (art. 36.5). No se puede exigir seguro de impago." },
+      { q: "¿Qué pasa si el trabajador termina antes su destino?", a: "Puede desistir pasado un mes desde la firma avisando con diez días de antelación, sin indemnización para el arrendador (art. 11.2 y 11.3 LAU)." },
+      { q: "¿Qué pasa con mi contrato de temporada firmado antes del 8 de octubre de 2026?", a: "Sigue con su régimen anterior hasta la fecha de fin pactada y entonces se extingue sin prórroga. Si lo renováis, el contrato nuevo se rige por las reglas de vivienda temporal (DT 8.ª LAU)." }
     ],
     guides: [
-      ["blog-temporada.html", "Alquiler de temporada: cómo hacerlo bien"],
-      ["blog-alquiler-temporada-o-turistico.html", "Temporada o turístico: diferencias clave"],
-      ["blog-numero-registro-alquiler-nrua.html", "El registro de alquiler tras la sentencia del Supremo"],
-      ["blog-modelo-informativo-anual-arrendamientos.html", "El modelo informativo anual de febrero"]
+      ["blog-temporada.html", "Alquiler de temporada: vivienda temporal en la LAU"],
+      ["blog-alquiler-temporada-o-turistico.html", "Temporada o turístico: diferencias"],
+      ["blog-garantia-adicional-alquiler.html", "Garantía adicional: límites"],
+      ["blog-inventario-contrato-alquiler.html", "Inventario y documento de finalización"]
     ],
     related: ["contrato-alquiler-temporada-estudiantes", "modelo-contrato-alquiler-vivienda-habitual"]
   },
@@ -379,70 +379,68 @@ const pages = [
   {
     slug: "contrato-alquiler-temporada-estudiantes", category: "Alquiler de temporada",
     title: "Contrato de alquiler de temporada para estudiantes 2026",
-    meta: "Contrato de temporada para estudiantes: vivienda completa durante el curso, causa académica acreditada, domicilio habitual, fianza de dos mensualidades e inventario.",
-    intro: "Alquilar la vivienda completa a estudiantes durante el curso es el caso más claro de arrendamiento de temporada. También es donde más se copia la plantilla equivocada y se acaba con un contrato de vivienda habitual sin saberlo.",
+    meta: "Contrato de temporada para estudiantes tras el RDL 29/2026: vivienda completa durante el curso como vivienda temporal, causa acreditada, fianza de un mes e inventario.",
+    intro: "Ceder el piso entero a uno o varios estudiantes durante el curso es, desde el 8 de octubre de 2026, un arrendamiento de vivienda temporal de la LAU. La matrícula es la causa que tienes que escribir y poder probar, y las garantías y la salida anticipada tienen reglas nuevas.",
     key: "contrato-temporada", product: "Contrato de temporada", price: "9,99 €",
-    law: "Ley 29/1994 LAU, arts. 3 y 36; Código Civil con carácter supletorio.", lawUrl: LAU,
+    law: "Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026: arts. 2.3, 7.2, 9 bis, 11.2, 21 bis y 36, y disposición transitoria octava; Código Civil con carácter supletorio.", lawUrl: LAU,
     context: [
-      "Cuando cedes la vivienda completa a uno o varios estudiantes durante el curso académico, la necesidad que satisfaces no es la de vivienda permanente: es la de alojamiento durante un periodo formativo concreto. Eso encaja en el artículo 3 de la LAU como uso distinto del de vivienda, con todo lo que implica en plazos y fianza.",
-      "La diferencia con el alquiler por habitaciones es importante y conviene tenerla clara. Si alquilas habitaciones sueltas con zonas comunes, el contrato se rige por el Código Civil. Si cedes el piso entero, aunque sea a un grupo de estudiantes, estás en el ámbito de la LAU y la pregunta pasa a ser si el uso es de vivienda habitual o de temporada.",
-      "La causa académica se acredita con matrícula, carta de admisión, programa de intercambio o convenio de prácticas. Y la duración debe seguir al curso: de septiembre a junio, de septiembre a julio, o el cuatrimestre que corresponda. Un contrato de doce meses renovado cada septiembre empieza a parecerse mucho a una vivienda habitual."
+      "Cuando cedes la vivienda completa a estudiantes que mantienen su domicilio familiar en otra ciudad, satisfaces una necesidad de vivienda temporal por estudios. Desde el Real Decreto-ley 29/2026 eso es un arrendamiento de vivienda temporal del artículo 2.3 de la LAU y ya no un uso distinto del de vivienda: el artículo 3.2 excluye «en todo caso» el alojamiento de personas.",
+      "La causa debe constar en el contrato y poder acreditarse con la matrícula, la carta de admisión o el convenio de prácticas; la prueba es del arrendador (art. 7.2). La duración debe superar los 31 días y, como regla general, no pasar de 12 meses (art. 9 bis), lo que encaja con un curso. Si el contrato se alarga sin justificación o encadenas más de dos contratos temporales con los mismos estudiantes, el primero se trata como vivienda habitual.",
+      "Si alquilas habitaciones sueltas en lugar del piso entero, también entran en la LAU (arts. 2.1 y 2.3) y la suma de sus rentas no puede superar la renta de la vivienda completa (art. 17.9). Los contratos de temporada firmados antes del 8 de octubre de 2026 siguen con su régimen anterior hasta su vencimiento, sin prórroga (DT 8.ª)."
     ],
     checklist: [
-      "Matrícula, carta de admisión o convenio de prácticas del estudiante",
-      "Domicilio familiar o habitual del estudiante, distinto del inmueble",
-      "Fechas ajustadas al curso o cuatrimestre",
-      "Renta y forma de pago, con el tratamiento de los meses incompletos",
-      "Fianza de dos mensualidades y, si procede, garantía adicional o aval",
-      "Inventario detallado del mobiliario y electrodomésticos",
-      "Si firman varios estudiantes, si la responsabilidad es solidaria"
+      "Identidad de todos los estudiantes que firman y, si lo hay, del avalista",
+      "Matrícula, carta de admisión o convenio de prácticas de cada uno",
+      "Domicilio habitual de los estudiantes fuera de la vivienda",
+      "Fechas ajustadas al curso, de 32 días a 12 meses",
+      "Fianza de una mensualidad y, si procede, garantía adicional de máximo otra o aval personal",
+      "Inventario detallado con fotos fechadas"
     ],
     clauses: [
-      { t: "Causa académica acreditada", d: "Identifica los estudios, el centro y el periodo. Anexa el documento que lo acredite: es lo que sostiene la temporalidad." },
-      { t: "Domicilio habitual del estudiante", d: "Debe constar que mantiene su residencia habitual en otra dirección, normalmente la familiar." },
-      { t: "Duración ligada al curso", d: "Fechas concretas, sin prórroga tácita. Si el estudiante continúa el curso siguiente, se firma un contrato nuevo." },
-      { t: "Renta y meses incompletos", d: "Deja escrito cómo se prorratea septiembre y junio si la entrada o la salida no coinciden con el mes natural." },
-      { t: "Fianza de dos mensualidades", d: "Es la que corresponde al uso distinto del de vivienda según el artículo 36 de la LAU." },
-      { t: "Responsabilidad solidaria y aval", d: "Si firman varios estudiantes, pactar la solidaridad te permite reclamar el total a cualquiera. El aval de los padres es habitual en este perfil." },
-      { t: "Uso, obras y subarriendo", d: "Destino exclusivo al alojamiento pactado, sin obras y sin subarrendar, ni siquiera durante las vacaciones." },
-      { t: "Inventario y devolución", d: "Estado de entrega documentado y criterio claro de lo que se descuenta al terminar el curso." }
+      { t: "Causa académica", d: "Centro, estudios y curso, con referencia al documento que lo acredita (art. 7.2 LAU)." },
+      { t: "Duración ligada al curso", d: "Más de 31 días y hasta 12 meses. Si siguen el curso siguiente, la prórroga se pacta por escrito; no encadenes más de dos contratos temporales con las mismas personas (art. 9 bis)." },
+      { t: "Responsabilidad solidaria", d: "Si firman varios estudiantes, conviene que respondan solidariamente de la renta y de los daños." },
+      { t: "Fianza y aval", d: "Una mensualidad de fianza (art. 36.1). La garantía adicional no puede superar una mensualidad en arrendamientos temporales; un aval personal de los padres debe constar por escrito. No se puede exigir seguro de impago (art. 36.5)." },
+      { t: "Desistimiento", d: "Pasado un mes desde la firma y avisando con diez días, sin indemnización (art. 11.2 y 11.3)." },
+      { t: "Reparaciones", d: "La conservación y las pequeñas reparaciones por uso ordinario son del arrendador, que debe responder en cinco días hábiles (art. 21 bis)." }
     ],
     steps: [
-      { t: "Confirma que cedes la vivienda completa", d: "Si alquilas habitaciones sueltas, necesitas un contrato de habitación, no este." },
-      { t: "Pide la acreditación académica", d: "Matrícula o carta de admisión, y anéxala al contrato. Sin ella la causa temporal queda sin respaldo." },
-      { t: "Ajusta las fechas al calendario académico", d: "De septiembre a junio o de septiembre a julio. Evita el contrato de doce meses si lo que hay es un curso." },
-      { t: "Decide las garantías", d: "Fianza de dos mensualidades y, si lo ves necesario, aval de los padres o garantía adicional dentro de los límites legales." },
-      { t: "Levanta inventario con fotos", d: "Electrodomésticos, mobiliario y estado de paredes. Es el documento que evita discusiones en junio." },
-      { t: "Prevé el verano y la renovación", d: "Escribe qué pasa con las pertenencias y si la vivienda queda reservada para el curso siguiente, y a cambio de qué." }
+      { t: "Comprueba la causa", d: "Matrícula o admisión de cada estudiante y domicilio habitual fuera de la vivienda." },
+      { t: "Ajusta las fechas al curso", d: "Más de 31 días y sin pasar de 12 meses." },
+      { t: "Decide las garantías", d: "Fianza de una mensualidad y, si lo ves necesario, aval de los padres o garantía adicional dentro del límite de una mensualidad." },
+      { t: "Reparte la renta y los gastos", d: "Renta conjunta con responsabilidad solidaria y suministros por contador; sin repercutir tributos ni gastos de gestión (art. 20)." },
+      { t: "Firma con inventario", d: "Con estudiantes el desgaste es mayor: fotografía todo al entrar." },
+      { t: "Cierra con el documento de finalización", d: "En junio, deja constancia escrita del estado de la vivienda (art. 36.7)." }
     ],
     table: {
-      title: "Qué régimen se aplica según lo que alquiles", caption: "Tres formas de alquilar a estudiantes y el régimen que corresponde a cada una.",
-      head: ["Qué alquilas", "Régimen", "Fianza"],
+      title: "Qué contrato corresponde a cada situación", caption: "Régimen aplicable a estudiantes desde el 8 de octubre de 2026.",
+      head: ["Situación", "Régimen", "Fianza legal"],
       rows: [
-        ["Vivienda completa por el curso", "Temporada, art. 3 LAU", "2 mensualidades"],
-        ["Habitación con zonas comunes", "Código Civil, arts. 1542 y ss.", "La pactada"],
-        ["Vivienda completa como residencia permanente", "Vivienda habitual, Título II LAU", "1 mensualidad"]
+        ["Vivienda completa por el curso, estudiantes desplazados", "Vivienda temporal (art. 2.3 LAU)", "1 mensualidad"],
+        ["Habitación para un estudiante desplazado", "Vivienda temporal (arts. 2.3 y 17.9 LAU)", "1 mensualidad"],
+        ["Estudiante que vive de forma habitual en la vivienda", "Vivienda habitual (art. 2.1 LAU)", "1 mensualidad"],
+        ["Contrato de temporada firmado antes del 8-10-2026", "Uso distinto hasta su vencimiento (DT 8.ª)", "La pactada con el régimen anterior"]
       ]
     },
     mistakes: [
-      { t: "Copiar una plantilla de vivienda habitual", d: "Acabas con prórrogas obligatorias que no querías y con una fianza inferior a la que te reconoce la ley." },
-      { t: "Contrato de doce meses renovado cada año", d: "Repetido curso tras curso, delata que la temporalidad era una etiqueta." },
-      { t: "No pactar la solidaridad entre varios firmantes", d: "Cuando uno deje de pagar, no podrás reclamar el total al resto." },
-      { t: "Inventario superficial", d: "Con estudiantes el desgaste es mayor y la discusión de junio es previsible. Sin fotos, la pierdes." },
-      { t: "Dejar el verano sin regular", d: "Las pertenencias almacenadas sin contrato son una fuente segura de conflicto." }
+      { t: "Usar la plantilla de uso distinto", d: "Para contratos nuevos, el alojamiento de personas quedó fuera del artículo 3. El contrato debe ser de vivienda temporal." },
+      { t: "No guardar la matrícula", d: "La causa debe ser acreditable y la prueba es tuya." },
+      { t: "Pedir dos mensualidades de fianza", d: "En vivienda temporal la fianza es de una mensualidad y la garantía adicional, de máximo otra." },
+      { t: "Renovar año tras año con contratos temporales", d: "Más de dos contratos consecutivos con las mismas personas convierten el primero en vivienda habitual." },
+      { t: "Inventario superficial", d: "Con estudiantes el desgaste es mayor y la discusión de junio es previsible. Sin fotos ni documento de finalización, la pierdes." }
     ],
     faqs: [
-      { q: "¿Alquilar a estudiantes es siempre contrato de temporada?", a: "No. Lo es cuando cedes la vivienda completa por el periodo académico y el estudiante mantiene su domicilio habitual en otro lugar. Si alquilas habitaciones sueltas, el régimen aplicable es el del Código Civil." },
-      { q: "¿Qué documento acredita la causa académica?", a: "La matrícula, la carta de admisión del centro, el convenio de prácticas o la documentación del programa de intercambio. Conviene anexarla al contrato." },
-      { q: "¿Cuánta fianza puedo pedir?", a: "Dos mensualidades, conforme al artículo 36 de la LAU para uso distinto del de vivienda, además de las garantías adicionales que se pacten, como un aval." },
-      { q: "¿Puedo pedir aval a los padres?", a: "Sí. Es una garantía adicional habitual en este perfil de inquilino. Debe constar por escrito, identificando al avalista y el alcance de lo que garantiza." },
-      { q: "¿Qué hago si el estudiante quiere quedarse el verano?", a: "Firma un acuerdo escrito para ese periodo o un contrato nuevo. Permitir que se quede sin documentar puede derivar en tácita reconducción." }
+      { q: "¿Alquilar a estudiantes es siempre contrato de temporada?", a: "Es vivienda temporal cuando los estudiantes mantienen su domicilio habitual en otro lugar y la causa académica consta y se puede acreditar (arts. 2.3 y 7.2 LAU). Si viven ahí de forma habitual, es vivienda habitual." },
+      { q: "¿Puedo hacer el contrato solo por el curso?", a: "Sí. En vivienda temporal la duración debe superar los 31 días y, como regla general, no pasar de 12 meses (art. 9 bis LAU)." },
+      { q: "¿Cuánta fianza puedo pedir?", a: "Una mensualidad de fianza (art. 36.1 LAU) y, como mucho, otra de garantía adicional en arrendamientos temporales (art. 36.5). No se puede exigir un seguro de impago." },
+      { q: "¿Puedo pedir aval a los padres?", a: "Sí, como garantía personal adicional. Debe constar por escrito, identificando al avalista y lo que garantiza; el depósito en dinero adicional a la fianza tiene el tope de una mensualidad." },
+      { q: "¿Qué pasa con un contrato de temporada para estudiantes firmado antes del 8 de octubre de 2026?", a: "Sigue con su régimen anterior hasta la fecha de fin pactada y entonces se extingue sin prórroga. Si se renueva, el nuevo contrato es de vivienda temporal (DT 8.ª LAU)." }
     ],
     guides: [
-      ["blog-temporada.html", "Alquiler de temporada en 2026"],
-      ["blog-alquiler-temporada-o-turistico.html", "Temporada frente a turístico"],
-      ["blog-garantia-adicional-alquiler.html", "Garantía adicional y aval: límites"],
-      ["blog-inventario-contrato-alquiler.html", "Cómo levantar un inventario que sirva"]
+      ["blog-temporada.html", "Alquiler de temporada: vivienda temporal en la LAU"],
+      ["blog-habitacion.html", "Alquilar por habitaciones tras el RDL 29/2026"],
+      ["blog-garantia-adicional-alquiler.html", "Garantía adicional y aval"],
+      ["blog-devolucion-fianza-alquiler.html", "Devolución de la fianza"]
     ],
     related: ["contrato-alquiler-temporada-por-trabajo", "contrato-alquiler-habitacion-estudiantes"]
   },
@@ -530,7 +528,8 @@ const pages = [
     context: [
       "MASC son las siglas de medio adecuado de solución de controversias. La Ley Orgánica 1/2025 los convirtió en requisito de procedibilidad para el orden civil: antes de presentar la demanda hay que haber intentado, de buena fe, resolver el asunto fuera del juzgado, y hay que poder acreditarlo.",
       "La ley no impone un medio concreto. Valen la mediación, la conciliación, la opinión de un tercero experto, la negociación entre abogados y la oferta vinculante confidencial. Para un impago de alquiler, la oferta vinculante confidencial suele ser la opción más práctica porque no depende de que la otra parte acepte sentarse.",
-      "Lo que la ley sí exige es que el intento sea real y demostrable. Eso significa una propuesta concreta, un plazo de aceptación de al menos un mes y un envío que deje constancia de contenido, recepción y fecha. Un mensaje de WhatsApp diciendo que pague no cumple ninguno de los tres requisitos."
+      "Lo que la ley sí exige es que el intento sea real y demostrable. Eso significa una propuesta concreta, un plazo de aceptación de al menos un mes y un envío que deje constancia de contenido, recepción y fecha. Un mensaje de WhatsApp diciendo que pague no cumple ninguno de los tres requisitos.",
+      "Después del MASC, ten en cuenta dos novedades del Real Decreto-ley 29/2026 en vigor desde el 8 de octubre de 2026. Si el inquilino acredita vulnerabilidad económica y la Administración no ofrece una alternativa habitacional, el nuevo artículo 22.6 de la Ley de Enjuiciamiento Civil le da a la Administración un plazo de dos meses para pagar o consignar la deuda, con el procedimiento suspendido mientras tanto. Y el artículo 2 del real decreto-ley prevé, hasta el 31 de diciembre de 2030, la suspensión del proceso cuando el demandado es vulnerable y no tiene alternativa habitacional, con reglas distintas según quién demande."
     ],
     checklist: [
       "Contrato de arrendamiento firmado y sus anexos",
@@ -620,7 +619,7 @@ function render(p) {
 
   const related = p.related.map(slug => pages.find(x => x.slug === slug)).filter(Boolean);
 
-  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(p.title)} | Asesorfy</title><meta name="description" content="${esc(p.meta)}"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="author" content="Asesorfy"><link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:site_name" content="Asesorfy"><meta property="og:locale" content="es_ES"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.meta)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${DOMAIN}/assets/og-asesorfy.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/asesorfy-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/brand.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>${css}</style><script type="application/ld+json">${JSON.stringify(schema)}</script><script defer src="/_vercel/insights/script.js"></script><script defer src="../posthog-analytics.js"></script></head><body><header><div class="wrap nav"><a class="brand" href="../index.html"><img class="brand-mark" src="/assets/asesorfy-mark.svg" alt="" width="32" height="32"><span class="brand-name">Asesor<span class="brand-accent">fy</span></span></a><nav class="navlinks"><a href="../documentos.html">Documentos</a><a href="../calculadora-rentabilidad-alquiler.html">Calculadora</a><a href="../blog.html">Blog</a><a href="../herramientas">Herramientas</a></nav></div></header><main class="wrap">
+  return `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(p.title.length + 11 <= 60 ? `${p.title} | Asesorfy` : p.title)}</title><meta name="description" content="${esc(p.meta)}"><meta name="robots" content="index,follow,max-image-preview:large"><meta name="author" content="Asesorfy"><link rel="canonical" href="${url}"><meta property="og:type" content="website"><meta property="og:site_name" content="Asesorfy"><meta property="og:locale" content="es_ES"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.meta)}"><meta property="og:url" content="${url}"><meta property="og:image" content="${DOMAIN}/assets/og-asesorfy.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="/assets/asesorfy-mark.svg" type="image/svg+xml"><link rel="stylesheet" href="/brand.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"><style>${css}</style><script type="application/ld+json">${JSON.stringify(schema)}</script><script defer src="/_vercel/insights/script.js"></script><script defer src="../posthog-analytics.js"></script></head><body><header><div class="wrap nav"><a class="brand" href="../index.html"><img class="brand-mark" src="/assets/asesorfy-mark.svg" alt="" width="32" height="32"><span class="brand-name">Asesor<span class="brand-accent">fy</span></span></a><nav class="navlinks"><a href="../documentos.html">Documentos</a><a href="../calculadora-rentabilidad-alquiler.html">Calculadora</a><a href="../blog.html">Blog</a><a href="../herramientas">Herramientas</a></nav></div></header><main class="wrap">
 
 <section class="hero"><span class="eyebrow">${esc(p.category)} · Modelo actualizado</span><h1>${esc(p.title)}</h1><p class="lead">${esc(p.intro)}</p><div class="facts"><div class="fact"><b>Documento</b>${esc(p.product)}</div><div class="fact"><b>Precio</b>${esc(priceLabel)}</div><div class="fact"><b>Revisado</b>${TODAY_TXT}</div></div><a class="cta" href="../generador.html#${p.key}">${p.free ? "Crear el contrato gratis →" : "Personalizar el documento →"}</a><span class="price">Vista previa antes de ${p.free ? "descargar" : "pagar"}</span></section>
 
@@ -636,7 +635,7 @@ function render(p) {
 
 <section><h2>Errores frecuentes</h2><div class="grid">${p.mistakes.map(m => `<div class="card"><h3>${esc(m.t)}</h3><p>${esc(m.d)}</p></div>`).join("")}</div></section>
 
-<section><h2>Base legal</h2><p class="source">${esc(p.law)} <a href="${p.lawUrl}" target="_blank" rel="noopener noreferrer">Consultar el texto oficial en el BOE</a>.${p.key === "contrato-temporada" ? ` Consulta también el <a href="${NRUA}" target="_blank" rel="noopener noreferrer">RD 1312/2024 consolidado</a>: el procedimiento estatal de registro fue anulado por el Tribunal Supremo en 2026, pero siguen vigentes los registros autonómicos y locales.` : ""}${p.key === "contrato-larga" ? ` Sobre la actualización de la renta, el <a href="${INE_IRAV}" target="_blank" rel="noopener noreferrer">INE publica mensualmente el IRAV</a> y la <a href="${VIVIENDA}" target="_blank" rel="noopener noreferrer">Ley 12/2023 por el derecho a la vivienda</a> recoge el resto de novedades.` : ""}</p></section>
+<section><h2>Base legal</h2><p class="source">${esc(p.law)} <a href="${p.lawUrl}" target="_blank" rel="noopener noreferrer">Consultar el texto oficial en el BOE</a>.${["contrato-larga","contrato-habitacion","contrato-temporada"].includes(p.key) ? ` Redacción vigente tras el <a href="${RDL}" target="_blank" rel="noopener noreferrer">Real Decreto-ley 29/2026</a>, en vigor desde el 8 de octubre de 2026.` : ""}${p.key === "contrato-temporada" ? ` Consulta también el <a href="${NRUA}" target="_blank" rel="noopener noreferrer">RD 1312/2024 consolidado</a>: el procedimiento estatal de registro fue anulado por el Tribunal Supremo en 2026, pero siguen vigentes los registros autonómicos y locales.` : ""}${p.key === "contrato-larga" ? ` Sobre la actualización de la renta, el <a href="${INE_IRAV}" target="_blank" rel="noopener noreferrer">INE publica mensualmente el IRAV</a> y la <a href="${VIVIENDA}" target="_blank" rel="noopener noreferrer">Ley 12/2023 por el derecho a la vivienda</a> recoge el resto de novedades.` : ""}</p></section>
 
 <section class="faq"><h2>Preguntas frecuentes</h2>${p.faqs.map(f => `<details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join("")}</section>
 

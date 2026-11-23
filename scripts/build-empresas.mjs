@@ -68,7 +68,7 @@ function searchIndex() {
 }
 
 /* ---------- Piezas comunes ---------- */
-const COOKIE_BANNER = `<div id="ck-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0e1a2b;color:#dbe3ee;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;padding:14px 18px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.25)"><span style="max-width:680px">Usamos cookies propias y de terceros (analítica y Stripe) para el funcionamiento del sitio y procesar pagos. <a href="/cookies.html" style="color:#9fc1e8">Más información</a>.</span><span style="display:flex;gap:8px"><button onclick="ckSet(0)" style="background:transparent;border:1px solid #3a4a60;color:#cdd8e6;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Rechazar</button><button onclick="ckSet(1)" style="background:#1f5fa6;border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Aceptar</button></span></div><script>function ckSet(v){try{localStorage.setItem('asesorfy_cookies',v?'accepted':'rejected');}catch(e){}var b=document.getElementById('ck-banner');if(b)b.style.display='none';}(function(){try{if(!localStorage.getItem('asesorfy_cookies')){var b=document.getElementById('ck-banner');if(b)b.style.display='flex';}}catch(e){}})();</script>`;
+const COOKIE_BANNER = `<div id="ck-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0e1a2b;color:#dbe3ee;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;padding:14px 18px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.25)"><span style="max-width:680px">Usamos cookies propias y de terceros (analítica y Stripe) para el funcionamiento del sitio y procesar pagos. <a href="/cookies.html" style="color:#9fc1e8">Más información sobre cookies</a>.</span><span style="display:flex;gap:8px"><button onclick="ckSet(0)" style="background:transparent;border:1px solid #3a4a60;color:#cdd8e6;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Rechazar</button><button onclick="ckSet(1)" style="background:#1f5fa6;border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Aceptar</button></span></div><script>function ckSet(v){try{localStorage.setItem('asesorfy_cookies',v?'accepted':'rejected');}catch(e){}var b=document.getElementById('ck-banner');if(b)b.style.display='none';}(function(){try{if(!localStorage.getItem('asesorfy_cookies')){var b=document.getElementById('ck-banner');if(b)b.style.display='flex';}}catch(e){}})();</script>`;
 
 function head({ title, desc, url, jsonld = [], extra = "" }) {
   return `<!DOCTYPE html>
@@ -214,7 +214,7 @@ const GEN = {
   },
   "generador-aviso-legal": {
     gen: "avisoLegal", file: "aviso-legal",
-    title: "Generador de aviso legal gratis para tu web (LSSI) | Asesorfy",
+    title: "Generador de aviso legal gratis para tu web (LSSI)",
     desc: "Crea gratis el aviso legal de tu web según el artículo 10 de la LSSI, para empresas y autónomos. Rellena tus datos y cópialo al momento.",
     h1: "Generador de aviso legal",
     lede: "Toda web de empresa o autónomo debe identificar a su titular (artículo 10 de la LSSI). Rellena tus datos y el aviso legal se escribe solo, listo para copiar.",
@@ -235,7 +235,7 @@ const GEN = {
   },
   "generador-politica-cookies": {
     gen: "cookies", file: "politica-de-cookies",
-    title: "Generador de política de cookies gratis (guía AEPD) | Asesorfy",
+    title: "Generador de política de cookies gratis (guía AEPD)",
     desc: "Crea gratis la política de cookies de tu web con la tabla de cookies de Google Analytics, Meta, Hotjar y más, según la guía de la AEPD.",
     h1: "Generador de política de cookies",
     lede: "Marca las herramientas que usa tu web y obtén la política de cookies con su tabla de cookies, según el artículo 22.2 de la LSSI y la guía de la AEPD.",
@@ -317,7 +317,7 @@ ${footer()}`;
 const AI = {
   "revisar-contrato": {
     tool: "revisar",
-    title: "Revisar contrato gratis con IA: cláusulas abusivas y riesgos | Asesorfy",
+    title: "Revisar contrato gratis con IA: cláusulas abusivas y riesgos",
     desc: "Pega tu contrato y descubre gratis, en lenguaje claro, qué cláusulas te pueden perjudicar, qué falta y qué preguntar antes de firmar.",
     h1: "Revisa tu contrato antes de firmarlo",
     lede: "Pega el contrato o sube el PDF. En menos de un minuto te decimos qué cláusulas te pueden perjudicar, qué falta y qué conviene preguntar antes de firmar.",
@@ -335,7 +335,7 @@ const AI = {
   },
   "traductor-legal": {
     tool: "traducir",
-    title: "Traductor de textos legales a lenguaje claro (gratis) | Asesorfy",
+    title: "Traductor de textos legales a lenguaje claro (gratis)",
     desc: "Pega un contrato, unas condiciones o una carta oficial y te lo explicamos gratis parte por parte, en lenguaje claro: qué te obliga y qué te permite.",
     h1: "Traduce cualquier texto legal a lenguaje claro",
     lede: "Condiciones generales, una cláusula que no entiendes o una carta de Hacienda: pégalo y te lo explicamos parte por parte, con lo que te obliga y lo que te permite.",
@@ -407,7 +407,7 @@ ${footer()}`;
 function toolsIndex() {
   const url = "/herramientas";
   const h = head({
-    title: "Herramientas legales gratis para empresas y autónomos | Asesorfy",
+    title: "Herramientas legales gratis para empresas y autónomos",
     desc: "Revisor de contratos con IA, traductor de textos legales y generadores de política de privacidad, aviso legal y cookies. Gratis y sin registro.",
     url, jsonld: [crumbLd("Herramientas"), { "@context": "https://schema.org", "@type": "ItemList", itemListElement: TOOLS.map((t, i) => ({ "@type": "ListItem", position: i + 1, url: DOMAIN + toolUrl(t), name: t.name })) }],
   });
@@ -436,7 +436,7 @@ function home() {
   const guides = idx.filter((x) => x.g === "guide").slice(0, 6);
   const h = head({
     title: "Asesorfy · Herramientas y documentos legales para empresas",
-    desc: "Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Herramientas gratis y documentos para empresas, autónomos y particulares en España.",
+    desc: "Revisa contratos, traduce textos legales y crea la política de privacidad, el aviso legal y las cookies de tu web. Gratis, para empresas y autónomos.",
     url,
     jsonld: [{ "@context": "https://schema.org", "@graph": [
       { "@type": "Organization", "@id": `${DOMAIN}/#organization`, name: "Asesorfy", url: DOMAIN + "/", logo: `${DOMAIN}/assets/asesorfy-mark.svg`, email: "hola@asesorfy.app", areaServed: "ES", founder: { "@type": "Person", name: "Mario Calvo Castillo", url: `${DOMAIN}/sobre.html` }, address: { "@type": "PostalAddress", addressLocality: "Córdoba", addressCountry: "ES" } },
@@ -502,7 +502,7 @@ function home() {
     <div class="wrap rent-in">
       <div>
         <h2>Contratos y escritos, listos para usar</h2>
-        <p>Para reclamar un impago antes de ir al juzgado, como exige la ley desde 2025, o para alquilar un piso, una habitación o un local con un contrato al día.</p>
+        <p>Para reclamar un impago antes de ir al juzgado, como exige la ley desde 2025, o para alquilar un piso, una habitación o un local con un contrato al día. Los contratos de alquiler están actualizados al Real Decreto-ley 29/2026 (BOE del 7 de octubre de 2026).</p>
         <a class="btn ghost" href="/documentos.html" data-cta="home-documentos">Ver todos los documentos ${ICON.arrow}</a>
       </div>
       <ul class="rent-list">

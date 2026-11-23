@@ -8,8 +8,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Catálogo y precios en céntimos de euro (fuente de verdad en el servidor).
 // El contrato de larga duración es gratuito a cambio del email: no se puede pagar.
 const PRODUCTS = {
-  'contrato-habitacion': { name: 'Contrato de habitación 2026', amount: 999,  description: 'Contrato de alquiler de habitación (Código Civil) en Word y PDF, con anexos de inventario y convivencia.' },
-  'contrato-temporada':  { name: 'Contrato de temporada 2026',  amount: 999,  description: 'Contrato de alquiler de temporada (art. 3 LAU) en Word y PDF, con la causa de temporalidad redactada.' },
+  'contrato-habitacion': { name: 'Contrato de habitación 2026', amount: 999,  description: 'Contrato de alquiler de habitación (LAU, actualizado al RDL 29/2026) en Word y PDF, con anexos de inventario y convivencia.' },
+  'contrato-temporada':  { name: 'Contrato de temporada 2026',  amount: 999,  description: 'Contrato de alquiler de temporada (vivienda temporal, LAU actualizada al RDL 29/2026) en Word y PDF, con la causa de temporalidad redactada.' },
   'ovc-impago':          { name: 'Kit Impago + MASC 2026',      amount: 4900, description: 'Oferta Vinculante Confidencial (LO 1/2025) en Word y PDF, instrucciones de burofax y checklist para la demanda.' },
   'ovc-deuda':           { name: 'Kit Impago facturas + MASC 2026', amount: 4900, description: 'Oferta Vinculante Confidencial (LO 1/2025) para reclamar facturas impagadas, en Word y PDF, con propuesta de pago a plazos e instrucciones de burofax.' }
 };

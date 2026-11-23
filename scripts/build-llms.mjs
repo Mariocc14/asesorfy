@@ -31,13 +31,14 @@ const posts = fs.readdirSync(root).filter(f => /^blog-.*\.html$/.test(f)).map(pa
   .sort((a, b) => (b.date || "0000").localeCompare(a.date || "0000") || a.file.localeCompare(b.file));
 const legal = ["aviso-legal.html", "privacidad.html", "condiciones.html", "cookies.html"].filter(f => fs.existsSync(path.join(root, f)));
 
-const line = (p, label) => `- [${label || p.title}](${DOMAIN}/${p.file})${p.description ? `: ${p.description}` : ""}${p.date ? ` (${p.date})` : ""}`;
+const url = (f) => f === "index.html" ? `${DOMAIN}/` : f === "herramientas/index.html" ? `${DOMAIN}/herramientas` : f.startsWith("herramientas/") ? `${DOMAIN}/${f.replace(/\.html$/, "")}` : `${DOMAIN}/${f}`;
+const line = (p, label) => `- [${label || p.title}](${url(p.file)})${p.description ? `: ${p.description}` : ""}${p.date ? ` (${p.date})` : ""}`;
 
 const out = `# Asesorfy
 
-> Documentos legales para propietarios y pequeños caseros en España, redactados sobre el Código Civil, la Ley de Arrendamientos Urbanos (LAU), la Ley 12/2023 de Vivienda y la Ley Orgánica 1/2025 (MASC). Contratos de alquiler de vivienda habitual, habitación y temporada, kit de impago con Oferta Vinculante Confidencial, calculadora de rentabilidad, asesoría de 30 minutos y guías gratuitas actualizadas a la normativa vigente. Solo normativa española. Contenido informativo, no asesoramiento jurídico personalizado.
+> Herramientas y documentos legales para empresas, autónomos, propietarios y particulares en España. Herramientas gratis y sin registro: revisor de contratos con IA, traductor de textos legales a lenguaje claro y generadores de política de privacidad, aviso legal y política de cookies. Documentos de pago único redactados sobre el Código Civil, la Ley de Arrendamientos Urbanos (LAU), la Ley 12/2023 de Vivienda, la Ley Orgánica 1/2025 (MASC) y la Ley 3/2004 de morosidad: contratos de alquiler de vivienda habitual, habitación y temporada (actualizados al Real Decreto-ley 29/2026, que desde el 8-10-2026 incluye la habitación y la vivienda temporal en la LAU), y Kit Impago con Oferta Vinculante Confidencial para alquileres y para facturas. Calculadora de rentabilidad del alquiler y guías gratuitas. Solo normativa española. Contenido informativo, no asesoramiento jurídico personalizado: no hay un abogado detrás.
 
-Productos (pago único, entrega en Word): contrato de larga duración 5,99 €, contrato de habitación 9,99 €, contrato de temporada 9,99 €, Kit Impago + MASC 29 €. Asesoría por videollamada: 20 € / 30 min.
+Productos (pago único, IVA incluido, entrega en Word y PDF): contrato de alquiler de vivienda habitual gratis a cambio del email, contrato de habitación 9,99 €, contrato de temporada 9,99 €, Kit Impago alquiler + MASC 49 €, Kit Impago facturas + MASC 49 €. Precios al día en ${DOMAIN}/pricing.md.
 
 ## Páginas principales
 

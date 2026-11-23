@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generador de contratos de alquiler y escritos de impago 2026 | Asesorfy</title>
-<meta name="description" content="Crea online un contrato de alquiler de vivienda, habitación o temporada, o el escrito MASC para reclamar un impago de alquiler o de facturas. Personaliza las cláusulas y previsualiza el documento.">
+<title>Generador de contratos de alquiler y escritos de impago 2026</title>
+<meta name="description" content="Crea online un contrato de alquiler de vivienda, habitación o temporada actualizado al RDL 29/2026, o el escrito MASC para reclamar impagos, con vista previa.">
 <link rel="canonical" href="https://asesorfy.app/generador.html">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_ES">
@@ -226,6 +226,7 @@
     </div>
     <p class="demo-note" id="payError" style="display:none;color:#b3261e;font-weight:600"></p>
     <p class="demo-note">Descarga inmediata en Word y PDF · Pago seguro con Stripe · Lo que escribes se guarda en tu navegador, no en nuestros servidores.</p>
+    <p class="demo-note"><strong>Actualizado al RDL 29/2026.</strong> Los contratos de vivienda, habitación y temporada siguen la LAU tras el <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2026-20823" target="_blank" rel="noopener noreferrer">Real Decreto-ley 29/2026</a> (en vigor desde el 8 de octubre de 2026). Revisado el 23 de noviembre de 2026.</p>
   </div>
 </div>
 
@@ -279,8 +280,8 @@
 
 <script>
 /* ====================== CONFIGURACIÓN ======================
-   Fuentes: Código Civil (1255, 1542 ss.), LAU 29/1994 (art. 3 y 36),
-   LO 1/2025 (art. 17, MASC). Revisado tras las sentencias del TS de 2026 sobre el RD 1312/2024. */
+   Fuentes: LAU 29/1994 en la redacción del RDL 29/2026 (arts. 2, 4, 7, 9 bis, 11, 17, 18, 20, 21 bis y 36; DT 8.ª),
+   Código Civil (supletorio), LO 1/2025 (art. 17, MASC). Revisado el 23-11-2026 con el texto del BOE. */
 
 var COMMON_PARTES = [
   {grp:"Lugar y fecha", help:"El lugar y la fecha determinan dónde y cuándo se perfecciona el contrato. Son relevantes para el cómputo de plazos y para fijar la competencia territorial de los juzgados."},
@@ -299,21 +300,22 @@ var COMMON_PARTES = [
 var CONFIG = {
   "contrato-habitacion":{
     tab:"Contrato de habitación", price:"9,99€",
-    title:"CONTRATO DE ARRENDAMIENTO DE HABITACIÓN", sub:"",
-    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. El arrendamiento de habitación NO se rige por la LAU, sino por la libertad de pactos (art. 1255 CC) y, supletoriamente, por los arts. 1542 y ss. del Código Civil.",
+    title:"CONTRATO DE ARRENDAMIENTO DE HABITACIÓN", sub:"Vivienda habitual — Arts. 2.1 y 4.2 de la Ley 29/1994 (LAU), redacción del RDL 29/2026",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. Desde el 8 de octubre de 2026 el arrendamiento de una habitación que es la vivienda habitual del arrendatario es arrendamiento de vivienda habitual de la LAU (art. 2.1, redacción del Real Decreto-ley 29/2026) y se rige por lo pactado en el marco del Título II y, supletoriamente, por el Código Civil (art. 4.2). Si el arrendatario está temporalmente desplazado de su domicilio habitual por una causa acreditable, usa el contrato de vivienda temporal. La suma de las rentas de las habitaciones alquiladas a la vez no puede superar la renta del contrato de la vivienda completa (art. 17.9). Revisa además la normativa de tu comunidad autónoma (DA 12.ª LAU).",
     fields: COMMON_PARTES.concat([
-      {grp:"Inmueble y condiciones", help:"Describe el objeto del arrendamiento y las condiciones económicas (renta, fianza, duración). Cuanto más concreto sea, menos margen de conflicto y mejor prueba ante un juzgado."},
+      {grp:"Inmueble y condiciones", help:"Describe la habitación, las zonas compartidas y las condiciones económicas. Desde el RDL 29/2026 se aplican las reglas del Título II de la LAU: duración y prórrogas, fianza de una mensualidad y actualización con el IRAV como tope."},
       {id:"direccion",label:"Dirección del inmueble",ph:"Calle ..., Córdoba",full:true},
       {id:"catastral",label:"Referencia catastral",ph:"0000..."},
       {id:"habitacion",label:"Habitación (nº o descripción)",ph:"Habitación 2, exterior"},
       {id:"zonas",label:"Zonas comunes compartidas",ph:"cocina, baño y salón",full:true},
-      {id:"meses",label:"Duración (meses)",ph:"12"},
+      {id:"meses",label:"Duración inicial pactada (meses)",ph:"12"},
       {id:"f_ini",label:"Fecha de inicio",ph:"01/07/2026"},
-      {id:"f_fin",label:"Fecha de fin",ph:"30/06/2027"},
+      {id:"f_fin",label:"Fecha de fin de la duración inicial",ph:"30/06/2027"},
       {id:"renta",label:"Renta mensual (€)",ph:"350"},
+      {id:"renta_total",label:"Renta de referencia de la vivienda completa (€)",ph:"1200"},
       {id:"diapago",label:"Día de pago (primeros del mes)",ph:"5"},
       {id:"iban",label:"IBAN para el cobro",ph:"ES00 ...",full:true},
-      {id:"fianza",label:"Fianza (€)",ph:"350"}
+      {id:"fianza",label:"Fianza (1 mensualidad, €)",ph:"350"}
     ]),
     intro: [
       "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>.",
@@ -322,66 +324,75 @@ var CONFIG = {
       "<b>EL ARRENDATARIO:</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, domicilio en <b>{{inq_dom}}</b>.",
       "__H4__EXPONEN",
       "<b>I.</b> Que el arrendador es titular de la vivienda sita en <b>{{direccion}}</b>, referencia catastral <b>{{catastral}}</b>.",
-      "<b>II.</b> Que el objeto es el arrendamiento de una <b>habitación</b> con uso compartido de zonas comunes, NO de la vivienda completa, sujeto a lo pactado y, en su defecto, a los arts. 1542 y ss. del Código Civil, no siendo aplicable la LAU.",
+      "<b>II.</b> Que el objeto es el arrendamiento parcial de una <b>habitación</b> de dicha vivienda, con uso compartido de zonas comunes, destinada a satisfacer la necesidad de <b>vivienda habitual</b> del arrendatario. Conforme a los arts. 2.1 y 4.2 de la Ley 29/1994, de Arrendamientos Urbanos (redacción del Real Decreto-ley 29/2026), el contrato se rige por lo pactado en el marco del Título II de dicha ley y, supletoriamente, por el Código Civil.",
       "__H4__CLÁUSULAS"
     ],
     clauses: [
-      {id:"c_obj",ttl:"Objeto",ess:true,text:"Se arrienda la habitación <b>{{habitacion}}</b> con uso compartido de <b>{{zonas}}</b>. El mobiliario se detalla en el Anexo I."},
-      {id:"c_dur",ttl:"Duración",ess:true,text:"El contrato se pacta por <b>{{meses}}</b> meses, desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>. Cualquier prórroga requerirá acuerdo escrito de ambas partes."},
+      {id:"c_obj",ttl:"Objeto",ess:true,text:"Se arrienda la habitación <b>{{habitacion}}</b> con uso compartido de <b>{{zonas}}</b>, para su uso como vivienda habitual del arrendatario. El mobiliario se detalla en el Anexo I."},
+      {id:"c_dur",ttl:"Duración y prórrogas",ess:true,text:"El contrato se pacta por <b>{{meses}}</b> meses, desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>. Llegada esa fecha, se prorrogará por plazos anuales en los términos de los arts. 9 y 10 de la LAU, salvo que el arrendatario manifieste su voluntad de no renovarlo con los preavisos legales."},
       {id:"c_renta",ttl:"Renta",ess:true,text:"La renta mensual es de <b>{{renta}}</b> €, pagadera dentro de los <b>{{diapago}}</b> primeros días de cada mes mediante transferencia a la cuenta <b>{{iban}}</b>."},
-      {id:"c_fianza",ttl:"Fianza",ess:true,text:"El arrendatario entrega en este acto <b>{{fianza}}</b> € en concepto de fianza, que será devuelta al término del contrato previa verificación del estado de la habitación y zonas comunes."},
-      {id:"c_act",ttl:"Actualización de la renta",text:"La renta se actualizará conforme a lo libremente pactado por las partes. (El índice IRAV y los topes de la Ley de Vivienda aplican al alquiler de vivienda habitual bajo la LAU; en el arrendamiento de habitación rige la libertad de pactos.)"},
-      {id:"c_sum",ttl:"Suministros",text:"Los gastos de suministros (agua, luz, gas, internet) se repartirán de forma proporcional entre los ocupantes de la vivienda."},
-      {id:"c_uso",ttl:"Uso y convivencia",text:"El arrendatario destinará la habitación a su uso propio, respetará las normas de convivencia del Anexo II y no perturbará al resto de ocupantes."},
-      {id:"c_proh",ttl:"Prohibición de subarriendo",text:"Queda prohibido el subarriendo, la cesión a terceros y el cambio de uso de la habitación sin consentimiento escrito del arrendador."},
+      {id:"c_suma",ttl:"Límite de la suma de rentas",ess:true,text:"El arrendador declara que la suma de las rentas de los contratos de arrendamiento de habitaciones vigentes de forma simultánea sobre la vivienda, incluida la de este contrato, no excede de <b>{{renta_total}}</b> €, importe de la renta del contrato de arrendamiento unitario de la vivienda completa, conforme al art. 17.9 de la LAU. Si la vivienda se ubica en una zona de mercado residencial tensionado, se respetarán además los límites de los apartados 6, 7 y 8 de dicho artículo."},
+      {id:"c_fianza",ttl:"Fianza",ess:true,text:"Conforme al art. 36.1 de la LAU, el arrendatario entrega en este acto <b>{{fianza}}</b> €, equivalentes a UNA (1) mensualidad de renta, en concepto de fianza, que será devuelta al término del contrato previa verificación del estado de la habitación y de las zonas comunes. No se exige al arrendatario la contratación de seguros de impago de renta (art. 36.5)."},
+      {id:"c_act",ttl:"Actualización de la renta",text:"La renta se actualizará en cada aniversario del contrato conforme a la variación anual del Índice de Referencia para la Actualización Anual de los Contratos de Arrendamiento de Vivienda (IRAV) publicado por el INE, sin que el incremento pueda exceder de dicha variación (art. 18.1 LAU). Para las anualidades que se cumplan hasta el 31 de diciembre de 2027 se aplicará la limitación de la disposición final sexta del Real Decreto-ley 29/2026."},
+      {id:"c_desist",ttl:"Desistimiento del arrendatario",text:"El arrendatario podrá desistir del contrato una vez transcurridos al menos SEIS (6) meses, comunicándolo al arrendador con una antelación mínima de TREINTA (30) días. El desistimiento así ejercido no generará indemnización a favor del arrendador (art. 11 LAU)."},
+      {id:"c_sum",ttl:"Suministros y gastos",text:"Los gastos de suministros (agua, luz, gas, internet) se repartirán de forma proporcional entre los ocupantes de la vivienda conforme al criterio del Anexo II. No se repercutirán al arrendatario los tributos asociados a la vivienda ni los gastos de gestión inmobiliaria o de formalización del contrato (art. 20 LAU)."},
+      {id:"c_uso",ttl:"Uso y convivencia",text:"El arrendatario destinará la habitación a su vivienda, respetará las normas de convivencia del Anexo II y no perturbará al resto de ocupantes."},
+      {id:"c_obras",ttl:"Conservación y reparaciones",text:"El arrendador realizará las reparaciones necesarias para conservar la vivienda en condiciones de habitabilidad (art. 21 LAU). Las pequeñas reparaciones que exija el desgaste por el uso ordinario de la habitación serán a cargo del arrendatario."},
+      {id:"c_proh",ttl:"Prohibición de subarriendo",text:"Queda prohibido el subarriendo, la cesión a terceros y el cambio de uso de la habitación sin consentimiento escrito del arrendador (art. 8 LAU)."},
+      {id:"c_fin",ttl:"Documento de finalización",text:"A la finalización del contrato, las partes dejarán constancia por escrito del estado de la habitación y de las zonas comunes en el momento de la entrega de la posesión, mediante un documento de finalización firmado por ambas (art. 36.7 LAU)."},
       {id:"c_masc",ttl:"Resolución y MASC",text:"El impago de la renta facultará para resolver el contrato. Con carácter previo a la vía judicial, las partes intentarán un Medio Adecuado de Solución de Controversias (MASC) conforme a la Ley Orgánica 1/2025."},
       {id:"c_rgpd",ttl:"Protección de datos",text:"Los datos personales se tratarán conforme al RGPD y la LOPDGDD, con la única finalidad de gestionar la relación arrendaticia."},
       {id:"c_jur",ttl:"Jurisdicción",text:"Las partes se someten a los Juzgados y Tribunales del lugar donde radica el inmueble."}
     ],
-    legal:"Base legal: Código Civil, arts. 1255 y 1542 y ss.; jurisprudencia consolidada. © Asesorfy · Normativa española.",
+    legal:"Base legal: Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026 (arts. 2.1, 4.2, 8, 9, 10, 11, 17.9, 18, 20, 21 y 36); Código Civil (supletorio). Actualizado al RDL 29/2026. © Asesorfy · Normativa española.",
     signatures:true
   },
 
   "contrato-temporada":{
     tab:"Contrato de temporada", price:"9,99€",
-    title:"CONTRATO DE ARRENDAMIENTO DE TEMPORADA", sub:"Uso distinto del de vivienda — Art. 3 de la Ley 29/1994 (LAU)",
-    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. El arrendamiento de temporada es de uso distinto del de vivienda (art. 3 LAU): se rige por la voluntad de las partes, en su defecto por el Título III de la LAU y supletoriamente por el Código Civil. Si el destino es turístico y la CCAA tiene normativa de vivienda vacacional, esta puede aplicarse con preferencia.",
+    title:"CONTRATO DE ARRENDAMIENTO DE VIVIENDA TEMPORAL", sub:"Arts. 2.3, 7.2 y 9 bis de la Ley 29/1994 (LAU), redacción del RDL 29/2026",
+    aviso:"AVISO LEGAL. Modelo informativo de Asesorfy. Desde el 8 de octubre de 2026 el alquiler de temporada para alojar a una persona es arrendamiento de vivienda temporal de la LAU (art. 2.3, redacción del Real Decreto-ley 29/2026): exige una causa real y acreditable de desplazamiento recogida expresamente en el contrato, cuya prueba corresponde al arrendador (art. 7.2), y una duración superior a 31 días y, como regla general, no superior a 12 meses (art. 9 bis). Sin causa, el contrato se rige como vivienda habitual desde su firma. Los contratos de temporada firmados antes del 8 de octubre de 2026 siguen su régimen anterior hasta su vencimiento (DT 8.ª LAU). El uso turístico sometido a normativa sectorial queda fuera de este modelo (art. 5.e). Revisa la normativa de tu comunidad autónoma (DA 12.ª LAU).",
     fields: COMMON_PARTES.concat([
-      {grp:"Inmueble y condiciones", help:"Define el inmueble, la causa temporal y las condiciones económicas. La causa de temporalidad es clave: es lo que justifica que NO sea vivienda habitual y, por tanto, que se aplique el art. 3 LAU."},
+      {grp:"Inmueble y condiciones", help:"Define qué se arrienda, la causa del desplazamiento y cómo se acredita, y las condiciones económicas. La causa debe ser real y acreditable y la prueba es tuya (art. 7.2 LAU): sin ella, el contrato se trata como vivienda habitual."},
       {id:"direccion",label:"Dirección del inmueble",ph:"Calle ...",full:true},
       {id:"catastral",label:"Referencia catastral",ph:"0000..."},
-      {id:"motivo",label:"Causa de la temporalidad",ph:"trabajo temporal / estudios / obras"},
+      {id:"objeto",label:"Qué se arrienda",ph:"la vivienda completa / la habitación 2 con uso de cocina y baño",full:true},
+      {id:"motivo",label:"Causa del desplazamiento temporal",ph:"destino laboral temporal en Córdoba hasta el 30/06/2027",full:true},
+      {id:"acredita",label:"Documento que acredita la causa",ph:"carta de la empresa de 15/05/2026",full:true},
       {id:"f_ini",label:"Fecha de inicio",ph:"01/07/2026"},
-      {id:"f_fin",label:"Fecha de fin",ph:"30/09/2026"},
-      {id:"renta",label:"Renta",ph:"600"},
-      {id:"periodo",label:"Periodo de la renta",ph:"mes / quincena / estancia"},
+      {id:"f_fin",label:"Fecha de fin (más de 31 días, hasta 12 meses)",ph:"30/06/2027"},
+      {id:"renta",label:"Renta mensual (€)",ph:"600"},
       {id:"iban",label:"IBAN para el cobro",ph:"ES00 ...",full:true},
-      {id:"fianza",label:"Fianza (2 mensualidades, €)",ph:"1200"}
+      {id:"fianza",label:"Fianza (1 mensualidad, €)",ph:"600"}
     ]),
     intro: [
       "En <b>{{localidad}}</b>, a <b>{{fecha}}</b>.",
       "__H4__REUNIDOS",
       "<b>EL ARRENDADOR:</b> D./D.ª <b>{{arr_nombre}}</b>, DNI/NIE <b>{{arr_dni}}</b>, domicilio en <b>{{arr_dom}}</b>.",
-      "<b>EL ARRENDATARIO:</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, domicilio habitual y permanente en <b>{{inq_dom}}</b>.",
+      "<b>EL ARRENDATARIO:</b> D./D.ª <b>{{inq_nombre}}</b>, DNI/NIE <b>{{inq_dni}}</b>, con domicilio habitual en <b>{{inq_dom}}</b>.",
       "__H4__EXPONEN",
       "<b>I.</b> Que el arrendador es titular del inmueble sito en <b>{{direccion}}</b>, referencia catastral <b>{{catastral}}</b>.",
-      "<b>II.</b> Que la necesidad del arrendatario es <b>temporal</b> y no permanente, siendo su causa: <b>{{motivo}}</b>, manteniendo su residencia habitual en el domicilio indicado.",
-      "<b>III.</b> Que el contrato se considera de uso distinto del de vivienda (art. 3 LAU).",
+      "<b>II.</b> Que el arrendatario se encuentra temporalmente desplazado de su domicilio habitual por la siguiente causa: <b>{{motivo}}</b>, que se acredita mediante <b>{{acredita}}</b>, de la que el arrendatario entrega copia.",
+      "<b>III.</b> Que, en consecuencia, las partes celebran un arrendamiento de <b>vivienda temporal</b> conforme a los arts. 2.3, 7 y 9 bis de la Ley 29/1994, de Arrendamientos Urbanos, en la redacción del Real Decreto-ley 29/2026, que se rige por lo pactado en el marco del Título II de dicha ley y, supletoriamente, por el Código Civil.",
       "__H4__CLÁUSULAS"
     ],
     clauses: [
-      {id:"t_obj",ttl:"Objeto y destino",ess:true,text:"Se arrienda el inmueble para uso de temporada, quedando expresamente excluido su uso como vivienda habitual o permanente del arrendatario."},
-      {id:"t_dur",ttl:"Duración",ess:true,text:"El plazo se fija de forma determinada desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>, sin prórroga tácita dada la naturaleza temporal. La permanencia posterior exigirá nuevo acuerdo escrito."},
-      {id:"t_renta",ttl:"Renta",ess:true,text:"La renta es de <b>{{renta}}</b> € por <b>{{periodo}}</b>, pagadera mediante transferencia a la cuenta <b>{{iban}}</b>."},
-      {id:"t_fianza",ttl:"Fianza",ess:true,text:"Conforme al art. 36 de la LAU, el arrendatario entrega <b>DOS (2) mensualidades</b> en concepto de fianza, esto es, <b>{{fianza}}</b> €, sin perjuicio de garantías adicionales que se pacten."},
-      {id:"t_sum",ttl:"Suministros e inventario",text:"Los suministros corren a cargo de la parte que se indique; el mobiliario y enseres se relacionan en el inventario del Anexo I, recibidos en correcto estado."},
-      {id:"t_obl",ttl:"Obligaciones del arrendatario",text:"Conservar el inmueble, destinarlo exclusivamente al uso pactado, no realizar obras, no subarrendar ni ceder, y devolverlo en el mismo estado a la finalización."},
+      {id:"t_obj",ttl:"Objeto y destino",ess:true,text:"Se arrienda <b>{{objeto}}</b> para cubrir la necesidad de vivienda del arrendatario mientras dure su desplazamiento temporal, manteniendo este su domicilio habitual en el indicado en el encabezamiento."},
+      {id:"t_causa",ttl:"Causa de temporalidad",ess:true,text:"La causa que motiva el desplazamiento temporal del arrendatario es <b>{{motivo}}</b>, acreditada mediante <b>{{acredita}}</b>. El arrendatario comunicará al arrendador cualquier cambio en dicha causa. Las partes conocen que, conforme al art. 7.2 de la LAU, la ausencia de una causa de temporalidad debidamente prevista priva al contrato de su naturaleza temporal."},
+      {id:"t_dur",ttl:"Duración",ess:true,text:"El contrato tendrá una duración determinada desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>, superior a treinta y un días y no superior a doce meses (art. 9 bis LAU). Si llegada la fecha de finalización subsiste la causa de temporalidad, podrá prorrogarse mediante acuerdo expreso y escrito de las partes, sin superar en conjunto la duración máxima de doce meses salvo que la causa subsista posteriormente."},
+      {id:"t_renta",ttl:"Renta",ess:true,text:"La renta es de <b>{{renta}}</b> € mensuales, pagadera mediante transferencia a la cuenta <b>{{iban}}</b>."},
+      {id:"t_fianza",ttl:"Fianza y garantías",ess:true,text:"Conforme al art. 36.1 de la LAU, el arrendatario entrega <b>UNA (1) mensualidad</b> de renta en concepto de fianza, esto es, <b>{{fianza}}</b> €. Cualquier garantía adicional que se pacte no podrá exceder de una mensualidad de renta y no se exige al arrendatario la contratación de seguros de impago (art. 36.5)."},
+      {id:"t_desist",ttl:"Desistimiento del arrendatario",ess:true,text:"El arrendatario podrá desistir del contrato una vez transcurrido al menos un mes desde su formalización, comunicándolo al arrendador con una antelación mínima de diez días. El desistimiento así ejercido no generará indemnización a favor del arrendador (art. 11.2 y 11.3 LAU)."},
+      {id:"t_cons",ttl:"Conservación y reparaciones",ess:true,text:"Corresponde al arrendador conservar la vivienda en condiciones de habitabilidad y las pequeñas reparaciones que exija el desgaste por el uso ordinario. El arrendatario le comunicará cualquier avería en el más breve plazo y el arrendador responderá en un máximo de cinco días hábiles, en los términos del art. 21 bis de la LAU."},
+      {id:"t_sum",ttl:"Suministros, gastos e inventario",text:"Los suministros individualizados por contador son de cuenta del arrendatario. Los gastos generales solo le serán repercutibles si se pactan por escrito con su importe anual; no se le repercutirán tributos asociados a la vivienda ni gastos de gestión o formalización (art. 20 LAU). El mobiliario y enseres se relacionan en el inventario del Anexo I."},
+      {id:"t_obl",ttl:"Obligaciones del arrendatario",text:"Conservar el inmueble con la diligencia debida, destinarlo exclusivamente al uso pactado, no realizar obras sin consentimiento escrito, no subarrendar ni ceder, y devolverlo a la finalización."},
+      {id:"t_fin",ttl:"Documento de finalización",text:"A la finalización del contrato, las partes dejarán constancia por escrito del estado de la vivienda en el momento de la entrega de la posesión mediante un documento de finalización firmado por ambas (art. 36.7 LAU)."},
       {id:"t_registros",ttl:"Registros y autorizaciones",text:"Cuando el inmueble se comercialice a través de plataformas, el arrendador comprobará los registros, licencias o comunicaciones exigidos por la normativa autonómica o local aplicable. El procedimiento estatal NRUA regulado por los artículos 8 a 10 del RD 1312/2024 fue anulado por el Tribunal Supremo en 2026."},
       {id:"t_masc",ttl:"Resolución y MASC",text:"El incumplimiento facultará para resolver el contrato. Con carácter previo a la vía judicial civil, las partes intentarán un MASC conforme a la Ley Orgánica 1/2025 (requisito de procedibilidad)."},
-      {id:"t_rgpd",ttl:"Protección de datos",text:"Tratamiento conforme al RGPD y la LOPDGDD para la gestión del arrendamiento."},
+      {id:"t_rgpd",ttl:"Protección de datos",text:"Tratamiento conforme al RGPD y la LOPDGDD para la gestión del arrendamiento, incluida la documentación que acredita la causa de temporalidad."},
       {id:"t_jur",ttl:"Jurisdicción",text:"Juzgados y Tribunales del lugar donde radica el inmueble."}
     ],
-    legal:"Base legal: Ley 29/1994 LAU (arts. 3 y 36); Código Civil (supletorio). Revisado tras las sentencias del Tribunal Supremo publicadas en junio de 2026 sobre el RD 1312/2024. © Asesorfy.",
+    legal:"Base legal: Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026 (arts. 2.3, 4.2, 7, 9 bis, 11, 20, 21 bis y 36; DT 8.ª); Código Civil (supletorio). Actualizado al RDL 29/2026. © Asesorfy.",
     signatures:true
   },
 
@@ -492,16 +503,17 @@ var CONFIG = {
       {id:"l_dur",ttl:"Duración y prórrogas",ess:true,text:"El contrato se pacta por <b>{{anios}}</b> año(s), desde el <b>{{f_ini}}</b> hasta el <b>{{f_fin}}</b>. Llegada la fecha, se prorrogará obligatoriamente por plazos anuales hasta que el arrendamiento alcance los CINCO (5) años (SIETE si el arrendador es persona jurídica), conforme al art. 9 de la LAU; transcurridos estos, operará la prórroga tácita de hasta TRES (3) años del art. 10, salvo preaviso en los plazos legales."},
       {id:"l_renta",ttl:"Renta",ess:true,text:"La renta mensual es de <b>{{renta}}</b> €, pagadera dentro de los <b>{{diapago}}</b> primeros días de cada mes mediante transferencia a la cuenta <b>{{iban}}</b>."},
       {id:"l_fianza",ttl:"Fianza",ess:true,text:"Conforme al art. 36 de la LAU, el arrendatario entrega <b>UNA (1) mensualidad</b> de renta en concepto de fianza legal, esto es, <b>{{fianza}}</b> €, sin perjuicio de garantías adicionales legalmente admisibles."},
-      {id:"l_act",ttl:"Actualización de la renta",text:"La renta se actualizará anualmente conforme al Índice de Referencia de Arrendamientos de Vivienda (IRAV) publicado por el INE, aplicable a los contratos firmados desde el 26 de mayo de 2023, en los términos del art. 18 de la LAU."},
-      {id:"l_desist",ttl:"Desistimiento del arrendatario",text:"El arrendatario podrá desistir del contrato una vez transcurridos al menos SEIS (6) meses, comunicándolo al arrendador con una antelación mínima de TREINTA (30) días, conforme al art. 11 de la LAU."},
-      {id:"l_gastos",ttl:"Gastos y suministros",text:"Los suministros (agua, luz, gas, internet) corren a cargo del arrendatario mediante los contratos a su nombre. Los gastos generales y de servicios solo serán repercutibles si se pactan por escrito y constan debidamente cuantificados."},
-      {id:"l_obras",ttl:"Conservación y obras",text:"El arrendador realizará las reparaciones necesarias para conservar la vivienda habitable; las pequeñas reparaciones por el uso ordinario corren a cargo del arrendatario. El arrendatario no podrá realizar obras sin consentimiento escrito."},
+      {id:"l_act",ttl:"Actualización de la renta",text:"La renta se actualizará en cada aniversario del contrato conforme a la variación anual del Índice de Referencia para la Actualización Anual de los Contratos de Arrendamiento de Vivienda (IRAV) publicado por el INE, sin que el incremento pueda exceder de dicha variación (art. 18.1 LAU, redacción del Real Decreto-ley 29/2026). Para las anualidades que se cumplan hasta el 31 de diciembre de 2027 se aplicará la limitación de la disposición final sexta del Real Decreto-ley 29/2026."},
+      {id:"l_desist",ttl:"Desistimiento del arrendatario",text:"El arrendatario podrá desistir del contrato una vez transcurridos al menos SEIS (6) meses, comunicándolo al arrendador con una antelación mínima de TREINTA (30) días, sin que ello genere indemnización a favor del arrendador, conforme al art. 11 de la LAU."},
+      {id:"l_gastos",ttl:"Gastos y suministros",text:"Los suministros (agua, luz, gas, internet) corren a cargo del arrendatario mediante los contratos a su nombre. Los gastos generales y de servicios solo serán repercutibles si se pactan por escrito y constan con su importe anual; en ningún caso se repercutirán al arrendatario los tributos asociados a la vivienda, salvo que sea el obligado tributario, ni los gastos de gestión inmobiliaria o de formalización del contrato (art. 20 LAU)."},
+      {id:"l_obras",ttl:"Conservación y obras",text:"El arrendador realizará las reparaciones necesarias para conservar la vivienda habitable; las pequeñas reparaciones por el uso ordinario corren a cargo del arrendatario. El arrendatario no podrá realizar obras sin consentimiento escrito. Para las reparaciones necesarias se estará al procedimiento del art. 21.5 de la LAU."},
+      {id:"l_fin",ttl:"Documento de finalización",text:"A la finalización del contrato, las partes dejarán constancia por escrito del estado de la vivienda en el momento de la entrega de la posesión mediante un documento de finalización firmado por ambas (art. 36.7 LAU)."},
       {id:"l_proh",ttl:"Prohibición de subarriendo y cesión",text:"Quedan prohibidos el subarriendo total o parcial y la cesión del contrato sin consentimiento escrito del arrendador."},
       {id:"l_masc",ttl:"Resolución y MASC",text:"El incumplimiento, en especial el impago de la renta, facultará para resolver el contrato. Con carácter previo a la vía judicial, las partes intentarán un MASC conforme a la Ley Orgánica 1/2025 (requisito de procedibilidad)."},
       {id:"l_rgpd",ttl:"Protección de datos",text:"Los datos personales se tratarán conforme al RGPD y la LOPDGDD, con la única finalidad de gestionar la relación arrendaticia."},
       {id:"l_jur",ttl:"Jurisdicción",text:"Las partes se someten a los Juzgados y Tribunales del lugar donde radica la vivienda."}
     ],
-    legal:"Base legal: Ley 29/1994 de Arrendamientos Urbanos (Título II; arts. 9, 10, 11, 18 y 36); Ley 12/2023 de Vivienda. © Asesorfy · Normativa española.",
+    legal:"Base legal: Ley 29/1994 de Arrendamientos Urbanos en la redacción del Real Decreto-ley 29/2026 (Título II; arts. 9, 10, 11, 18, 20, 21 y 36); Ley 12/2023 de Vivienda. Actualizado al RDL 29/2026. © Asesorfy · Normativa española.",
     signatures:true
   }
 };
@@ -514,22 +526,22 @@ var LIBRARY = {
     {ttl:"Penalización por retraso", text:"El retraso en el pago de la renta devengará un interés de demora del [X]% mensual sobre la cantidad adeudada, sin perjuicio de la facultad de resolución."},
     {ttl:"Empadronamiento", text:"El arrendador [autoriza / no autoriza] el empadronamiento del arrendatario en el domicilio durante la vigencia del contrato."},
     {ttl:"Depósito de llaves", text:"Se entregan [X] juegos de llaves. Queda prohibido realizar copias o ceder las llaves a terceros sin consentimiento del arrendador."},
-    {ttl:"Pequeñas reparaciones", text:"Las pequeñas reparaciones derivadas del uso ordinario correrán a cargo del arrendatario; las estructurales o de los elementos comunes, del arrendador."},
+    {ttl:"Reparto de reparaciones en zonas comunes", text:"Las averías de las zonas comunes se comunicarán al arrendador, que realizará las reparaciones necesarias para conservar la vivienda habitable; las pequeñas reparaciones por el uso ordinario de la habitación serán a cargo del arrendatario."},
     {ttl:"Visitas y pernoctaciones", text:"Las visitas respetarán el descanso del resto de ocupantes; no podrán pernoctar terceros más de [X] noches al mes sin acuerdo previo."},
     {ttl:"Limpieza de zonas comunes", text:"El arrendatario participará en la limpieza y mantenimiento de las zonas comunes conforme al turno acordado entre los ocupantes."},
-    {ttl:"Desistimiento y preaviso", text:"El arrendatario podrá desistir comunicándolo por escrito con al menos [X] días de antelación; en su defecto, deberá la renta correspondiente a dicho periodo de preaviso."},
+    {ttl:"Forma del preaviso de desistimiento", text:"La comunicación de desistimiento se hará por escrito, por correo electrónico o burofax, indicando la fecha prevista de entrega de llaves."},
     {ttl:"Notificaciones por email", text:"Las partes admiten como medio válido de notificación el correo electrónico: arrendador [email] y arrendatario [email]."}
   ],
   "contrato-temporada":[
     {ttl:"Número máximo de ocupantes", text:"El inmueble podrá ser ocupado por un máximo de [X] personas. El exceso no autorizado será causa de resolución del contrato."},
-    {ttl:"Gastos de limpieza final", text:"Se establece un cargo de limpieza final de [X] €, que se descontará de la fianza si la limpieza no se realiza adecuadamente."},
+    {ttl:"Limpieza a la salida", text:"El arrendatario devolverá la vivienda limpia. Si no lo hace, el coste acreditado de la limpieza podrá descontarse de la fianza, dejando constancia en el documento de finalización."},
     {ttl:"Ruidos y convivencia", text:"Quedan prohibidas las fiestas y los ruidos que perturben a los vecinos; su incumplimiento facultará la resolución inmediata del contrato."},
-    {ttl:"Inventario y check-out", text:"A la entrada y a la salida se firmará un parte del estado del inmueble; los desperfectos detectados se descontarán de la fianza."},
+    {ttl:"Inventario de entrada", text:"A la entrada se firmará un parte del estado del inmueble con fotografías fechadas, que servirá de referencia para el documento de finalización."},
     {ttl:"Consumos por contador", text:"Los suministros se facturarán según lectura de contador al inicio y al fin de la estancia, a cargo del arrendatario."},
     {ttl:"Mascotas", text:"No se permite la entrada de animales sin autorización escrita y previa del arrendador."},
     {ttl:"Prohibición de fumar", text:"Queda prohibido fumar en el interior del inmueble."},
     {ttl:"Penalización por retraso", text:"El retraso en el pago devengará un interés de demora del [X]% sobre la cantidad adeudada."},
-    {ttl:"Desistimiento", text:"En caso de desistimiento anticipado, el arrendatario perderá las cantidades entregadas a cuenta en concepto de reserva, salvo pacto en contrario."},
+    {ttl:"Forma del preaviso de desistimiento", text:"La comunicación de desistimiento se hará por escrito, con al menos diez días de antelación, indicando la fecha prevista de entrega de llaves."},
     {ttl:"Notificaciones por email", text:"Las partes admiten como medio válido de notificación el correo electrónico indicado por cada una."}
   ],
   "ovc-impago":[
@@ -1005,6 +1017,6 @@ handlePaidReturn();
 checkStoredPayment();
 </script>
 <footer data-legalbar style="background:#0e1a2b;color:#9fb0c6;padding:18px;text-align:center;font-size:12.5px"><a href="sobre.html" style="color:#9fb0c6">Sobre Asesorfy</a><a href="aviso-legal.html" style="color:#9fb0c6">Aviso legal</a> · <a href="privacidad.html" style="color:#9fb0c6">Privacidad</a> · <a href="condiciones.html" style="color:#9fb0c6">Condiciones</a> · <a href="cookies.html" style="color:#9fb0c6">Cookies</a></footer>
-<div id="ck-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0e1a2b;color:#dbe3ee;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;padding:14px 18px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.25)"><span style="max-width:680px">Usamos cookies propias y de terceros (Stripe) para el funcionamiento del sitio y procesar pagos. <a href="cookies.html" style="color:#9fc1e8">Más información</a>.</span><span style="display:flex;gap:8px"><button onclick="ckSet(0)" style="background:transparent;border:1px solid #3a4a60;color:#cdd8e6;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Rechazar</button><button onclick="ckSet(1)" style="background:#1f5fa6;border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Aceptar</button></span></div><script>function ckSet(v){try{localStorage.setItem('asesorfy_cookies',v?'accepted':'rejected');}catch(e){}var b=document.getElementById('ck-banner');if(b)b.style.display='none';}(function(){try{if(!localStorage.getItem('asesorfy_cookies')){var b=document.getElementById('ck-banner');if(b)b.style.display='flex';}}catch(e){}})();</script>
+<div id="ck-banner" style="position:fixed;left:0;right:0;bottom:0;z-index:9999;background:#0e1a2b;color:#dbe3ee;font-family:'Inter',system-ui,sans-serif;font-size:13.5px;padding:14px 18px;display:none;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;box-shadow:0 -6px 20px rgba(0,0,0,.25)"><span style="max-width:680px">Usamos cookies propias y de terceros (Stripe) para el funcionamiento del sitio y procesar pagos. <a href="cookies.html" style="color:#9fc1e8">Más información sobre cookies</a>.</span><span style="display:flex;gap:8px"><button onclick="ckSet(0)" style="background:transparent;border:1px solid #3a4a60;color:#cdd8e6;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Rechazar</button><button onclick="ckSet(1)" style="background:#1f5fa6;border:none;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13px">Aceptar</button></span></div><script>function ckSet(v){try{localStorage.setItem('asesorfy_cookies',v?'accepted':'rejected');}catch(e){}var b=document.getElementById('ck-banner');if(b)b.style.display='none';}(function(){try{if(!localStorage.getItem('asesorfy_cookies')){var b=document.getElementById('ck-banner');if(b)b.style.display='flex';}}catch(e){}})();</script>
 </body>
 </html>
